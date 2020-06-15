@@ -72,6 +72,7 @@ const BlogPostList = () => {
         <BlogPostCard
           key={post.id}
           title={post.title}
+          slug={post.slug}
           authorName={post.author.name}
           image={post.image}
         />
