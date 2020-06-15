@@ -12,7 +12,7 @@ const BlogPost = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={post.title} />
+      <SEO title={post.title} description={`TODO: add`} />
       <article>
         <header>
           <h1>{post.title}</h1>
