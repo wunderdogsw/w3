@@ -6,6 +6,28 @@
 
 const path = require("path")
 
+const findImageURLs = content => {
+  const isAsset = entry => entry.nodeType === "embedded-asset-block"
+
+  return content.reduce((result, entry) => {
+    if (
+      !entry.data ||
+      !entry.data.target ||
+      !entry.data.target.fields ||
+      !entry.data.target.fields.file
+    ) {
+      return result
+    }
+
+    const { url } = entry.data.target.fields.file["en-US"]
+    if (isAsset(entry) && url) {
+      return [...result, url]
+    }
+
+    return result
+  }, [])
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const content = await graphql(`
@@ -24,24 +46,37 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      stories: allContentfulCaseStory {
+        edges {
+          node {
+            slug
+            content {
+              json
+            }
+          }
+        }
+      }
     }
   `)
 
-  content.data.pages.edges.forEach(({ node }) => {
-    createPage({
-      path: node.slug,
-      component: path.resolve(`./src/templates/page.js`),
-      context: { slug: node.slug },
-    })
-  })
+  const createPagesFromData = (data, template, segment) => {
+    data.edges.forEach(({ node }) => {
+      const context = { slug: node.slug }
+      if (node.content) {
+        context.images = findImageURLs(node.content.json.content)
+      }
 
-  content.data.posts.edges.forEach(({ node }) => {
-    createPage({
-      path: `blog/${node.slug}`,
-      component: path.resolve(`./src/templates/blog-post.js`),
-      context: { slug: node.slug },
+      createPage({
+        path: `${segment ? `${segment}/` : ``}${node.slug}`,
+        component: path.resolve(`./src/templates/${template}`),
+        context,
+      })
     })
-  })
+  }
+
+  createPagesFromData(content.data.pages, "page.js")
+  createPagesFromData(content.data.posts, "blog-post.js", "blog")
+  createPagesFromData(content.data.stories, "case-story.js", "work")
 }
 
 exports.createSchemaCustomization = ({ actions }) => {
