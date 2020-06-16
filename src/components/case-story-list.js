@@ -4,18 +4,16 @@ import { useStaticQuery, graphql } from "gatsby"
 import ArticleList from "./article-list"
 import ArticleCard from "./article-card"
 
-const BlogPostList = () => {
+const CaseStoryList = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulBlogPost(sort: { fields: publishedAt, order: DESC }) {
+      allContentfulCaseStory(sort: { fields: publishedAt, order: DESC }) {
         edges {
           node {
             id
             title
             slug
-            author {
-              name
-            }
+            client
             image {
               fluid(maxWidth: 1024) {
                 ...GatsbyContentfulFluid_withWebp
@@ -30,22 +28,22 @@ const BlogPostList = () => {
     }
   `)
 
-  const posts = data.allContentfulBlogPost.edges.map(({ node }) => node)
+  const stories = data.allContentfulCaseStory.edges.map(({ node }) => node)
 
   return (
     <ArticleList
-      data={posts}
-      render={post => (
+      data={stories}
+      render={story => (
         <ArticleCard
-          key={post.id}
-          to={`/blog/${post.slug}`}
-          title={post.title}
-          subtitle={`By ${post.author.name}`}
-          image={post.image}
+          key={story.id}
+          to={`/work/${story.slug}`}
+          title={story.title}
+          subtitle={`By ${story.client}`}
+          image={story.image}
         />
       )}
     />
   )
 }
 
-export default BlogPostList
+export default CaseStoryList
