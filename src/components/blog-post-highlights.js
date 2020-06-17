@@ -4,10 +4,13 @@ import { useStaticQuery, graphql } from "gatsby"
 import ArticleList from "./article-list"
 import ArticleCard from "./article-card"
 
-const BlogPostList = () => {
+const BlogPostHighlights = ({ button }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulBlogPost(sort: { fields: publishedAt, order: DESC }) {
+      allContentfulBlogPost(
+        sort: { fields: publishedAt, order: DESC }
+        limit: 2
+      ) {
         edges {
           node {
             id
@@ -33,20 +36,22 @@ const BlogPostList = () => {
   const posts = data.allContentfulBlogPost.edges.map(({ node }) => node)
 
   return (
-    <ArticleList
-      data={posts}
-      filter
-      render={post => (
-        <ArticleCard
-          key={post.id}
-          to={`/blog/${post.slug}`}
-          title={post.title}
-          subtitle={`By ${post.author.name}`}
-          image={post.image}
-        />
-      )}
-    />
+    <>
+      <ArticleList
+        data={posts}
+        render={post => (
+          <ArticleCard
+            key={post.id}
+            to={`/blog/${post.slug}`}
+            title={post.title}
+            subtitle={`By ${post.author.name}`}
+            image={post.image}
+          />
+        )}
+      />
+      {button && <button>{button}</button>}
+    </>
   )
 }
 
-export default BlogPostList
+export default BlogPostHighlights

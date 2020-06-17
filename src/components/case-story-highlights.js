@@ -4,10 +4,13 @@ import { useStaticQuery, graphql } from "gatsby"
 import ArticleList from "./article-list"
 import ArticleCard from "./article-card"
 
-const CaseStoryList = () => {
+const CaseStoryHighlights = ({ button }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulCaseStory(sort: { fields: publishedAt, order: DESC }) {
+      allContentfulCaseStory(
+        sort: { fields: publishedAt, order: DESC }
+        limit: 4
+      ) {
         edges {
           node {
             id
@@ -31,20 +34,22 @@ const CaseStoryList = () => {
   const stories = data.allContentfulCaseStory.edges.map(({ node }) => node)
 
   return (
-    <ArticleList
-      data={stories}
-      filter
-      render={story => (
-        <ArticleCard
-          key={story.id}
-          to={`/work/${story.slug}`}
-          title={story.title}
-          subtitle={`By ${story.client}`}
-          image={story.image}
-        />
-      )}
-    />
+    <>
+      <ArticleList
+        data={stories}
+        render={story => (
+          <ArticleCard
+            key={story.id}
+            to={`/work/${story.slug}`}
+            title={story.title}
+            subtitle={`By ${story.client}`}
+            image={story.image}
+          />
+        )}
+      />
+      {button && <button>{button}</button>}
+    </>
   )
 }
 
-export default CaseStoryList
+export default CaseStoryHighlights

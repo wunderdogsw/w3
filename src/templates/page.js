@@ -52,6 +52,26 @@ export const query = graphql`
             id
             heading
           }
+          ... on ContentfulSectionBlock {
+            id
+            image {
+              fluid(maxWidth: 2560) {
+                ...GatsbyContentfulFluid_withWebp
+              }
+            }
+            heading
+            content {
+              json
+            }
+          }
+          ... on ContentfulImageBlock {
+            id
+            image {
+              fluid(maxWidth: 2560) {
+                ...GatsbyContentfulFluid_withWebp
+              }
+            }
+          }
           ... on ContentfulComponentBlock {
             id
             reactComponent

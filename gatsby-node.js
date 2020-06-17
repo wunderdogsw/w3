@@ -6,6 +6,8 @@
 
 const path = require("path")
 
+const INDEX = "index"
+
 const findImageURLs = content => {
   const isAsset = entry => entry.nodeType === "embedded-asset-block"
 
@@ -64,13 +66,23 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const createPagesFromData = (data, template, segment) => {
     data.edges.forEach(({ node }) => {
-      const context = { slug: node.slug }
+      let context = { slug: node.slug }
       if (node.content) {
-        context.images = findImageURLs(node.content.json.content)
+        context = {
+          ...context,
+          images: findImageURLs(node.content.json.content),
+        }
+      }
+
+      let urlPath
+      if (node.slug === INDEX) {
+        urlPath = "/"
+      } else {
+        urlPath = `${segment ? `/${segment}/` : `/`}${node.slug}`
       }
 
       createPage({
-        path: `${segment ? `${segment}/` : ``}${node.slug}`,
+        path: urlPath,
         component: path.resolve(`./src/templates/${template}`),
         context,
       })

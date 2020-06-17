@@ -30,16 +30,18 @@ const filterArticles = (articles, activeCategory) => {
   })
 }
 
-const ArticleList = ({ data, render }) => {
+const ArticleList = ({ data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
 
   return (
     <>
-      <CategoryFilter
-        categories={findCategories(data)}
-        active={activeCategory}
-        onSelect={category => setActiveCategory(category)}
-      />
+      {filter && (
+        <CategoryFilter
+          categories={findCategories(data)}
+          active={activeCategory}
+          onSelect={category => setActiveCategory(category)}
+        />
+      )}
       {filterArticles(data, activeCategory).map(article => render(article))}
     </>
   )
