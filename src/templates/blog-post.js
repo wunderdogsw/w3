@@ -40,7 +40,7 @@ export const query = graphql`
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       slug
-      publishedAt
+      publishedAt(formatString: "MMMM D, YYYY")
       image {
         fluid(maxWidth: 2560) {
           ...GatsbyContentfulFluid_withWebp
