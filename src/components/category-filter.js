@@ -4,6 +4,7 @@ const CategoryFilter = ({ categories, active, onSelect }) => (
   <ul>
     {categories.map(category => (
       <li
+        key={category}
         style={{ color: category === active ? "gray" : "black" }}
         onClick={() => onSelect(category)}
       >
