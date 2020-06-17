@@ -16,7 +16,6 @@ const findImage = (images, node) => {
 const CaseStory = ({ data }) => {
   const story = data.story
   const images = data.images.edges.map(({ node }) => node)
-  console.log(data.images)
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => {
