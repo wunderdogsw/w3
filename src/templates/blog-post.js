@@ -6,6 +6,13 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import RichText from "../components/rich-text"
 
+const renderAuthor = author => (
+  <div>
+    By {author.name}
+    {author.title && `, ${author.title}`}
+  </div>
+)
+
 const BlogPost = ({ data }) => {
   const { post } = data
   const images = data.images.edges.map(({ node }) => node)
@@ -17,9 +24,7 @@ const BlogPost = ({ data }) => {
       <article>
         <header>
           <h1>{post.title}</h1>
-          <div>
-            By {author.name}, {author.title}
-          </div>
+          {renderAuthor(author)}
           <div>{post.publishedAt}</div>
           <div>Read time {post.readingTime} min</div>
         </header>
