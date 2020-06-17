@@ -4,7 +4,7 @@ import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import RichText from "../components/rich-text-"
+import RichText from "../components/rich-text"
 
 const BlogPost = ({ data }) => {
   const { post } = data
