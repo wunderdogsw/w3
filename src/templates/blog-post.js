@@ -1,18 +1,19 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-image"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import RichText from "../components/rich-text-"
 
 const BlogPost = ({ data }) => {
-  const post = data.contentfulBlogPost
+  const { post } = data
+  const images = data.images.edges.map(({ node }) => node)
   const { author } = post
 
   return (
     <Layout>
-      <SEO title={post.title} description={`TODO: add`} />
+      <SEO title={post.title} />
       <article>
         <header>
           <h1>{post.title}</h1>
@@ -23,15 +24,15 @@ const BlogPost = ({ data }) => {
           <div>Read time {post.readingTime} min</div>
         </header>
         <Image fluid={post.image.fluid} />
-        {documentToReactComponents(post.content.json)}
+        <RichText document={post.content.json} images={images} />
       </article>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+  query($slug: String!, $images: [String!]!) {
+    post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       slug
       publishedAt
@@ -47,6 +48,15 @@ export const query = graphql`
       readingTime
       content {
         json
+      }
+    }
+    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
+      edges {
+        node {
+          fluid(maxWidth: 2560) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
       }
     }
   }
