@@ -1,33 +1,13 @@
 import React from "react"
 import Image from "gatsby-image"
-import { BLOCKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import StatisticsBlock from "../components/statistics-block"
-
-const findImage = (images, node) => {
-  const { url } = node.data.target.fields.file["en-US"]
-
-  return images.find(image => image.fluid.src.split("?")[0] === url)
-}
+import RichText from "../components/rich-text-"
 
 const CaseStory = ({ data }) => {
   const story = data.story
   const images = data.images.edges.map(({ node }) => node)
-  const options = {
-    renderNode: {
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        const { statistics } = node.data.target.fields
-
-        return <StatisticsBlock data={statistics["en-US"]} />
-      },
-      [BLOCKS.EMBEDDED_ASSET]: node => {
-        return <Image fluid={findImage(images, node).fluid} />
-      },
-    },
-  }
 
   return (
     <Layout>
@@ -38,7 +18,7 @@ const CaseStory = ({ data }) => {
           <div>{story.client}</div>
         </header>
         <Image fluid={story.image.fluid} />
-        {documentToReactComponents(story.content.json, options)}
+        <RichText document={story.content.json} images={images} />
       </article>
     </Layout>
   )
