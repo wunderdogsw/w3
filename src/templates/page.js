@@ -72,6 +72,26 @@ export const query = graphql`
               }
             }
           }
+          ... on ContentfulStatisticsBlock {
+            id
+            statistics {
+              id
+              value
+              description
+            }
+          }
+          ... on ContentfulLogosBlock {
+            id
+            heading
+            content {
+              json
+            }
+            images {
+              file {
+                url
+              }
+            }
+          }
           ... on ContentfulComponentBlock {
             id
             reactComponent

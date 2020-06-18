@@ -3,11 +3,28 @@ import Image from "gatsby-image"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
+import { capitalize } from "../common/utils"
+import blocks from "../blocks/blocks"
 import componentBlocks from "../blocks/component-blocks"
-import StatisticsBlock from "./statistics-block"
 
 const COMPONENT_BLOCK = "componentBlock"
-const STATISTICS_BLOCK = "statisticsBlock"
+
+const isSerialized = value => !(Array.isArray(value) && value[0].fields)
+
+const serializeData = data => {
+  return Object.keys(data).reduce((result, key) => {
+    const value = data[key]["en-US"]
+
+    let serializedValue
+    if (!isSerialized(value)) {
+      serializedValue = value.map(item => serializeData(item.fields))
+    } else {
+      serializedValue = value
+    }
+
+    return { ...result, [key]: serializedValue }
+  }, {})
+}
 
 const findComponentBlock = data => {
   const componentName = data.target.fields.reactComponent["en-US"]
@@ -25,13 +42,15 @@ const renderEmbeddedEntry = data => {
     return <EmbeddedComponentBlock {...props} />
   }
 
-  if (contentType === STATISTICS_BLOCK) {
-    const { statistics } = data.target.fields
+  const block = `Contentful${capitalize(contentType)}`
+  const EmbeddedBlock = blocks[block]
+  if (EmbeddedBlock) {
+    const serializedData = serializeData(data.target.fields)
 
-    return <StatisticsBlock data={statistics["en-US"]} />
+    return <EmbeddedBlock data={serializedData} />
   }
 
-  console.error("Unkown content type", contentType)
+  console.error("Unknown block", block)
 }
 
 const findImage = (images, node) => {

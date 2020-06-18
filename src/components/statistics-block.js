@@ -4,14 +4,14 @@ import Statistic from "./statistic"
 
 const StatisticsBlock = ({ data }) => (
   <>
-    {data.map(statistic => {
-      const { title, value, description } = statistic.fields
+    {data.statistics.map(statistic => {
+      const { value, description } = statistic
 
       return (
         <Statistic
-          key={title["en-US"]}
-          value={value["en-US"]}
-          description={description["en-US"]}
+          key={`${value}${description}`}
+          value={value}
+          description={description}
         />
       )
     })}
