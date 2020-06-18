@@ -16,4 +16,8 @@ componentBlocks[
   "CaseStoryList"
 ] = require("../components/case-story-list").default
 
+componentBlocks[
+  "OpenPositionList"
+] = require("../components/open-position-list").default
+
 export default componentBlocks
