@@ -1,5 +1,9 @@
 let blocks = {}
 
+blocks[
+  "ContentfulArticleBlock"
+] = require("../components/article-block").default
+
 blocks["ContentfulHeroBlock"] = require("../components/hero-block").default
 
 blocks["ContentfulImageBlock"] = require("../components/image-block").default

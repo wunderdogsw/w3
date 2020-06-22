@@ -7,27 +7,61 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import Navigation from "./navigation"
+import Footer from "./footer"
+import Legal from "./legal"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const renderLink = page => (
+  <Link key={page.id} to={`/${page.slug}`}>
+    {page.title}
+  </Link>
+)
+
+const Layout = ({ children, footer }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
-      site {
+      site: site {
         siteMetadata {
           title
+        }
+      }
+      config: contentfulConfig(title: { eq: "W3" }) {
+        footer
+        copyright
+        cookiePolicy {
+          id
+          title
+          slug
+        }
+        privacyPolicy {
+          id
+          title
+          slug
+        }
+        pages {
+          id
+          title
+          slug
+        }
+        socialMediaChannels {
+          id
+          title
+          url
         }
       }
     }
   `)
 
+  const { site, config } = data
+
   return (
     <>
-      <Navigation />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Navigation pages={config.pages} channels={config.socialMediaChannels} />
+      <Header siteTitle={site.siteMetadata.title} />
       <div
         style={{
           margin: `0 auto`,
@@ -36,11 +70,24 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        {footer && (
+          <Footer
+            heading={config.footer}
+            links={config.pages.map(page => (
+              <Link key={page.id} to={page.slug}>
+                {page.title}
+              </Link>
+            ))}
+          >
+            <Legal
+              copyright={config.copyright}
+              links={[
+                renderLink(config.cookiePolicy),
+                renderLink(config.privacyPolicy),
+              ]}
+            />
+          </Footer>
+        )}
       </div>
     </>
   )

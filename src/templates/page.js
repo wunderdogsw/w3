@@ -28,7 +28,7 @@ const Page = ({ data }) => {
   const page = data.contentfulPage
 
   return (
-    <Layout>
+    <Layout footer>
       <SEO
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
@@ -48,6 +48,12 @@ export const query = graphql`
       blocks {
         __typename
         ... on Node {
+          ... on ContentfulArticleBlock {
+            id
+            content {
+              json
+            }
+          }
           ... on ContentfulHeroBlock {
             id
             heading
