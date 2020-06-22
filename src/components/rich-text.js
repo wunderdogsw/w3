@@ -11,19 +11,24 @@ const COMPONENT_BLOCK = "componentBlock"
 
 const isSerialized = value => !(Array.isArray(value) && value[0].fields)
 
-const serializeData = data => {
-  return Object.keys(data).reduce((result, key) => {
-    const value = data[key]["en-US"]
+const serializeData = target => {
+  const { fields } = target
 
-    let serializedValue
-    if (!isSerialized(value)) {
-      serializedValue = value.map(item => serializeData(item.fields))
-    } else {
-      serializedValue = value
-    }
+  return Object.keys(fields).reduce(
+    (result, key) => {
+      const value = fields[key]["en-US"]
 
-    return { ...result, [key]: serializedValue }
-  }, {})
+      let serializedValue
+      if (!isSerialized(value)) {
+        serializedValue = value.map(item => serializeData(item))
+      } else {
+        serializedValue = value
+      }
+
+      return { ...result, [key]: serializedValue }
+    },
+    { id: target.sys.id }
+  )
 }
 
 const findComponentBlock = data => {
@@ -45,7 +50,7 @@ const renderEmbeddedEntry = data => {
   const block = `Contentful${capitalize(contentType)}`
   const EmbeddedBlock = blocks[block]
   if (EmbeddedBlock) {
-    const serializedData = serializeData(data.target.fields)
+    const serializedData = serializeData(data.target)
 
     return <EmbeddedBlock data={serializedData} />
   }

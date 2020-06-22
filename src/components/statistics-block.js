@@ -5,15 +5,9 @@ import Statistic from "./statistic"
 const StatisticsBlock = ({ data }) => (
   <>
     {data.statistics.map(statistic => {
-      const { value, description } = statistic
+      const { id, value, description } = statistic
 
-      return (
-        <Statistic
-          key={`${value}${description}`}
-          value={value}
-          description={description}
-        />
-      )
+      return <Statistic key={id} value={value} description={description} />
     })}
   </>
 )
