@@ -19,6 +19,7 @@ const OfficeBlock = ({ data }) => (
     <ul>
       {data.contacts.map(contact => (
         <Contact
+          key={contact.id}
           name={contact.name}
           position={contact.position}
           phone={contact.phone}

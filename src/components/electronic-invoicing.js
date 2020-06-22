@@ -5,10 +5,7 @@ const ElectronicInvoicing = ({ heading, body }) => (
     <h2>{heading}</h2>
     <p>
       {body.map((line, index) => (
-        <>
-          {index !== 0 && <br />}
-          {line}
-        </>
+        <span key={index}>{line}</span>
       ))}
     </p>
   </>

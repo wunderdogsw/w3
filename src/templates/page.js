@@ -86,6 +86,7 @@ export const query = graphql`
             country
             googleMapsUrl
             contacts {
+              id
               name
               position
               phone
