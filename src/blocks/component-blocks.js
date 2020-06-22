@@ -17,6 +17,10 @@ componentBlocks[
 ] = require("../components/case-story-list").default
 
 componentBlocks[
+  "ElectronicInvoicing"
+] = require("../components/electronic-invoicing").default
+
+componentBlocks[
   "OpenPositionList"
 ] = require("../components/open-position-list").default
 

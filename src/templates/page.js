@@ -72,6 +72,26 @@ export const query = graphql`
               }
             }
           }
+          ... on ContentfulOfficeBlock {
+            id
+            image {
+              fluid(maxWidth: 2560) {
+                ...GatsbyContentfulFluid_withWebp
+              }
+            }
+            name
+            streetAddress
+            zipCode
+            city
+            country
+            googleMapsUrl
+            contacts {
+              name
+              position
+              phone
+              email
+            }
+          }
           ... on ContentfulStatisticsBlock {
             id
             statistics {
