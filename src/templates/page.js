@@ -1,31 +1,13 @@
 import React from "react"
 
-import blocks from "../blocks/blocks"
-import componentBlocks from "../blocks/component-blocks"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-const CONTENTFUL_COMPONENT_BLOCK = "ContentfulComponentBlock"
-
-const renderComponentBlock = (id, name, options) => {
-  const ComponentBlock = componentBlocks[name]
-  const props = options ? JSON.parse(options.internal.content) : {}
-
-  return <ComponentBlock key={id} {...props} />
-}
-
-const renderBlock = block => {
-  if (block.__typename === CONTENTFUL_COMPONENT_BLOCK) {
-    return renderComponentBlock(block.id, block.reactComponent, block.options)
-  }
-
-  const BlockComponent = blocks[block.__typename]
-
-  return <BlockComponent key={block.id} data={block} />
-}
+import BlockList from "../components/block-list"
+import PageFooter from "../components/page-footer"
+import RichText from "../components/rich-text"
 
 const Page = ({ data }) => {
-  const page = data.contentfulPage
+  const { page, images } = data
 
   return (
     <Layout footer>
@@ -33,100 +15,84 @@ const Page = ({ data }) => {
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
       />
-      {page.blocks.map(block => renderBlock(block))}
+      {page.before && <BlockList data={page.before} />}
+      {page.content && (
+        <RichText document={page.content.json} images={images} />
+      )}
+      {page.after && <BlockList data={page.after} />}
+      <PageFooter />
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    contentfulPage(slug: { eq: $slug }) {
+  query($slug: String!, $images: [String!]!) {
+    page: contentfulPage(slug: { eq: $slug }) {
       metaTitle
       metaDescription {
         metaDescription
       }
-      blocks {
+      content {
+        json
+      }
+      before {
         __typename
         ... on Node {
-          ... on ContentfulArticleBlock {
-            id
-            content {
-              json
-            }
-          }
           ... on ContentfulHeroBlock {
-            id
-            heading
+            ...HeroBlock
           }
           ... on ContentfulSectionBlock {
-            id
-            image {
-              fluid(maxWidth: 2560) {
-                ...GatsbyContentfulFluid_withWebp
-              }
-            }
-            heading
-            content {
-              json
-            }
+            ...SectionBlock
           }
           ... on ContentfulImageBlock {
-            id
-            image {
-              fluid(maxWidth: 2560) {
-                ...GatsbyContentfulFluid_withWebp
-              }
-            }
+            ...ImageBlock
           }
           ... on ContentfulOfficeBlock {
-            id
-            image {
-              fluid(maxWidth: 2560) {
-                ...GatsbyContentfulFluid_withWebp
-              }
-            }
-            name
-            streetAddress
-            zipCode
-            city
-            country
-            googleMapsUrl
-            contacts {
-              id
-              name
-              position
-              phone
-              email
-            }
+            ...OfficeBlock
           }
           ... on ContentfulStatisticsBlock {
-            id
-            statistics {
-              id
-              value
-              description
-            }
+            ...StatisticsBlock
           }
           ... on ContentfulLogosBlock {
-            id
-            heading
-            content {
-              json
-            }
-            images {
-              file {
-                url
-              }
-            }
+            ...LogosBlock
           }
           ... on ContentfulComponentBlock {
-            id
-            reactComponent
-            options {
-              internal {
-                content
-              }
-            }
+            ...ComponentBlock
+          }
+        }
+      }
+      after {
+        __typename
+        ... on Node {
+          ... on ContentfulHeroBlock {
+            ...HeroBlock
+          }
+          ... on ContentfulSectionBlock {
+            ...SectionBlock
+          }
+          ... on ContentfulImageBlock {
+            ...ImageBlock
+          }
+          ... on ContentfulOfficeBlock {
+            ...OfficeBlock
+          }
+          ... on ContentfulStatisticsBlock {
+            ...StatisticsBlock
+          }
+          ... on ContentfulLogosBlock {
+            ...LogosBlock
+          }
+          ... on ContentfulComponentBlock {
+            ...ComponentBlock
+          }
+        }
+      }
+    }
+    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
+      edges {
+        node {
+          fluid(maxWidth: 2560) {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }

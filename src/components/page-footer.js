@@ -1,12 +1,14 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-const Legal = () => {
+import Legal from "./legal"
+
+const PageFooter = () => {
   const data = useStaticQuery(graphql`
     query {
       contentfulConfig(title: { eq: "W3" }) {
-        copyright
-        policies {
+        footer
+        pages {
           id
           title
           fields {
@@ -20,17 +22,18 @@ const Legal = () => {
   const config = data.contentfulConfig
 
   return (
-    <>
-      {config.copyright}
+    <footer>
+      <h1>{config.footer}</h1>
       <nav>
-        {config.policies.map(policy => (
-          <Link key={policy.id} to={policy.fields.route}>
-            {policy.title}
+        {config.pages.map(page => (
+          <Link key={page.id} to={page.fields.route}>
+            {page.title}
           </Link>
         ))}
       </nav>
-    </>
+      <Legal />
+    </footer>
   )
 }
 
-export default Legal
+export default PageFooter

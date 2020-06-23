@@ -15,7 +15,6 @@ const CaseStoryHighlights = ({ button }) => {
           node {
             id
             title
-            slug
             client
             image {
               fluid(maxWidth: 1024) {
@@ -24,6 +23,9 @@ const CaseStoryHighlights = ({ button }) => {
             }
             categories {
               title
+            }
+            fields {
+              route
             }
           }
         }
@@ -40,7 +42,7 @@ const CaseStoryHighlights = ({ button }) => {
         render={story => (
           <ArticleCard
             key={story.id}
-            to={`/work/${story.slug}`}
+            to={story.fields.route}
             title={story.title}
             subtitle={`By ${story.client}`}
             image={story.image}

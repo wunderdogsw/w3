@@ -8,7 +8,39 @@ const path = require("path")
 
 const INDEX = "index"
 
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === "ContentfulPage") {
+    createNodeField({
+      node,
+      name: "route",
+      value: node.slug === INDEX ? "/" : `/${node.slug}`,
+    })
+  }
+
+  if (node.internal.type === "ContentfulBlogPost") {
+    createNodeField({
+      node,
+      name: "route",
+      value: `/blog/${node.slug}`,
+    })
+  }
+
+  if (node.internal.type === "ContentfulCaseStory") {
+    createNodeField({
+      node,
+      name: "route",
+      value: `/work/${node.slug}`,
+    })
+  }
+}
+
 const findImageURLs = content => {
+  if (!content) {
+    return []
+  }
+
   const isAsset = entry => entry.nodeType === "embedded-asset-block"
 
   return content.reduce((result, entry) => {
@@ -38,25 +70,39 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             slug
+            content {
+              json
+            }
+            fields {
+              route
+            }
           }
         }
       }
-      posts: allContentfulBlogPost {
+      posts: allContentfulBlogPost(sort: { fields: publishedAt, order: DESC }) {
         edges {
           node {
             slug
             content {
               json
             }
+            fields {
+              route
+            }
           }
         }
       }
-      stories: allContentfulCaseStory {
+      stories: allContentfulCaseStory(
+        sort: { fields: publishedAt, order: DESC }
+      ) {
         edges {
           node {
             slug
             content {
               json
+            }
+            fields {
+              route
             }
           }
         }
@@ -64,34 +110,39 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const createPagesFromData = (data, template, segment) => {
-    data.edges.forEach(({ node }) => {
-      let context = { slug: node.slug }
-      if (node.content) {
-        context = {
-          ...context,
-          images: findImageURLs(node.content.json.content),
-        }
-      }
+  const addPage = (node, template, context) => {
+    const pageContext = {
+      ...context,
+      slug: node.slug,
+      images: findImageURLs(node.content && node.content.json.content),
+    }
 
-      let urlPath
-      if (node.slug === INDEX) {
-        urlPath = "/"
-      } else {
-        urlPath = `${segment ? `/${segment}/` : `/`}${node.slug}`
-      }
-
-      createPage({
-        path: urlPath,
-        component: path.resolve(`./src/templates/${template}`),
-        context,
-      })
+    createPage({
+      path: node.fields.route,
+      component: path.resolve(`./src/templates/${template}`),
+      context: pageContext,
     })
   }
 
-  createPagesFromData(content.data.pages, "page.js")
-  createPagesFromData(content.data.posts, "blog-post.js", "blog")
-  createPagesFromData(content.data.stories, "case-story.js", "work")
+  const addPages = (data, template) => {
+    const { edges } = data
+
+    edges.forEach(({ node }) => addPage(node, template))
+  }
+
+  const addContentPages = (data, template) => {
+    const { edges } = data
+
+    edges.forEach(({ node }, index) => {
+      const next = index + 1 < edges.length ? edges[index + 1] : edges[0]
+
+      addPage(node, template, { next: next.node.slug })
+    })
+  }
+
+  addPages(content.data.pages, "page.js")
+  addContentPages(content.data.posts, "blog-post.js")
+  addContentPages(content.data.stories, "case-story.js")
 }
 
 exports.createSchemaCustomization = ({ actions }) => {

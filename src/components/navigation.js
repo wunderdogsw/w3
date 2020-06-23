@@ -1,18 +1,39 @@
 import React from "react"
-import { Link } from "gatsby"
+import { useStaticQuery, Link, graphql } from "gatsby"
 
-const Navigation = ({ pages, channels }) => {
+const Navigation = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulConfig(title: { eq: "W3" }) {
+        pages {
+          id
+          title
+          fields {
+            route
+          }
+        }
+        socialMediaChannels {
+          id
+          title
+          url
+        }
+      }
+    }
+  `)
+
+  const config = data.contentfulConfig
+
   return (
     <>
       <nav>
-        {pages.map(page => (
-          <Link key={page.id} to={`/${page.slug}`}>
+        {config.pages.map(page => (
+          <Link key={page.id} to={page.fields.route}>
             {page.title}
           </Link>
         ))}
       </nav>
       <nav>
-        {channels.map(channel => (
+        {config.socialMediaChannels.map(channel => (
           <a key={channel.id} href={channel.url}>
             {channel.title}
           </a>

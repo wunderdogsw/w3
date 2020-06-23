@@ -7,60 +7,28 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Navigation from "./navigation"
-import Footer from "./footer"
-import Legal from "./legal"
 import "./layout.css"
 
-const renderLink = page => (
-  <Link key={page.id} to={`/${page.slug}`}>
-    {page.title}
-  </Link>
-)
-
-const Layout = ({ children, footer }) => {
+const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query {
       site: site {
         siteMetadata {
           title
         }
       }
-      config: contentfulConfig(title: { eq: "W3" }) {
-        footer
-        copyright
-        cookiePolicy {
-          id
-          title
-          slug
-        }
-        privacyPolicy {
-          id
-          title
-          slug
-        }
-        pages {
-          id
-          title
-          slug
-        }
-        socialMediaChannels {
-          id
-          title
-          url
-        }
-      }
     }
   `)
 
-  const { site, config } = data
+  const { site } = data
 
   return (
     <>
-      <Navigation pages={config.pages} channels={config.socialMediaChannels} />
+      <Navigation />
       <Header siteTitle={site.siteMetadata.title} />
       <div
         style={{
@@ -70,24 +38,6 @@ const Layout = ({ children, footer }) => {
         }}
       >
         <main>{children}</main>
-        {footer && (
-          <Footer
-            heading={config.footer}
-            links={config.pages.map(page => (
-              <Link key={page.id} to={page.slug}>
-                {page.title}
-              </Link>
-            ))}
-          >
-            <Legal
-              copyright={config.copyright}
-              links={[
-                renderLink(config.cookiePolicy),
-                renderLink(config.privacyPolicy),
-              ]}
-            />
-          </Footer>
-        )}
       </div>
     </>
   )

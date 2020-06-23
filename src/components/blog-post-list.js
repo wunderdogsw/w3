@@ -12,7 +12,6 @@ const BlogPostList = () => {
           node {
             id
             title
-            slug
             author {
               name
             }
@@ -23,6 +22,9 @@ const BlogPostList = () => {
             }
             categories {
               title
+            }
+            fields {
+              route
             }
           }
         }
@@ -39,7 +41,7 @@ const BlogPostList = () => {
       render={post => (
         <ArticleCard
           key={post.id}
-          to={`/blog/${post.slug}`}
+          to={post.fields.route}
           title={post.title}
           subtitle={`By ${post.author.name}`}
           image={post.image}
