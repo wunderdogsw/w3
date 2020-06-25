@@ -1,0 +1,55 @@
+.wrapper {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  outline: none;
+  padding: 0;
+  position: relative;
+  transition: 250ms;
+  width: 30px;
+}
+
+.wrapper > span {
+  background: #000;
+  height: 1.5px;
+  left: 0;
+  position: absolute;
+  transition: all 250ms;
+  width: 100%;
+}
+
+.wrapper > span:first-child {
+  top: 0px;
+}
+
+.wrapper > span:nth-child(2) {
+  top: 10px;
+}
+
+.wrapper > span:nth-child(3) {
+  top: 20px;
+}
+
+.active {
+  background: transparent;
+}
+
+.active > span {
+  background: #fff;
+}
+
+.active > span:first-child {
+  transform: rotate(45deg) translate(3px, 7px);
+  width: 120%;
+}
+
+.active > span:nth-child(2) {
+  background: transparent;
+}
+
+.active > span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -12px);
+  width: 120%;
+}

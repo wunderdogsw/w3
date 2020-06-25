@@ -1,0 +1,82 @@
+.wrapper {
+  align-items: flex-end;
+  bottom: 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 70px;
+  height: 100%;
+  justify-content: space-between;
+  min-height: 600px;
+  left: 0;
+  line-height: 1.6;
+  opacity: 0;
+  overflow: scroll;
+  padding: 140px var(--spacing) 60px;
+  pointer-events: none;
+  position: fixed;
+  transition-duration: var(--animation-fast);
+  transition-property: opacity;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.wrapper > nav {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > nav > a {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.wrapper > nav > a.active,
+.wrapper > nav > a:hover {
+  opacity: 0.6;
+}
+
+.wrapper > nav:nth-child(2) {
+  font-size: var(--font-size-normal);
+}
+
+.active {
+  background-color: var(--blue);
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media (max-width: 799px) {
+  .wrapper {
+    padding: 120px var(--spacing) 40px;
+  }
+
+  .wrapper > nav {
+    font-size: 48px;
+  }
+}
+
+@media (max-height: 999px) {
+  .wrapper {
+    padding: 120px var(--spacing) 40px;
+  }
+
+  .wrapper > nav {
+    font-size: 58px;
+  }
+}
+
+@media (max-height: 767px) {
+  .wrapper > nav {
+    font-size: 48px;
+  }
+}
+
+@media (max-height: 659px) {
+  .wrapper > nav {
+    font-size: 38px;
+  }
+}

@@ -1,0 +1,26 @@
+.wrapper {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 160px;
+  justify-content: space-between;
+  left: 0;
+  margin: 0;
+  padding: 0 var(--spacing);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+@media (max-width: 799px) {
+  .wrapper {
+    height: 120px;
+  }
+}
+
+.logo {
+  display: block;
+  position: relative;
+  width: 55px;
+}

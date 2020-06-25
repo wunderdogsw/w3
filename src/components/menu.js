@@ -1,7 +1,9 @@
 import React from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
-const Navigation = () => {
+import styles from "./menu.module.css"
+
+const Menu = ({ active }) => {
   const data = useStaticQuery(graphql`
     query {
       contentfulConfig(title: { eq: "W3" }) {
@@ -24,10 +26,10 @@ const Navigation = () => {
   const config = data.contentfulConfig
 
   return (
-    <>
+    <div className={`${styles.wrapper} ${active ? styles.active : ""}`}>
       <nav>
         {config.pages.map(page => (
-          <Link key={page.id} to={page.fields.route}>
+          <Link key={page.id} to={page.fields.route} activeClassName="active">
             {page.title}
           </Link>
         ))}
@@ -39,8 +41,8 @@ const Navigation = () => {
           </a>
         ))}
       </nav>
-    </>
+    </div>
   )
 }
 
-export default Navigation
+export default Menu
