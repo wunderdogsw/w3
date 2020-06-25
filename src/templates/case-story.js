@@ -3,6 +3,7 @@ import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
 
@@ -19,7 +20,9 @@ const CaseStory = ({ data }) => {
           <div>{story.client}</div>
         </header>
         <Image fluid={story.image.fluid} />
+        {story.before && <BlockList data={story.before} />}
         <RichText document={story.content.json} images={images} />
+        {story.after && <BlockList data={story.after} />}
       </article>
       <ContentFooter
         title={next.title}
@@ -42,6 +45,64 @@ export const query = graphql`
       client
       content {
         json
+      }
+      before {
+        __typename
+        ... on Node {
+          ... on ContentfulHeroBlock {
+            ...HeroBlock
+          }
+          ... on ContentfulSectionBlock {
+            ...SectionBlock
+          }
+          ... on ContentfulImageBlock {
+            ...ImageBlock
+          }
+          ... on ContentfulOfficeBlock {
+            ...OfficeBlock
+          }
+          ... on ContentfulStatisticsBlock {
+            ...StatisticsBlock
+          }
+          ... on ContentfulLogosBlock {
+            ...LogosBlock
+          }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
+          }
+          ... on ContentfulComponentBlock {
+            ...ComponentBlock
+          }
+        }
+      }
+      after {
+        __typename
+        ... on Node {
+          ... on ContentfulHeroBlock {
+            ...HeroBlock
+          }
+          ... on ContentfulSectionBlock {
+            ...SectionBlock
+          }
+          ... on ContentfulImageBlock {
+            ...ImageBlock
+          }
+          ... on ContentfulOfficeBlock {
+            ...OfficeBlock
+          }
+          ... on ContentfulStatisticsBlock {
+            ...StatisticsBlock
+          }
+          ... on ContentfulLogosBlock {
+            ...LogosBlock
+          }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
+          }
+          ... on ContentfulComponentBlock {
+            ...ComponentBlock
+          }
+        }
       }
     }
     next: contentfulCaseStory(slug: { eq: $next }) {

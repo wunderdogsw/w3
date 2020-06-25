@@ -97,6 +97,22 @@ export const query = graphql`
     }
   }
 
+  fragment ContactBlock on ContentfulContactBlock {
+    id
+    heading
+    contact {
+      name
+      position
+      image {
+        fluid(maxWidth: 400) {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      phone
+      email
+    }
+  }
+
   fragment ComponentBlock on ContentfulComponentBlock {
     id
     reactComponent

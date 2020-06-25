@@ -1,8 +1,8 @@
 let blocks = {}
 
 blocks[
-  "ContentfulArticleBlock"
-] = require("../components/article-block").default
+  "ContentfulContactBlock"
+] = require("../components/contact-block").default
 
 blocks["ContentfulHeroBlock"] = require("../components/hero-block").default
 

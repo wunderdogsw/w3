@@ -4,6 +4,7 @@ import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
 
@@ -30,7 +31,9 @@ const BlogPost = ({ data }) => {
           <div>Read time {post.readingTime} min</div>
         </header>
         <Image fluid={post.image.fluid} />
+        {post.before && <BlockList data={post.before} />}
         <RichText document={post.content.json} images={images} />
+        {post.after && <BlockList data={post.after} />}
       </article>
       <ContentFooter
         title={next.title}
@@ -58,6 +61,64 @@ export const query = graphql`
       readingTime
       content {
         json
+      }
+      before {
+        __typename
+        ... on Node {
+          ... on ContentfulHeroBlock {
+            ...HeroBlock
+          }
+          ... on ContentfulSectionBlock {
+            ...SectionBlock
+          }
+          ... on ContentfulImageBlock {
+            ...ImageBlock
+          }
+          ... on ContentfulOfficeBlock {
+            ...OfficeBlock
+          }
+          ... on ContentfulStatisticsBlock {
+            ...StatisticsBlock
+          }
+          ... on ContentfulLogosBlock {
+            ...LogosBlock
+          }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
+          }
+          ... on ContentfulComponentBlock {
+            ...ComponentBlock
+          }
+        }
+      }
+      after {
+        __typename
+        ... on Node {
+          ... on ContentfulHeroBlock {
+            ...HeroBlock
+          }
+          ... on ContentfulSectionBlock {
+            ...SectionBlock
+          }
+          ... on ContentfulImageBlock {
+            ...ImageBlock
+          }
+          ... on ContentfulOfficeBlock {
+            ...OfficeBlock
+          }
+          ... on ContentfulStatisticsBlock {
+            ...StatisticsBlock
+          }
+          ... on ContentfulLogosBlock {
+            ...LogosBlock
+          }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
+          }
+          ... on ContentfulComponentBlock {
+            ...ComponentBlock
+          }
+        }
       }
     }
     next: contentfulBlogPost(slug: { eq: $next }) {

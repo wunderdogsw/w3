@@ -56,6 +56,9 @@ export const query = graphql`
           ... on ContentfulLogosBlock {
             ...LogosBlock
           }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
+          }
           ... on ContentfulComponentBlock {
             ...ComponentBlock
           }
@@ -81,6 +84,9 @@ export const query = graphql`
           }
           ... on ContentfulLogosBlock {
             ...LogosBlock
+          }
+          ... on ContentfulContactBlock {
+            ...ContactBlock
           }
           ... on ContentfulComponentBlock {
             ...ComponentBlock

@@ -156,6 +156,16 @@ exports.createSchemaCustomization = ({ actions }) => {
     type ContentfulComponentBlock implements Node {
       options: contentfulComponentBlockOptionsJsonNode
     }
+
+    type ContentfulBlogPost implements Node {
+      after: [ContentfulContactBlock]
+      before: [ContentfulContactBlock]
+    }
+
+    type ContentfulCaseStory implements Node {
+      after: [ContentfulContactBlock]
+      before: [ContentfulContactBlock]
+    }
   `
 
   createTypes(typeDefs)
