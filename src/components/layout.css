@@ -40,6 +40,7 @@
   --spacing: 120px;
 
   --animation-fast: 200ms;
+  --animation-ease: cubic-bezier(0.77, 0, 0.41, 0.99);
 }
 
 @media (max-width: 1199px) {

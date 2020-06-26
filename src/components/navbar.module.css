@@ -21,6 +21,14 @@
 
 .logo {
   display: block;
+  opacity: 1;
   position: relative;
+  transition-duration: 0.2s;
+  transition-property: opacity;
+  transition-timing-function: var(--animation-ease);
   width: 55px;
+}
+
+.logo.hidden {
+  opacity: 0;
 }
