@@ -40,7 +40,7 @@
 }
 
 .wrapper > nav:nth-child(2) {
-  font-size: var(--font-size-normal);
+  font-size: var(--font-size-base);
 }
 
 .active {

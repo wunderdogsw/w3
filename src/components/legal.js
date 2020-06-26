@@ -1,6 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
+import styles from "./legal.module.css"
+
 const Legal = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -20,8 +22,7 @@ const Legal = () => {
   const config = data.contentfulConfig
 
   return (
-    <>
-      {config.copyright}
+    <div className={styles.wrapper}>
       <nav>
         {config.policies.map(policy => (
           <Link key={policy.id} to={policy.fields.route}>
@@ -29,7 +30,8 @@ const Legal = () => {
           </Link>
         ))}
       </nav>
-    </>
+      <div>{config.copyright}</div>
+    </div>
   )
 }
 
