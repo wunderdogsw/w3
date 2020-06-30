@@ -1,0 +1,11 @@
+.wrapper {
+  margin-bottom: var(--spacing-medium);
+  margin-right: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+  width: calc(50% - var(--spacing-medium));
+}
+
+.wrapper > div:first-child {
+  font-size: var(--font-size-large);
+  line-height: 1;
+}

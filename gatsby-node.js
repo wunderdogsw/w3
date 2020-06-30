@@ -162,9 +162,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       before: [ContentfulContactBlock]
     }
 
+    type ContentfulCaseStoryContentRichTextNode {
+      json: JSON
+    }
+
     type ContentfulCaseStory implements Node {
-      after: [ContentfulContactBlock]
-      before: [ContentfulContactBlock]
+      content: ContentfulCaseStoryContentRichTextNode
     }
   `
 

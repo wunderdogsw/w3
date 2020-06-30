@@ -46,7 +46,8 @@ export const query = graphql`
 
   fragment ImageBlock on ContentfulImageBlock {
     id
-    image {
+    images {
+      id
       fluid(maxWidth: 2560) {
         ...GatsbyContentfulFluid_withWebp
       }

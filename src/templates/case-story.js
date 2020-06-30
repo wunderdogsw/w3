@@ -3,6 +3,8 @@ import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Header from "../components/header"
+import Article from "../components/article"
 import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
@@ -15,18 +17,23 @@ const CaseStory = ({ data }) => {
     <Layout>
       <SEO title={story.title} />
       <article>
-        <header>
-          <h1>{story.title}</h1>
-          <div>{story.client}</div>
-        </header>
-        <Image fluid={story.image.fluid} />
+        <Header
+          title={story.title}
+          subtitle={story.client}
+          image={story.image}
+        />
         {story.before && <BlockList data={story.before} />}
-        <RichText document={story.content.json} images={images} />
+        {story.content && (
+          <Article>
+            <RichText document={story.content.json} images={images} />
+          </Article>
+        )}
         {story.after && <BlockList data={story.after} />}
       </article>
       <ContentFooter
         title={next.title}
         subtitle="Go to next case"
+        image={next.image.fluid.src}
         to={next.fields.route}
       />
     </Layout>
@@ -107,6 +114,11 @@ export const query = graphql`
     }
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
+      image {
+        fluid(maxWidth: 2560) {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
       fields {
         route
       }

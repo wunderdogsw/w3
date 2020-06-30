@@ -1,0 +1,30 @@
+.wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: var(--spacing);
+  margin-right: var(--spacing);
+}
+
+.wrapper > div {
+  flex: 1;
+  margin-bottom: var(--spacing-small);
+  width: 100%;
+}
+
+.wrapper > div:last-child {
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .wrapper > div {
+    margin-bottom: 0;
+    margin-right: var(--spacing-small);
+  }
+}
