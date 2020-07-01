@@ -1,68 +1,25 @@
-.wrapper {
-  margin-top: var(--spacing);
-  padding-left: var(--spacing);
-  padding-right: var(--spacing);
+.image {
+  height: 45vw;
+  margin-left: calc(15vw + var(--spacing));
+  position: relative;
 }
 
-.wrapper > * {
-  margin-bottom: var(--spacing-medium);
+.image > div {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
-.wrapper > h2,
-.wrapper > h3 {
-  max-width: 800px;
+.content {
+  composes: wrapper from "../styles/text-content.module.css";
+
+  padding-bottom: 0;
 }
 
-.wrapper > h2 {
-  margin-left: 15vw;
-}
-
-.wrapper > h3 {
-  margin-left: 30vw;
-}
-
-.wrapper > p,
-.wrapper > ul,
-.wrapper > div {
-  margin-left: 30vw;
-  max-width: 800px;
-}
-
-.wrapper > blockquote {
-  margin-bottom: var(--spacing);
-  margin-left: 15vw;
-  margin-top: var(--spacing);
-  max-width: 800px;
-}
-
-.wrapper > blockquote > p {
-  color: var(--blue);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-alt);
-  font-style: italic;
-}
-
-.wrapper > blockquote > p::before {
-  content: open-quote;
-}
-
-.wrapper > blockquote > p::after {
-  content: close-quote;
-}
-
-@media (max-width: 739px) {
-  .wrapper > h2 {
-    margin-left: 0;
-  }
-
-  .wrapper > h3,
-  .wrapper > p,
-  .wrapper > ul,
-  .wrapper > div {
-    margin-left: 20px;
-  }
-
-  .wrapper > blockquote {
-    margin-left: 0;
+@media (max-width: 799px) {
+  .image {
+    height: 80vw;
   }
 }
