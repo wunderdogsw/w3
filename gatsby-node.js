@@ -153,14 +153,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       subtitle: String
     }
 
-    type ContentfulComponentBlockOptionsJsonNode implements Node {
-      internal: Internal
-    }
-
-    type ContentfulComponentBlock implements Node {
-      options: ContentfulComponentBlockOptionsJsonNode
-    }
-
     type ContentfulBlogPost implements Node {
       after: [ContentfulContactBlock]
       before: [ContentfulContactBlock]
