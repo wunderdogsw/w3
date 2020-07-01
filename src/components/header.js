@@ -9,9 +9,11 @@ const Header = ({ title, subtitle, image }) => (
       <h1>{title}</h1>
       <div className={styles.subtitle}>{subtitle}</div>
     </div>
-    <div className={styles.image}>
-      <Image fluid={image.fluid} />
-    </div>
+    {image && (
+      <div className={styles.image}>
+        <Image fluid={image.fluid} />
+      </div>
+    )}
   </header>
 )
 

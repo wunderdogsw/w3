@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -16,20 +15,14 @@ const CaseStory = ({ data }) => {
   return (
     <Layout>
       <SEO title={story.title} />
-      <article>
-        <Header
-          title={story.title}
-          subtitle={story.client}
-          image={story.image}
-        />
-        {story.before && <BlockList data={story.before} />}
-        {story.content && (
-          <Article>
-            <RichText document={story.content.json} images={images} />
-          </Article>
-        )}
-        {story.after && <BlockList data={story.after} />}
-      </article>
+      <Header title={story.title} subtitle={story.client} image={story.image} />
+      {story.before && <BlockList data={story.before} />}
+      {story.content && (
+        <Article>
+          <RichText document={story.content.json} images={images} />
+        </Article>
+      )}
+      {story.after && <BlockList data={story.after} />}
       <ContentFooter
         title={next.title}
         subtitle="Go to next case"
@@ -56,8 +49,8 @@ export const query = graphql`
       before {
         __typename
         ... on Node {
-          ... on ContentfulHeroBlock {
-            ...HeroBlock
+          ... on ContentfulHeaderBlock {
+            ...HeaderBlock
           }
           ... on ContentfulSectionBlock {
             ...SectionBlock
@@ -85,8 +78,8 @@ export const query = graphql`
       after {
         __typename
         ... on Node {
-          ... on ContentfulHeroBlock {
-            ...HeroBlock
+          ... on ContentfulHeaderBlock {
+            ...HeaderBlock
           }
           ... on ContentfulSectionBlock {
             ...SectionBlock

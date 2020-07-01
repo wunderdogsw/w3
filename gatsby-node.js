@@ -149,12 +149,16 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
   const typeDefs = `
-    type contentfulComponentBlockOptionsJsonNode implements Node {
+    type ContentfulHeaderBlock implements Node {
+      subtitle: String
+    }
+
+    type ContentfulComponentBlockOptionsJsonNode implements Node {
       internal: Internal
     }
 
     type ContentfulComponentBlock implements Node {
-      options: contentfulComponentBlockOptionsJsonNode
+      options: ContentfulComponentBlockOptionsJsonNode
     }
 
     type ContentfulBlogPost implements Node {

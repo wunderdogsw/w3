@@ -26,9 +26,11 @@ const renderBlock = block => {
 const BlockList = ({ data }) => <>{data.map(block => renderBlock(block))}</>
 
 export const query = graphql`
-  fragment HeroBlock on ContentfulHeroBlock {
+  fragment HeaderBlock on ContentfulHeaderBlock {
     id
     title
+    subtitle
+    hero
   }
 
   fragment SectionBlock on ContentfulSectionBlock {

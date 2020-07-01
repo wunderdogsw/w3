@@ -87,8 +87,8 @@ export const query = graphql`
       before {
         __typename
         ... on Node {
-          ... on ContentfulHeroBlock {
-            ...HeroBlock
+          ... on ContentfulHeaderBlock {
+            ...HeaderBlock
           }
           ... on ContentfulSectionBlock {
             ...SectionBlock
@@ -116,8 +116,8 @@ export const query = graphql`
       after {
         __typename
         ... on Node {
-          ... on ContentfulHeroBlock {
-            ...HeroBlock
+          ... on ContentfulHeaderBlock {
+            ...HeaderBlock
           }
           ... on ContentfulSectionBlock {
             ...SectionBlock

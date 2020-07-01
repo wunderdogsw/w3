@@ -1,0 +1,28 @@
+.wrapper {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 90vh;
+  min-height: 600px;
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+}
+
+.wrapper > h1 {
+  box-sizing: border-box;
+  max-width: 1200px;
+  padding-right: var(--spacing);
+  width: 100%;
+}
+
+@media (max-width: 1399px) {
+  .wrapper > h1 {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 739px) {
+  .wrapper > h1 {
+    width: 80vw;
+  }
+}

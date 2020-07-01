@@ -4,7 +4,7 @@ blocks[
   "ContentfulContactBlock"
 ] = require("../components/contact-block").default
 
-blocks["ContentfulHeroBlock"] = require("../components/hero-block").default
+blocks["ContentfulHeaderBlock"] = require("../components/header-block").default
 
 blocks["ContentfulImageBlock"] = require("../components/image-block").default
 
