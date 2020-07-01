@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import ArticleList from "./article-list"
-import ArticleCard from "./article-card"
+import ContentList from "./content-list"
+import ContentCard from "./content-card"
 
 const CaseStoryList = () => {
   const data = useStaticQuery(graphql`
@@ -33,11 +33,11 @@ const CaseStoryList = () => {
   const stories = data.allContentfulCaseStory.edges.map(({ node }) => node)
 
   return (
-    <ArticleList
+    <ContentList
       data={stories}
       filter
       render={story => (
-        <ArticleCard
+        <ContentCard
           key={story.id}
           to={story.fields.route}
           title={story.title}

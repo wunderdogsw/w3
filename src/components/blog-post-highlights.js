@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import ArticleList from "./article-list"
-import ArticleCard from "./article-card"
+import ContentList from "./content-list"
+import ContentCard from "./content-card"
 
 const BlogPostHighlights = ({ button }) => {
   const data = useStaticQuery(graphql`
@@ -39,10 +39,10 @@ const BlogPostHighlights = ({ button }) => {
 
   return (
     <>
-      <ArticleList
+      <ContentList
         data={posts}
         render={post => (
-          <ArticleCard
+          <ContentCard
             key={post.id}
             to={post.fields.route}
             title={post.title}

@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import ArticleList from "./article-list"
-import ArticleCard from "./article-card"
+import ContentList from "./content-list"
+import ContentCard from "./content-card"
 
 const CaseStoryHighlights = ({ button }) => {
   const data = useStaticQuery(graphql`
@@ -17,7 +17,7 @@ const CaseStoryHighlights = ({ button }) => {
             title
             client
             image {
-              fluid(maxWidth: 1024) {
+              fluid(maxWidth: 2048) {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -37,14 +37,14 @@ const CaseStoryHighlights = ({ button }) => {
 
   return (
     <>
-      <ArticleList
+      <ContentList
         data={stories}
         render={story => (
-          <ArticleCard
+          <ContentCard
             key={story.id}
             to={story.fields.route}
             title={story.title}
-            subtitle={`By ${story.client}`}
+            subtitle={story.client}
             image={story.image}
           />
         )}

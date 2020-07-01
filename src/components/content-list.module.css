@@ -1,0 +1,95 @@
+.wrapper {
+  padding: 0 var(--spacing);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.list > div {
+  align-items: center;
+  display: flex;
+  margin: var(--spacing-xsmall) 0;
+  width: 50%;
+}
+
+.list > div:nth-child(4n + 1) {
+  justify-content: flex-start;
+}
+
+.list > div:nth-child(4n + 3),
+.list > div:nth-child(4n + 4) {
+  justify-content: flex-end;
+}
+
+.list > div > a {
+  padding-bottom: var(--spacing-small);
+  position: relative;
+}
+
+.list > div:nth-child(4n + 1) > a,
+.list > div:nth-child(4n + 3) > a {
+  width: 80%;
+}
+
+.list > div:nth-child(4n + 2) > a {
+  width: 100%;
+}
+
+.list > div:nth-child(4n + 4) > a {
+  width: 70%;
+}
+
+.list > div > a > div:first-child {
+  position: relative;
+}
+
+.list > div:nth-child(4n + 1) > a > div:first-child,
+.list > div:nth-child(4n + 4) > a > div:first-child {
+  height: 40vw;
+}
+
+.list > div:nth-child(4n + 2) > a > div:first-child,
+.list > div:nth-child(4n + 3) > a > div:first-child {
+  height: 30vw;
+}
+
+@media (max-width: 1199px) {
+  .list > div:nth-child(4n + 1) > a {
+    width: 90%;
+  }
+
+  .list > div:nth-child(4n + 3) > a {
+    width: 100%;
+  }
+
+  .list > div:nth-child(4n + 4) > a {
+    width: 90%;
+  }
+
+  .list > div:nth-child(4n + 1) > a > div:first-child,
+  .list > div:nth-child(4n + 4) > a > div:first-child {
+    height: 50vw;
+  }
+
+  .list > div:nth-child(4n + 2) > a > div:first-child,
+  .list > div:nth-child(4n + 3) > a > div:first-child {
+    height: 40vw;
+  }
+}
+
+@media (max-width: 739px) {
+  .list > div {
+    width: 100%;
+  }
+
+  .list > div > a {
+    width: 100%;
+  }
+
+  .list > div > a > div:first-child {
+    width: 100%;
+  }
+}

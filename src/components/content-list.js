@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import styles from "./content-list.module.css"
 import CategoryFilter from "./category-filter"
 
 const ALL = "All"
@@ -20,21 +21,21 @@ const findCategories = data => {
   return [ALL, ...uniqueCategories.sort()]
 }
 
-const filterArticles = (articles, activeCategory) => {
-  return articles.filter(article => {
+const filterContent = (content, activeCategory) => {
+  return content.filter(item => {
     if (activeCategory === ALL) return true
 
-    return article.categories
+    return item.categories
       .map(category => category.title)
       .includes(activeCategory)
   })
 }
 
-const ArticleList = ({ data, filter, render }) => {
+const ContentList = ({ data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {filter && (
         <CategoryFilter
           categories={findCategories(data)}
@@ -42,9 +43,13 @@ const ArticleList = ({ data, filter, render }) => {
           onSelect={category => setActiveCategory(category)}
         />
       )}
-      {filterArticles(data, activeCategory).map(article => render(article))}
-    </>
+      <div className={styles.list}>
+        {filterContent(data, activeCategory).map(item => (
+          <div>{render(item)}</div>
+        ))}
+      </div>
+    </div>
   )
 }
 
-export default ArticleList
+export default ContentList
