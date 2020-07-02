@@ -6,8 +6,11 @@ import styles from "./header.module.css"
 const Header = ({ title, subtitle, image }) => (
   <header className={styles.wrapper}>
     <div className={styles.content}>
-      <h1>{title}</h1>
-      <div className={styles.subtitle}>{subtitle}</div>
+      <h1 dangerouslySetInnerHTML={{ __html: title }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: subtitle }}
+        className={styles.subtitle}
+      />
     </div>
     {image && (
       <div className={styles.image}>

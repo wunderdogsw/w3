@@ -1,0 +1,17 @@
+.wrapper {
+  composes: grey from "../styles/secondary-footer.module.css";
+
+  padding: var(--spacing-large) calc(15vw + var(--spacing));
+}
+
+.wrapper > h2 {
+  max-width: 30vw;
+}
+
+.wrapper > p {
+  margin-top: var(--spacing-small);
+}
+
+.wrapper > p > span {
+  display: block;
+}

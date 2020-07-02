@@ -1,6 +1,21 @@
 .wrapper {
-  background: var(--blue);
-  color: var(--white);
   margin-top: var(--spacing);
   padding: var(--spacing);
+}
+
+.blue {
+  composes: wrapper;
+
+  background: var(--blue);
+  color: var(--white);
+}
+
+.blue a {
+  color: var(--white);
+}
+
+.grey {
+  composes: wrapper;
+
+  background: var(--grey-lighter);
 }

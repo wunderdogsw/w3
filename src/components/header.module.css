@@ -1,4 +1,5 @@
 .wrapper {
+  margin-bottom: calc(5vh + var(--spacing));
   padding-top: calc(var(--spacing-small) * 4);
 }
 
@@ -50,6 +51,10 @@
 }
 
 @media (max-width: 739px) {
+  .content > h1 {
+    width: calc(85vw - 2 * var(--spacing));
+  }
+
   .subtitle {
     width: 85vw;
   }
