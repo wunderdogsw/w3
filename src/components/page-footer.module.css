@@ -1,0 +1,56 @@
+.wrapper {
+  composes: wrapper from "../styles/primary-footer.module.css";
+
+  padding: var(--spacing-large) var(--spacing) 0;
+}
+
+.wrapper > h1 {
+  margin-bottom: var(--spacing-small);
+  margin-top: var(--spacing);
+  max-width: 1200px;
+  width: 100%;
+}
+
+.wrapper > nav {
+  margin-bottom: var(--spacing);
+}
+
+.wrapper > nav > a {
+  color: var(--grey);
+  margin-left: var(--spacing-small);
+}
+
+.wrapper > nav > a:first-child {
+  margin-left: 0;
+}
+
+.wrapper > nav > a:hover {
+  color: var(--white);
+}
+
+.logo {
+  width: 55px;
+}
+
+@media (max-width: 1399px) {
+  .wrapper > h1 {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 799px) {
+  .wrapper > nav > a {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 739px) {
+  .wrapper > h1 {
+    width: 85vw;
+  }
+
+  .logo {
+    width: 40px;
+  }
+}

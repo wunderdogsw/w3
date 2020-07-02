@@ -1,9 +1,19 @@
-.wrapper {
+.wrapperOuter {
+  composes: wrapper from "../styles/primary-footer.module.css";
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--spacing);
+}
+
+.wrapperInner {
   height: 100%;
   width: 100%;
 }
 
-.wrapper:hover .backdrop {
+.wrapperInner:hover .backdrop {
   opacity: 0.6;
 }
 

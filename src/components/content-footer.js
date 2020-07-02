@@ -1,13 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import Footer from "./footer"
-import Legal from "./legal"
 import styles from "./content-footer.module.css"
+import Legal from "./legal"
 
 const ContentFooter = ({ title, subtitle, image, to }) => (
-  <Footer>
-    <div className={styles.wrapper}>
+  <div className={styles.wrapperOuter}>
+    <div className={styles.wrapperInner}>
       <div
         className={styles.backdrop}
         style={{ backgroundImage: `url(https:${image})` }}
@@ -20,7 +19,7 @@ const ContentFooter = ({ title, subtitle, image, to }) => (
         <Legal />
       </div>
     </div>
-  </Footer>
+  </div>
 )
 
 export default ContentFooter
