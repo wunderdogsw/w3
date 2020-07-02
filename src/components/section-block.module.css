@@ -1,25 +1,5 @@
-.image {
-  height: 45vw;
-  margin-left: calc(15vw + var(--spacing));
-  position: relative;
-}
-
-.image > div {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
 .content {
   composes: wrapper from "../styles/text-content.module.css";
 
   padding-bottom: 0;
-}
-
-@media (max-width: 799px) {
-  .image {
-    height: 80vw;
-  }
 }

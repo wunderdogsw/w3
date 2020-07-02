@@ -1,0 +1,24 @@
+.wrapper {
+  margin-top: var(--spacing);
+}
+
+.image {
+  height: 45vw;
+  margin-left: calc(15vw + var(--spacing));
+  position: relative;
+}
+
+.image > div {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+@media (max-width: 799px) {
+  .image {
+    height: 80vw;
+    margin-left: var(--spacing);
+  }
+}
