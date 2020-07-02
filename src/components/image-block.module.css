@@ -6,15 +6,21 @@
   margin-top: var(--spacing);
 }
 
-.left {
+.left,
+.fullWidth {
   height: 45vw;
+  position: relative;
+}
+
+.left {
   margin-bottom: calc(var(--spacing) * 2);
   margin-left: 0;
   margin-right: calc(15vw + var(--spacing));
   position: relative;
 }
 
-.left > div {
+.left > div,
+.fullWidth > div {
   height: 100%;
   left: 0;
   position: absolute;
@@ -22,7 +28,13 @@
   width: 100%;
 }
 
+.fullWidth {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .center {
+  margin-bottom: var(--spacing);
   margin-left: var(--spacing);
   margin-right: var(--spacing);
 }
@@ -46,5 +58,12 @@
   .wrapper > div {
     margin-bottom: 0;
     margin-right: var(--spacing-small);
+  }
+}
+
+@media (max-width: 799px) {
+  .left,
+  .fullWidth {
+    height: 80vw;
   }
 }
