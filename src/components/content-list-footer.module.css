@@ -1,4 +1,6 @@
 .wrapper {
+  margin-bottom: var(--spacing);
+  padding-bottom: var(--spacing);
   padding-top: var(--spacing-medium);
   text-align: center;
 }

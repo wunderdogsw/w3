@@ -3,6 +3,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: var(--spacing);
+}
+
+.left {
+  height: 45vw;
+  margin-bottom: calc(var(--spacing) * 2);
+  margin-left: 0;
+  margin-right: calc(15vw + var(--spacing));
+  position: relative;
+}
+
+.left > div {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.center {
   margin-left: var(--spacing);
   margin-right: var(--spacing);
 }

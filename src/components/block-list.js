@@ -48,6 +48,7 @@ export const query = graphql`
 
   fragment ImageBlock on ContentfulImageBlock {
     id
+    align
     images {
       id
       fluid(maxWidth: 2560) {
