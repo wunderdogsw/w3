@@ -1,0 +1,6 @@
+.wrapper {
+  background: var(--blue);
+  color: var(--white);
+  margin-top: var(--spacing);
+  padding: var(--spacing);
+}

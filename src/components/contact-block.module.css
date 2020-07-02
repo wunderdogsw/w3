@@ -1,8 +1,5 @@
 .wrapper {
-  background: var(--blue);
-  color: var(--white);
-  margin-top: var(--spacing);
-  padding: var(--spacing);
+  composes: wrapper from "../styles/footer.module.css";
 }
 
 .wrapper > div {
