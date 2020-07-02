@@ -1,7 +1,9 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
+import { CASE_STORY_INDEX } from "../common/routes"
 import ContentList from "./content-list"
+import ContentListFooter from "./content-list-footer"
 import ContentCard from "./content-card"
 
 const CaseStoryHighlights = ({ button }) => {
@@ -49,7 +51,11 @@ const CaseStoryHighlights = ({ button }) => {
           />
         )}
       />
-      {button && <button>{button}</button>}
+      {button && (
+        <ContentListFooter>
+          <Link to={CASE_STORY_INDEX}>{button}</Link>
+        </ContentListFooter>
+      )}
     </>
   )
 }

@@ -5,6 +5,7 @@
  */
 
 const path = require("path")
+const routes = require("./src/common/routes")
 
 const INDEX = "index"
 
@@ -23,7 +24,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({
       node,
       name: "route",
-      value: `/blog/${node.slug}`,
+      value: `${routes.BLOG_POST_INDEX}/${node.slug}`,
     })
   }
 
@@ -31,7 +32,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({
       node,
       name: "route",
-      value: `/work/${node.slug}`,
+      value: `${routes.CASE_STORY_INDEX}/${node.slug}`,
     })
   }
 }

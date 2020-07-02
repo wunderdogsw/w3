@@ -1,0 +1,13 @@
+.wrapper {
+  padding-top: var(--spacing-medium);
+  text-align: center;
+}
+
+.wrapper > a {
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 10px;
+}
+
+.wrapper > a:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
