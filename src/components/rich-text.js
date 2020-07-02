@@ -66,6 +66,8 @@ const findImage = (images, node) => {
 
 const RichText = ({ document, images }) => {
   const options = {
+    renderText: text =>
+      text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => {
         return renderEmbeddedEntry(node.data)
