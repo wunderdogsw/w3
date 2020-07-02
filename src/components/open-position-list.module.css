@@ -1,5 +1,5 @@
 .wrapper {
-  composes: wrapper from "../styles/footer.module.css";
+  composes: wrapper from "../styles/secondary-footer.module.css";
 }
 
 .wrapper > div {
