@@ -1,5 +1,4 @@
 .wrapper {
-  margin-top: var(--spacing);
   padding: 0 var(--spacing);
 }
 
@@ -58,16 +57,14 @@
 }
 
 @media (max-width: 1199px) {
-  .list > div:nth-child(4n + 1) > a {
-    width: 90%;
-  }
-
-  .list > div:nth-child(4n + 3) > a {
-    width: 100%;
-  }
-
+  .list > div:nth-child(4n + 1) > a,
   .list > div:nth-child(4n + 4) > a {
     width: 90%;
+  }
+
+  .list > div:nth-child(4n + 2) > a,
+  .list > div:nth-child(4n + 3) > a {
+    width: 100%;
   }
 
   .list > div:nth-child(4n + 1) > a > div:first-child,
@@ -86,11 +83,18 @@
     width: 100%;
   }
 
-  .list > div > a {
+  .list > div:nth-child(4n + 1) > a,
+  .list > div:nth-child(4n + 2) > a,
+  .list > div:nth-child(4n + 3) > a,
+  .list > div:nth-child(4n + 4) > a {
     width: 100%;
   }
 
-  .list > div > a > div:first-child {
+  .list > div:nth-child(4n + 1) > a > div:first-child,
+  .list > div:nth-child(4n + 2) > a > div:first-child,
+  .list > div:nth-child(4n + 3) > a > div:first-child,
+  .list > div:nth-child(4n + 4) > a > div:first-child {
+    height: 60vw;
     width: 100%;
   }
 }

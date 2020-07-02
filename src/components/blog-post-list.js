@@ -1,10 +1,11 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import ContentIndex from "./content-index"
 import ContentList from "./content-list"
 import ContentCard from "./content-card"
 
-const BlogPostList = () => {
+const BlogPostList = ({ action }) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulBlogPost(sort: { fields: publishedAt, order: DESC }) {
@@ -16,7 +17,7 @@ const BlogPostList = () => {
               name
             }
             image {
-              fluid(maxWidth: 1024) {
+              fluid(maxWidth: 2048) {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -35,19 +36,22 @@ const BlogPostList = () => {
   const posts = data.allContentfulBlogPost.edges.map(({ node }) => node)
 
   return (
-    <ContentList
-      data={posts}
-      filter
-      render={post => (
-        <ContentCard
-          key={post.id}
-          to={post.fields.route}
-          title={post.title}
-          subtitle={`By ${post.author.name}`}
-          image={post.image}
-        />
-      )}
-    />
+    <ContentIndex>
+      <ContentList
+        data={posts}
+        filter
+        render={post => (
+          <ContentCard
+            key={post.id}
+            to={post.fields.route}
+            title={post.title}
+            subtitle={`By ${post.author.name}`}
+            link={action}
+            image={post.image}
+          />
+        )}
+      />
+    </ContentIndex>
   )
 }
 

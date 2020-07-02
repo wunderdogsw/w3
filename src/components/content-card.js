@@ -4,9 +4,10 @@ import { Link } from "gatsby"
 
 import styles from "./content-card.module.css"
 
-const ContentCard = ({ to, title, subtitle, image }) => (
+const ContentCard = ({ to, title, subtitle, link, image }) => (
   <Link to={to} className={styles.wrapper}>
     <div className={styles.image}>
+      <div className={styles.front}>{link}</div>
       <Image fluid={image.fluid} />
     </div>
     <h4 className={styles.title}>{title}</h4>

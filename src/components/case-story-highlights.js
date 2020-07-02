@@ -6,7 +6,7 @@ import ContentList from "./content-list"
 import ContentListFooter from "./content-list-footer"
 import ContentCard from "./content-card"
 
-const CaseStoryHighlights = ({ button }) => {
+const CaseStoryHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulCaseStory(
@@ -47,6 +47,7 @@ const CaseStoryHighlights = ({ button }) => {
             to={story.fields.route}
             title={story.title}
             subtitle={story.client}
+            link={action}
             image={story.image}
           />
         )}

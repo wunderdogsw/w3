@@ -1,11 +1,13 @@
 import React from "react"
 
+import styles from "./category-filter.module.css"
+
 const CategoryFilter = ({ categories, active, onSelect }) => (
-  <ul>
+  <ul className={styles.wrapper}>
     {categories.map(category => (
       <li
         key={category}
-        style={{ color: category === active ? "gray" : "black" }}
+        className={category === active ? styles.active : ""}
         onClick={() => onSelect(category)}
       >
         {category}

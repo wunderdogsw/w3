@@ -31,7 +31,7 @@ const filterContent = (content, activeCategory) => {
   })
 }
 
-const ContentList = ({ data, filter, render }) => {
+const ContentList = ({ children, data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
 
   return (
@@ -47,6 +47,7 @@ const ContentList = ({ data, filter, render }) => {
         {filterContent(data, activeCategory).map(item => (
           <div>{render(item)}</div>
         ))}
+        {children}
       </div>
     </div>
   )

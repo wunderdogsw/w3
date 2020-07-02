@@ -6,7 +6,7 @@ import ContentList from "./content-list"
 import ContentListFooter from "./content-list-footer"
 import ContentCard from "./content-card"
 
-const BlogPostHighlights = ({ button }) => {
+const BlogPostHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulBlogPost(
@@ -21,7 +21,7 @@ const BlogPostHighlights = ({ button }) => {
               name
             }
             image {
-              fluid(maxWidth: 1024) {
+              fluid(maxWidth: 2048) {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -49,6 +49,7 @@ const BlogPostHighlights = ({ button }) => {
             to={post.fields.route}
             title={post.title}
             subtitle={`By ${post.author.name}`}
+            link={action}
             image={post.image}
           />
         )}
