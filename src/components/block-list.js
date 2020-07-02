@@ -74,6 +74,7 @@ export const query = graphql`
     zipCode
     city
     country
+    businessId
     googleMapsUrl
     contacts {
       id
