@@ -1,9 +1,14 @@
 .wrapper {
   list-style: none;
   margin: var(--spacing-medium) 0 var(--spacing);
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 0;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .wrapper > li {
