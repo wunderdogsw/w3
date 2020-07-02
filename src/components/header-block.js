@@ -8,7 +8,9 @@ const HeaderBlock = ({ data }) => {
     return <Hero title={data.title} />
   }
 
-  return <Header title={data.title} subtitle={data.subtitle} />
+  return (
+    <Header title={data.title} subtitle={data.subtitle} image={data.image} />
+  )
 }
 
 export default HeaderBlock
