@@ -1,9 +1,12 @@
 import React from "react"
 
+import styles from "./open-position.module.css"
+import SecondaryText from "./secondary-text"
+
 const OpenPosition = ({ title, office, link }) => (
-  <a href={link}>
+  <a className={styles.wrapper} href={link}>
     <span>{title}</span>
-    <span>{office}</span>
+    <SecondaryText>{office}</SecondaryText>
   </a>
 )
 

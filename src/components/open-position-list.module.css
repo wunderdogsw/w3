@@ -1,0 +1,7 @@
+.wrapper {
+  composes: wrapper from "../styles/footer.module.css";
+}
+
+.wrapper > div {
+  margin-top: var(--spacing-small);
+}
