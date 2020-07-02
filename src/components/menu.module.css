@@ -30,6 +30,7 @@
 }
 
 .wrapper > nav > a {
+  color: var(--white);
   opacity: 1;
   text-decoration: none;
 }

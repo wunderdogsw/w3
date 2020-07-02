@@ -36,6 +36,7 @@
 
 .link {
   align-items: center;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,6 +45,10 @@
   padding-top: calc(var(--spacing-small) * 3);
   text-align: center;
   width: 100%;
+}
+
+.link:hover {
+  color: var(--white);
 }
 
 .link > div {

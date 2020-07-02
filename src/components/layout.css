@@ -111,8 +111,12 @@ main {
 }
 
 a {
-  color: inherit;
+  color: var(--grey);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--black);
 }
 
 h1,
