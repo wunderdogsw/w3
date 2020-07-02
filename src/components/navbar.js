@@ -28,7 +28,9 @@ const Navbar = () => {
       <header className={styles.wrapper}>
         <Link
           to="/"
-          className={`${styles.logo} ${logoHidden ? styles.hidden : ""}`}
+          className={`${styles.logo} ${
+            logoHidden && !menuOpen ? styles.hidden : ""
+          }`}
         >
           <Logo inverse={menuOpen} />
         </Link>
