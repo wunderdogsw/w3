@@ -1,6 +1,10 @@
-[![Build Status](https://travis-ci.com/wunderdogsw/w3.svg?branch=master)](https://travis-ci.com/wunderdogsw/w3)
+<p align="center">
+    <img alt="Wunderdog" src="https://avatars1.githubusercontent.com/u/8065613?s=150&v=4" />
+</p>
 
 # w3
+
+[![Build Status](https://travis-ci.com/wunderdogsw/w3.svg?branch=master)](https://travis-ci.com/wunderdogsw/w3)
 
 ## Getting Started
 
