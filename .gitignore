@@ -72,3 +72,4 @@ yarn-error.log
 # Font files
 src/fonts/*
 !src/fonts/.keep
+!src/fonts/fonts.tar.enc
