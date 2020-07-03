@@ -29,7 +29,11 @@ const Menu = ({ active }) => {
     <div className={`${styles.wrapper} ${active ? styles.active : ""}`}>
       <nav>
         {config.pages.map(page => (
-          <Link key={page.id} to={page.fields.route} activeClassName="active">
+          <Link
+            key={page.id}
+            to={`/${page.fields.route}`}
+            activeClassName={styles.active}
+          >
             {page.title}
           </Link>
         ))}

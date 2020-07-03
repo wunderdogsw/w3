@@ -24,7 +24,8 @@
   margin-left: 0;
 }
 
-.wrapper > nav > a:hover {
+.wrapper > nav > a:hover,
+.wrapper > nav > a.active {
   color: var(--white);
 }
 

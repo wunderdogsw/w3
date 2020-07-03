@@ -31,7 +31,11 @@ const PageFooter = () => {
       <h1>{config.footer}</h1>
       <nav>
         {config.pages.map(page => (
-          <Link key={page.id} to={page.fields.route}>
+          <Link
+            key={page.id}
+            to={`/${page.fields.route}`}
+            activeClassName={styles.active}
+          >
             {page.title}
           </Link>
         ))}
