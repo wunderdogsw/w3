@@ -9,6 +9,10 @@
   margin-bottom: var(--spacing-medium);
 }
 
+.wrapper > h1 {
+  margin-bottom: var(--spacing);
+}
+
 .wrapper > h2,
 .wrapper > h3 {
   max-width: 800px;
@@ -19,6 +23,7 @@
 }
 
 .wrapper > h3 {
+  font-weight: 700;
   margin-left: 30vw;
 }
 
