@@ -17,15 +17,11 @@ const LinkedIn = () => (
       `,
       }}
     />
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display:none;"
-        alt=""
-        src={`https://px.ads.linkedin.com/collect/?pid=${process.env.GATSBY_LINKEDIN_PARTNER_ID}&fmt=gif`}
-      />
-    </noscript>
+    <noscript
+      dangerouslySetInnerHTML={{
+        __html: `<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=${process.env.GATSBY_LINKEDIN_PARTNER_ID}&fmt=gif" />`,
+      }}
+    />
   </>
 )
 
