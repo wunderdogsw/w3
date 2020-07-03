@@ -1,11 +1,13 @@
+[![Build Status](https://travis-ci.com/wunderdogsw/w3.svg?branch=master)](https://travis-ci.com/wunderdogsw/w3)
+
 # w3
 
 ## Getting Started
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/en/) (see `.nvmrc` for correct version)
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js](https://nodejs.org/en/) (see `.nvmrc` for correct version)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### Installation
 
