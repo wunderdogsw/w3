@@ -6,7 +6,7 @@ const HubSpot = () => (
     id="hs-script-loader"
     async
     defer
-    src={GATSBY_HUBSPOT_SCRIPT}
+    src={process.env.GATSBY_HUBSPOT_SCRIPT}
   ></script>
 )
 

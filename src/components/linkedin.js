@@ -5,7 +5,7 @@ const LinkedIn = () => (
     <script
       dangerouslySetInnerHTML={{
         __html: `
-        _linkedin_partner_id = "${GATSBY_LINKEDIN_PARTNER_ID}";
+        _linkedin_partner_id = "${process.env.GATSBY_LINKEDIN_PARTNER_ID}";
         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
         window._linkedin_data_partner_ids.push(_linkedin_partner_id);
         </script><script type="text/javascript">
@@ -23,7 +23,7 @@ const LinkedIn = () => (
         width="1"
         style="display:none;"
         alt=""
-        src={`https://px.ads.linkedin.com/collect/?pid=${GATSBY_LINKEDIN_PARTNER_ID}&fmt=gif`}
+        src={`https://px.ads.linkedin.com/collect/?pid=${process.env.GATSBY_LINKEDIN_PARTNER_ID}&fmt=gif`}
       />
     </noscript>
   </>

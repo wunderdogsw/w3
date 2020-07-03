@@ -13,7 +13,7 @@ const Facebook = () => (
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${GATSBY_FACEBOOK_PIXEL_ID}');
+          fbq('init', '${process.env.GATSBY_FACEBOOK_PIXEL_ID}');
           fbq('track', 'PageView');
         `,
       }}
@@ -23,7 +23,7 @@ const Facebook = () => (
         height="1"
         width="1"
         style="display:none"
-        src={`https://www.facebook.com/tr?id=${GATSBY_FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
+        src={`https://www.facebook.com/tr?id=${process.env.GATSBY_FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
       />
     </noscript>
   </>
