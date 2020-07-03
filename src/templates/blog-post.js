@@ -34,8 +34,6 @@ const BlogPost = ({ data }) => {
   const images = data.images.edges.map(({ node }) => node)
   const { author } = post
 
-  console.log(next.image)
-
   return (
     <Layout>
       <SEO title={post.title} />
