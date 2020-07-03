@@ -3,6 +3,7 @@
   box-sizing: border-box;
   display: flex;
   height: 90vh;
+  margin-bottom: calc(var(--spacing) * -1);
   min-height: 600px;
   padding-bottom: calc(var(--spacing-small) * 4);
   padding-left: var(--spacing);

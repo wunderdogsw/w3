@@ -49,6 +49,7 @@ export const query = graphql`
     content {
       json
     }
+    animated
   }
 
   fragment ImageBlock on ContentfulImageBlock {

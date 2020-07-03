@@ -1,0 +1,12 @@
+.wrapper {
+  display: block;
+  opacity: 0;
+  transition-duration: var(--animation-slow);
+  transition-property: transform opacity;
+  transition-timing-function: var(--animation-ease);
+}
+
+.visible {
+  transform: translate3d(0, -10vh, 0);
+  opacity: 1;
+}

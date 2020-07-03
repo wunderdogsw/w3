@@ -51,6 +51,7 @@
   --spacing-xsmall: 20px;
 
   --animation-fast: 200ms;
+  --animation-slow: 1s;
   --animation-ease: cubic-bezier(0.77, 0, 0.41, 0.99);
 }
 
