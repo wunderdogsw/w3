@@ -4,6 +4,7 @@
   display: flex;
   height: 90vh;
   min-height: 600px;
+  padding-bottom: calc(var(--spacing-small) * 4);
   padding-left: var(--spacing);
   padding-right: var(--spacing);
 }

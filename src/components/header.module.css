@@ -1,6 +1,5 @@
 .wrapper {
   margin-bottom: calc(5vh + var(--spacing));
-  padding-top: calc(var(--spacing-small) * 4);
 }
 
 .content {
