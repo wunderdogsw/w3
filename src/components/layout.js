@@ -7,24 +7,11 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import Navbar from "./navbar"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site: site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  const { site } = data
-
   return (
     <>
       <Navbar />
