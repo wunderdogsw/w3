@@ -3,11 +3,13 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import BlockList from "../components/block-list"
-import PageFooter from "../components/page-footer"
+import Article from "../components/article"
 import RichText from "../components/rich-text"
+import PageFooter from "../components/page-footer"
 
 const Page = ({ data }) => {
-  const { page, images } = data
+  const { page } = data
+  const images = data.images.edges.map(({ node }) => node)
 
   return (
     <Layout footer>
@@ -17,7 +19,9 @@ const Page = ({ data }) => {
       />
       {page.before && <BlockList data={page.before} />}
       {page.content && (
-        <RichText document={page.content.json} images={images} />
+        <Article>
+          <RichText document={page.content.json} images={images} />
+        </Article>
       )}
       {page.after && <BlockList data={page.after} />}
       <PageFooter />
