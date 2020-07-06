@@ -2,10 +2,14 @@
   margin-top: var(--spacing);
 }
 
+.video {
+  composes: wrapper from "../styles/asset-content.module.css";
+}
+
 .image {
+  composes: wrapper from "../styles/asset-content.module.css";
+
   height: 45vw;
-  margin-left: calc(15vw + var(--spacing));
-  position: relative;
 }
 
 .image > div {
@@ -19,6 +23,5 @@
 @media (max-width: 799px) {
   .image {
     height: 80vw;
-    margin-left: var(--spacing);
   }
 }

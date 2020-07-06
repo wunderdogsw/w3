@@ -2,7 +2,7 @@
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  height: 90vh;
+  height: calc(90vh - var(--spacing-small) * 4);
   margin-bottom: calc(var(--spacing) * -1);
   min-height: 600px;
   padding-bottom: calc(var(--spacing-small) * 4);

@@ -110,9 +110,6 @@ body {
 
 main {
   min-height: 100vh;
-}
-
-main > *:first-child {
   padding-top: calc(var(--spacing-small) * 4);
 }
 

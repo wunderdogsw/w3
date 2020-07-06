@@ -15,7 +15,11 @@ const CaseStory = ({ data }) => {
   return (
     <Layout>
       <SEO title={story.title} />
-      <Header title={story.title} subtitle={story.client} image={story.image} />
+      <Header
+        title={story.title}
+        subtitle={story.client}
+        image={story.video || story.image}
+      />
       {story.before && <BlockList data={story.before} />}
       {story.content && (
         <Article>
@@ -40,6 +44,11 @@ export const query = graphql`
       image {
         fluid(maxWidth: 2560) {
           ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      video {
+        file {
+          url
         }
       }
       client

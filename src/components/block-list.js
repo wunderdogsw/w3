@@ -31,6 +31,9 @@ export const query = graphql`
     title
     subtitle
     image {
+      file {
+        url
+      }
       fluid(maxWidth: 2560) {
         ...GatsbyContentfulFluid_withWebp
       }
@@ -41,6 +44,9 @@ export const query = graphql`
   fragment SectionBlock on ContentfulSectionBlock {
     id
     image {
+      file {
+        url
+      }
       fluid(maxWidth: 2560) {
         ...GatsbyContentfulFluid_withWebp
       }

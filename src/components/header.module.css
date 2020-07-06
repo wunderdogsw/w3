@@ -17,10 +17,19 @@
   margin-top: var(--spacing-small);
 }
 
+.video,
 .image {
-  height: 45vw;
-  margin-left: calc(15vw + var(--spacing));
   margin-top: calc(5vh + var(--spacing));
+}
+
+.video {
+  composes: wrapper from "../styles/asset-content.module.css";
+}
+
+.image {
+  composes: wrapper from "../styles/asset-content.module.css";
+
+  height: 45vw;
 }
 
 .image > div {
@@ -33,6 +42,7 @@
     width: calc(80vw - 2 * var(--spacing));
   }
 
+  .video,
   .image {
     margin-top: calc(3vh + var(--spacing));
   }
@@ -40,12 +50,11 @@
 
 @media (max-width: 799px) {
   .wrapper {
-    padding-top: calc(var(--spacing-medium) * 4);
+    padding-top: var(--spacing-medium);
   }
 
   .image {
     height: 80vw;
-    margin-left: var(--spacing);
   }
 }
 

@@ -40,15 +40,8 @@ const BlogPost = ({ data }) => {
       <Header
         title={post.title}
         subtitle={renderSubtitle(post, author)}
-        image={post.image}
-      >
-        <h1>{post.title}</h1>
-        <div>
-          {renderAuthor(author)} • {post.publishedAt} • Read time{" "}
-          {post.readingTime} min
-        </div>
-        <Image fluid={post.image.fluid} />
-      </Header>
+        image={post.video || post.image}
+      />
       {post.before && <BlockList data={post.before} />}
       <Article>
         <RichText document={post.content.json} images={images} />
@@ -72,6 +65,11 @@ export const query = graphql`
       image {
         fluid(maxWidth: 2560) {
           ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      video {
+        file {
+          url
         }
       }
       author {
