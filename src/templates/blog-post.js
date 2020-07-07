@@ -35,7 +35,16 @@ const BlogPost = ({ data }) => {
   const { author } = post
 
   return (
-    <Layout>
+    <Layout
+      footer={
+        <ContentFooter
+          title={next.title}
+          subtitle="Go to next post"
+          image={next.image.fluid.src}
+          to={next.fields.route}
+        />
+      }
+    >
       <SEO title={post.title} />
       <Header
         title={post.title}
@@ -47,12 +56,6 @@ const BlogPost = ({ data }) => {
         <RichText document={post.content.json} images={images} />
       </Article>
       {post.after && <BlockList data={post.after} />}
-      <ContentFooter
-        title={next.title}
-        subtitle="Go to next post"
-        image={next.image.fluid.src}
-        to={next.fields.route}
-      />
     </Layout>
   )
 }

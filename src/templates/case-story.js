@@ -13,7 +13,16 @@ const CaseStory = ({ data }) => {
   const images = data.images.edges.map(({ node }) => node)
 
   return (
-    <Layout>
+    <Layout
+      footer={
+        <ContentFooter
+          title={next.title}
+          subtitle="Go to next case"
+          image={next.image.fluid.src}
+          to={next.fields.route}
+        />
+      }
+    >
       <SEO title={story.title} />
       <Header
         title={story.title}
@@ -27,12 +36,6 @@ const CaseStory = ({ data }) => {
         </Article>
       )}
       {story.after && <BlockList data={story.after} />}
-      <ContentFooter
-        title={next.title}
-        subtitle="Go to next case"
-        image={next.image.fluid.src}
-        to={next.fields.route}
-      />
     </Layout>
   )
 }

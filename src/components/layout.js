@@ -12,12 +12,13 @@ import "./layout.css"
 import Analytics from "./analytics"
 import Navbar from "./navbar"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, footer }) => {
   return (
     <>
       <Analytics />
       <Navbar />
       <main>{children}</main>
+      {footer}
     </>
   )
 }

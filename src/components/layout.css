@@ -109,6 +109,7 @@ body {
 }
 
 main {
+  box-sizing: border-box;
   min-height: 100vh;
   padding-top: calc(var(--spacing-small) * 4);
 }

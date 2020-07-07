@@ -12,7 +12,7 @@ const Page = ({ data }) => {
   const images = data.images.edges.map(({ node }) => node)
 
   return (
-    <Layout footer>
+    <Layout footer={<PageFooter />}>
       <SEO
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
@@ -24,7 +24,6 @@ const Page = ({ data }) => {
         </Article>
       )}
       {page.after && <BlockList data={page.after} />}
-      <PageFooter />
     </Layout>
   )
 }
