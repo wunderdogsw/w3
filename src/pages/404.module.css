@@ -1,0 +1,26 @@
+.wrapper {
+  margin-bottom: calc(5vh + var(--spacing));
+  margin-top: var(--spacing);
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+  text-align: center;
+}
+
+.wrapper > h1::before {
+  animation: shrug 1s infinite linear;
+  content: "¯\\_(ツ)_/¯";
+}
+
+.wrapper > div {
+  margin-top: var(--spacing-small);
+}
+
+@keyframes shrug {
+  from {
+    content: "¯\\_(ツ)_/¯";
+  }
+
+  to {
+    content: "-__(ツ)__-";
+  }
+}

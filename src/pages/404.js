@@ -1,13 +1,17 @@
 import React from "react"
 
+import styles from "./404.module.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import PageFooter from "../components/page-footer"
 
 const NotFoundPage = () => (
-  <Layout>
+  <Layout footer={<PageFooter />}>
     <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <header className={styles.wrapper}>
+      <h1 />
+      <div>404 content not found</div>
+    </header>
   </Layout>
 )
 
