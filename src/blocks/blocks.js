@@ -6,6 +6,10 @@ blocks[
 
 blocks["ContentfulHeaderBlock"] = require("../components/header-block").default
 
+blocks[
+  "ContentfulHubSpotFormBlock"
+] = require("../components/hubspot-form-block").default
+
 blocks["ContentfulImageBlock"] = require("../components/image-block").default
 
 blocks["ContentfulLogosBlock"] = require("../components/logos-block").default

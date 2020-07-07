@@ -104,6 +104,9 @@ export const query = graphql`
           ... on ContentfulContactBlock {
             ...ContactBlock
           }
+          ... on ContentfulHubSpotFormBlock {
+            ...HubSpotFormBlock
+          }
           ... on ContentfulComponentBlock {
             ...ComponentBlock
           }
@@ -132,6 +135,9 @@ export const query = graphql`
           }
           ... on ContentfulContactBlock {
             ...ContactBlock
+          }
+          ... on ContentfulHubSpotFormBlock {
+            ...HubSpotFormBlock
           }
           ... on ContentfulComponentBlock {
             ...ComponentBlock

@@ -130,6 +130,11 @@ export const query = graphql`
     }
   }
 
+  fragment HubSpotFormBlock on ContentfulHubSpotFormBlock {
+    id
+    formId
+  }
+
   fragment ComponentBlock on ContentfulComponentBlock {
     id
     reactComponent

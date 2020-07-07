@@ -1,0 +1,7 @@
+ul.hs-error-msgs > li {
+  font-size: 14px;
+}
+
+label.hs-error-msg {
+  color: #ff0000;
+}
