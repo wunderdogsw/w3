@@ -71,6 +71,9 @@ export const query = graphql`
     align
     images {
       id
+      file {
+        url
+      }
       fluid(maxWidth: 2560) {
         ...GatsbyContentfulFluid_withWebp
       }
