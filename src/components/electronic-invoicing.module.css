@@ -1,5 +1,5 @@
 .wrapper {
-  composes: grey from "../styles/secondary-footer.module.css";
+  composes: gray from "../styles/secondary-footer.module.css";
 
   padding: var(--spacing-large) calc(15vw + var(--spacing));
 }

@@ -14,8 +14,8 @@
   color: var(--white);
 }
 
-.grey {
+.gray {
   composes: wrapper;
 
-  background: var(--grey-lighter);
+  background: var(--gray-lighter);
 }

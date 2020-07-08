@@ -25,7 +25,7 @@
 
 .wrapper > footer {
   margin-top: var(--spacing-small);
-  color: var(--grey);
+  color: var(--gray);
 }
 
 @media (max-width: 739px) {

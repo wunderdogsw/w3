@@ -36,8 +36,8 @@
   --black: #000;
   --white: #fff;
   --blue: #193cc8;
-  --grey: #b9b9b9;
-  --grey-lighter: #f8f8f8;
+  --gray: #b9b9b9;
+  --gray-lighter: #f8f8f8;
 
   --font-size-large: 100px;
   --font-size-medium: 60px;
@@ -115,7 +115,7 @@ main {
 }
 
 a {
-  color: var(--grey);
+  color: var(--gray);
   text-decoration: none;
 }
 

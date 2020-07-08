@@ -16,7 +16,7 @@
 }
 
 .wrapper > nav > a {
-  color: var(--grey);
+  color: var(--gray);
   margin-left: var(--spacing-small);
 }
 
