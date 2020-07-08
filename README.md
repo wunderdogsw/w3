@@ -29,6 +29,8 @@ You can get the Contentful space ID and access token by logging into Contentful 
 
 This project uses font files that currently cannot be shared publicly outside Wunderdog. If you're working at Wunderdog, you can ask Toto for the font files.
 
+If you don't have access to the font files, you can as a workaround use your browser's default fonts by setting the environment variable `DISABLE_FONTS` as `true`.
+
 ## Useful Commands
 
 To start the development server, run

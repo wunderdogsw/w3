@@ -13,7 +13,7 @@ import Analytics from "./analytics"
 import Navbar from "./navbar"
 
 if (process.env.DISABLE_FONTS !== "true") {
-  require("../styles/font-families.css")
+  require("../../fonts/index.css")
 }
 
 const Layout = ({ children, footer }) => {
