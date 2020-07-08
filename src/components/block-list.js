@@ -58,6 +58,14 @@ export const query = graphql`
     animated
   }
 
+  fragment QuoteBlock on ContentfulQuoteBlock {
+    id
+    content {
+      content
+    }
+    author
+  }
+
   fragment ImageBlock on ContentfulImageBlock {
     id
     align

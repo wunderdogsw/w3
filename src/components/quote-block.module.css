@@ -1,0 +1,35 @@
+.wrapper {
+  margin-bottom: var(--spacing);
+  margin-left: 15vw;
+  margin-top: var(--spacing);
+  max-width: 800px;
+  padding-bottom: var(--spacing);
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+}
+
+.wrapper > p {
+  color: var(--blue);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-alt);
+  font-style: italic;
+}
+
+.wrapper > p::before {
+  content: open-quote;
+}
+
+.wrapper > p::after {
+  content: close-quote;
+}
+
+.wrapper > footer {
+  margin-top: var(--spacing-small);
+  color: var(--grey);
+}
+
+@media (max-width: 739px) {
+  .wrapper {
+    margin-left: 0;
+  }
+}

@@ -67,6 +67,9 @@ export const query = graphql`
           ... on ContentfulSectionBlock {
             ...SectionBlock
           }
+          ... on ContentfulQuoteBlock {
+            ...QuoteBlock
+          }
           ... on ContentfulImageBlock {
             ...ImageBlock
           }
@@ -98,6 +101,9 @@ export const query = graphql`
           }
           ... on ContentfulSectionBlock {
             ...SectionBlock
+          }
+          ... on ContentfulQuoteBlock {
+            ...QuoteBlock
           }
           ... on ContentfulImageBlock {
             ...ImageBlock
