@@ -45,7 +45,7 @@ const ContentList = ({ children, data, filter, render }) => {
       )}
       <div className={styles.list}>
         {filterContent(data, activeCategory).map(item => (
-          <div>{render(item)}</div>
+          <div key={item.id}>{render(item)}</div>
         ))}
         {children}
       </div>
