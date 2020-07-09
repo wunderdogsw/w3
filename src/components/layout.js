@@ -14,7 +14,7 @@ import Navbar from "./navbar"
 
 if (
   process.env.DISABLE_FONTS !== "true" ||
-  process.env.DISABLE_FONTS === true
+  process.env.DISABLE_FONTS !== true
 ) {
   require("../../fonts/index.css")
 }
