@@ -12,9 +12,9 @@ import "./layout.css"
 import Analytics from "./analytics"
 import Navbar from "./navbar"
 
-if (process.env.DISABLE_FONTS !== "true") {
-  require("../../fonts/index.css")
-}
+// if (process.env.DISABLE_FONTS !== "true") {
+//   require("../../fonts/index.css")
+// }
 
 const Layout = ({ children, footer }) => {
   return (
