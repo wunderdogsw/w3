@@ -37,5 +37,10 @@ To start the development server, run
 
     $ npm start
 
-You can access the server at [http://localhost:8000/](http://localhost:8000/). If you want to explore the site's data, you can access GraphiQL at [http://localhost:8000/___graphql](http://localhost:8000/___graphql).
+You can access the server at [http://localhost:8000/](http://localhost:8000/). If you want to explore the site's data, you can access GraphiQL at [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql).
 
+## Deployment
+
+`w3` is deployed to [AWS](https://aws.amazon.com/) using [Travis CI](https://travis-ci.com/github/wunderdogsw/w3) and its automatic S3 deployments. You can read more about it at [https://docs.travis-ci.com/user/deployment/s3/](https://docs.travis-ci.com/user/deployment/s3/).
+
+The project is also connected to Gatsby Cloud to enable Contentful's Gatsby Preview extension. The Gatsby Cloud version of the site is password protected. If you work at Wunderdog, you can find the password from Gatsby Cloud's settings or from our password manager under `w3-master (Gatsby Cloud)`.
