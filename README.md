@@ -31,13 +31,23 @@ This project uses font files that currently cannot be shared publicly outside Wu
 
 If you don't have access to the font files, you can as a workaround use your browser's default fonts by setting the environment variable `GATSBY_ENABLE_FONTS` as `false`.
 
-## Useful Commands
+## Development
 
 To start the development server, run
 
     $ npm start
 
 You can access the server at [http://localhost:8000/](http://localhost:8000/). If you want to explore the site's data, you can access GraphiQL at [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql).
+
+### Blocks
+
+Blocks are components (e.g. headers and sections) that users can add to different pages on Contentful. You can find the block components inside `src/blocks`. Some blocks have their own content model on Contentful while others use the shared content model Component Block (`componentBlock`). These Component Block components can be found in `src/blocks/components`.
+
+When introducing new blocks, you need to make changes at least in the following places:
+
+1. **Contentful:** You need to add a new content model or a new `componentBlock` entry if you are adding a component block. Make also sure that users are actually able to add your new blocks in their content by checking the content field validations for `after` and `before` fields of `page`, `blogPost`, `caseStory`, and any other page content models.
+2. **`src/blocks`:** Add corresponding React components to `src/blocks` (or `src/blocks/components`) and export them in `src/blocks/index.js` (or `src/blocks/components/index.js`).
+3. **GraphQL queries:** Make sure that the `after` and `before` fields of `ContentfulPage`, `ContentfulBlogPost`, `ContentfulCaseStory`, and other pages are able to handle your new blocks in their GraphQL queries. Most likely you will need to check `src/components/block-list.js` and the template files (`src/templates`) to achieve this.
 
 ## Deployment
 
