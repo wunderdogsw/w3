@@ -1,9 +1,9 @@
 import React from "react"
 
 import styles from "./section-block.module.css"
-import Section from "./section"
-import RichText from "./rich-text"
-import Jump from "./jump"
+import Section from "../components/section"
+import RichText from "../components/rich-text"
+import Jump from "../components/jump"
 
 const renderSection = data => (
   <Section image={data.image}>

@@ -1,10 +1,10 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import { CASE_STORY_INDEX } from "../common/routes"
-import ContentList from "./content-list"
-import ContentListFooter from "./content-list-footer"
-import ContentCard from "./content-card"
+import { CASE_STORY_INDEX } from "../../common/routes"
+import ContentList from "../../components/content-list"
+import ContentListFooter from "../../components/content-list-footer"
+import ContentCard from "../../components/content-card"
 
 const CaseStoryHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`

@@ -2,7 +2,7 @@ import React from "react"
 import Image from "gatsby-image"
 
 import styles from "./image-block.module.css"
-import Video from "./video"
+import Video from "../components/video"
 
 const renderAsset = asset => {
   const isVideo = () => asset && !asset.fluid

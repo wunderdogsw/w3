@@ -1,7 +1,7 @@
 import React from "react"
 
-import Hero from "./hero"
-import Header from "./header"
+import Hero from "../components/hero"
+import Header from "../components/header"
 
 const HeaderBlock = ({ data }) => {
   if (data.hero) {

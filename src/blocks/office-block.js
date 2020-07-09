@@ -1,8 +1,8 @@
 import React from "react"
 
 import styles from "./office-block.module.css"
-import Section from "./section"
-import Contact from "./contact"
+import Section from "../components/section"
+import Contact from "../components/contact"
 
 const OfficeBlock = ({ data }) => (
   <Section image={data.image}>

@@ -1,7 +1,7 @@
 import React from "react"
 
 import styles from "./logos-block.module.css"
-import RichText from "./rich-text"
+import RichText from "../components/rich-text"
 
 const LogosBlock = ({ data }) => (
   <section className={styles.wrapper}>

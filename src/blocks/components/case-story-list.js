@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import ContentIndex from "./content-index"
-import ContentList from "./content-list"
-import ContentCard from "./content-card"
+import ContentIndex from "../../components/content-index"
+import ContentList from "../../components/content-list"
+import ContentCard from "../../components/content-card"
 
 const CaseStoryList = ({ action }) => {
   const data = useStaticQuery(graphql`

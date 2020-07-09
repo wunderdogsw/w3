@@ -1,14 +1,18 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
-import ContentIndex from "./content-index"
-import ContentList from "./content-list"
-import ContentCard from "./content-card"
+import { BLOG_POST_INDEX } from "../../common/routes"
+import ContentList from "../../components/content-list"
+import ContentListFooter from "../../components/content-list-footer"
+import ContentCard from "../../components/content-card"
 
-const BlogPostList = ({ action }) => {
+const BlogPostHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulBlogPost(sort: { fields: publishedAt, order: DESC }) {
+      allContentfulBlogPost(
+        sort: { fields: publishedAt, order: DESC }
+        limit: 2
+      ) {
         edges {
           node {
             id
@@ -36,10 +40,9 @@ const BlogPostList = ({ action }) => {
   const posts = data.allContentfulBlogPost.edges.map(({ node }) => node)
 
   return (
-    <ContentIndex>
+    <>
       <ContentList
         data={posts}
-        filter
         render={post => (
           <ContentCard
             key={post.id}
@@ -51,8 +54,13 @@ const BlogPostList = ({ action }) => {
           />
         )}
       />
-    </ContentIndex>
+      {button && (
+        <ContentListFooter>
+          <Link to={BLOG_POST_INDEX}>{button}</Link>
+        </ContentListFooter>
+      )}
+    </>
   )
 }
 
-export default BlogPostList
+export default BlogPostHighlights

@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import blocks from "../blocks/blocks"
-import componentBlocks from "../blocks/component-blocks"
+import * as blocks from "../blocks"
 
 const CONTENTFUL_COMPONENT_BLOCK = "ContentfulComponentBlock"
 
 const renderComponentBlock = (id, name, options) => {
-  const ComponentBlock = componentBlocks[name]
+  const ComponentBlock = blocks.components[name]
   const props = options ? JSON.parse(options.internal.content) : {}
 
   return <ComponentBlock key={id} {...props} />

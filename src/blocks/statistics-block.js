@@ -1,7 +1,7 @@
 import React from "react"
 
 import styles from "./statistics-block.module.css"
-import Statistic from "./statistic"
+import Statistic from "../components/statistic"
 
 const StatisticsBlock = ({ data }) => (
   <div className={styles.wrapper}>

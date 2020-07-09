@@ -4,8 +4,7 @@ import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { capitalize } from "../common/utils"
-import blocks from "../blocks/blocks"
-import componentBlocks from "../blocks/component-blocks"
+import * as blocks from "../blocks"
 
 const COMPONENT_BLOCK = "componentBlock"
 
@@ -34,7 +33,7 @@ const serializeData = target => {
 const findComponentBlock = data => {
   const componentName = data.target.fields.reactComponent["en-US"]
 
-  return componentBlocks[componentName]
+  return blocks.components[componentName]
 }
 
 const renderEmbeddedEntry = data => {
