@@ -12,7 +12,7 @@ import "./layout.css"
 import Analytics from "./analytics"
 import Navbar from "./navbar"
 
-if (process.env.DISABLE_FONTS !== "true") {
+if (process.env.ENABLE_FONTS === "true") {
   require("../../fonts/index.css")
 }
 
