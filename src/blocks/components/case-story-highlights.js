@@ -1,10 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import Image from "gatsby-image"
 
 import { CASE_STORY_INDEX } from "../../common/routes"
 import ContentList from "../../components/content-list"
-import ContentListFooter from "../../components/content-list-footer"
-import ContentCard from "../../components/content-card"
 
 const CaseStoryHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`
@@ -42,20 +41,20 @@ const CaseStoryHighlights = ({ button, action }) => {
       <ContentList
         data={stories}
         render={story => (
-          <ContentCard
+          <ContentList.Item
             key={story.id}
             to={story.fields.route}
             title={story.title}
             subtitle={story.client}
             link={action}
-            image={story.image}
+            image={<Image fluid={story.image.fluid} />}
           />
         )}
       />
       {button && (
-        <ContentListFooter>
+        <ContentList.Footer>
           <Link to={CASE_STORY_INDEX}>{button}</Link>
-        </ContentListFooter>
+        </ContentList.Footer>
       )}
     </>
   )

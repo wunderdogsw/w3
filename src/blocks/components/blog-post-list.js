@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
 
 import ContentIndex from "../../components/content-index"
 import ContentList from "../../components/content-list"
-import ContentCard from "../../components/content-card"
 
 const BlogPostList = ({ action }) => {
   const data = useStaticQuery(graphql`
@@ -41,13 +41,13 @@ const BlogPostList = ({ action }) => {
         data={posts}
         filter
         render={post => (
-          <ContentCard
+          <ContentList.Item
             key={post.id}
             to={post.fields.route}
             title={post.title}
             subtitle={`By ${post.author.name}`}
             link={action}
-            image={post.image}
+            image={<Image fluid={post.image.fluid} />}
           />
         )}
       />

@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 
-import styles from "./content-list.module.css"
-import CategoryFilter from "./category-filter"
+import styles from "./index.module.css"
+import Filter from "./filter"
+import Item from "./item"
+import Footer from "./footer"
 
 const ALL = "All"
 
@@ -37,7 +39,7 @@ const ContentList = ({ children, data, filter, render }) => {
   return (
     <div className={styles.wrapper}>
       {filter && (
-        <CategoryFilter
+        <Filter
           categories={findCategories(data)}
           active={activeCategory}
           onSelect={category => setActiveCategory(category)}
@@ -53,4 +55,4 @@ const ContentList = ({ children, data, filter, render }) => {
   )
 }
 
-export default ContentList
+export default Object.assign(ContentList, { Item, Footer })

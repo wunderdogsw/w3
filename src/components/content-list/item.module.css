@@ -25,7 +25,7 @@
   z-index: 1;
 }
 
-.image > div {
+.image > * {
   height: 100%;
   left: 0;
   position: absolute;

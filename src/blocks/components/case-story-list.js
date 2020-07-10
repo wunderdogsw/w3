@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
 
 import ContentIndex from "../../components/content-index"
 import ContentList from "../../components/content-list"
-import ContentCard from "../../components/content-card"
 
 const CaseStoryList = ({ action }) => {
   const data = useStaticQuery(graphql`
@@ -39,13 +39,13 @@ const CaseStoryList = ({ action }) => {
         data={stories}
         filter
         render={story => (
-          <ContentCard
+          <ContentList.Item
             key={story.id}
             to={story.fields.route}
             title={story.title}
             subtitle={`By ${story.client}`}
             link={action}
-            image={story.image}
+            image={<Image fluid={story.image.fluid} />}
           />
         )}
       />

@@ -1,10 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import Image from "gatsby-image"
 
 import { BLOG_POST_INDEX } from "../../common/routes"
 import ContentList from "../../components/content-list"
-import ContentListFooter from "../../components/content-list-footer"
-import ContentCard from "../../components/content-card"
 
 const BlogPostHighlights = ({ button, action }) => {
   const data = useStaticQuery(graphql`
@@ -44,20 +43,20 @@ const BlogPostHighlights = ({ button, action }) => {
       <ContentList
         data={posts}
         render={post => (
-          <ContentCard
+          <ContentList.Item
             key={post.id}
             to={post.fields.route}
             title={post.title}
             subtitle={`By ${post.author.name}`}
             link={action}
-            image={post.image}
+            image={<Image fluid={post.image.fluid} />}
           />
         )}
       />
       {button && (
-        <ContentListFooter>
+        <ContentList.Footer>
           <Link to={BLOG_POST_INDEX}>{button}</Link>
-        </ContentListFooter>
+        </ContentList.Footer>
       )}
     </>
   )

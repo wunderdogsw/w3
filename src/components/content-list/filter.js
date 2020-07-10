@@ -1,8 +1,8 @@
 import React from "react"
 
-import styles from "./category-filter.module.css"
+import styles from "./filter.module.css"
 
-const CategoryFilter = ({ categories, active, onSelect }) => (
+const Filter = ({ categories, active, onSelect }) => (
   <ul className={styles.wrapper}>
     {categories.map(category => (
       <li
@@ -16,4 +16,4 @@ const CategoryFilter = ({ categories, active, onSelect }) => (
   </ul>
 )
 
-export default CategoryFilter
+export default Filter
