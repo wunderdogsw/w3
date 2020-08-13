@@ -4,6 +4,21 @@ import Image from "gatsby-image"
 import styles from "./header.module.css"
 import Video from "./video"
 
+const renderSubtitle = subtitle => {
+  const className = styles.subtitle
+
+  if (typeof subtitle === "string") {
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: subtitle }}
+        className={className}
+      />
+    )
+  }
+
+  return <div className={className}>{subtitle}</div>
+}
+
 const Header = ({ title, subtitle, image }) => {
   const hasVideo = image && !image.fluid
 
@@ -11,10 +26,7 @@ const Header = ({ title, subtitle, image }) => {
     <header className={styles.wrapper}>
       <div className={styles.content}>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
-        <div
-          dangerouslySetInnerHTML={{ __html: subtitle }}
-          className={styles.subtitle}
-        />
+        {renderSubtitle(subtitle)}
       </div>
       {image && (
         <div className={hasVideo ? styles.video : styles.image}>
