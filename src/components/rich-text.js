@@ -4,7 +4,9 @@ import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { capitalize } from "../common/utils"
+import { isImage, isVideo } from "../common/entry"
 import * as blocks from "../blocks"
+import Video from "../components/video"
 
 const COMPONENT_BLOCK = "componentBlock"
 
@@ -72,7 +74,17 @@ const RichText = ({ document, images }) => {
         return renderEmbeddedEntry(node.data)
       },
       [BLOCKS.EMBEDDED_ASSET]: node => {
-        return <Image fluid={findImage(images, node).fluid} />
+        if (isImage(node)) {
+          return <Image fluid={findImage(images, node).fluid} />
+        }
+
+        if (isVideo(node)) {
+          return (
+            <Video src={`https:${node.data.target.fields.file["en-US"].url}`} />
+          )
+        }
+
+        throw "Unknown embedded asset type"
       },
     },
   }

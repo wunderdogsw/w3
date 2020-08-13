@@ -5,7 +5,9 @@
  */
 
 const path = require("path")
+
 const routes = require("./src/common/routes")
+const { isImage } = require("./src/common/entry")
 
 const INDEX = "index"
 
@@ -42,8 +44,6 @@ const findImageURLs = content => {
     return []
   }
 
-  const isAsset = entry => entry.nodeType === "embedded-asset-block"
-
   return content.reduce((result, entry) => {
     if (
       !entry.data ||
@@ -55,7 +55,7 @@ const findImageURLs = content => {
     }
 
     const { url } = entry.data.target.fields.file["en-US"]
-    if (isAsset(entry) && url) {
+    if (isImage(entry) && url) {
       return [...result, url]
     }
 
