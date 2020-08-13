@@ -29,6 +29,7 @@
 
 .wrapper > p,
 .wrapper > ul,
+.wrapper > ol,
 .wrapper > div {
   margin-left: 30vw;
   max-width: 800px;
@@ -64,6 +65,7 @@
   .wrapper > h3,
   .wrapper > p,
   .wrapper > ul,
+  .wrapper > ol,
   .wrapper > div {
     margin-left: 20px;
   }
