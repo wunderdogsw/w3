@@ -22,13 +22,14 @@
 }
 
 .list > ul > li {
+  align-items: center;
+  display: flex;
   height: 180px;
   min-width: 100%;
 }
 
 .list > ul > li > img {
   box-sizing: border-box;
-  height: 100%;
   width: 100%;
 }
 
