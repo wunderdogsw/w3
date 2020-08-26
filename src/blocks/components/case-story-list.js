@@ -43,7 +43,7 @@ const CaseStoryList = ({ action }) => {
             key={story.id}
             to={story.fields.route}
             title={story.title}
-            subtitle={`By ${story.client}`}
+            subtitle={story.client}
             link={action}
             image={<Image fluid={story.image.fluid} />}
           />
