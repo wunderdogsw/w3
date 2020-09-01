@@ -12,7 +12,7 @@ const LogosBlock = ({ data }) => (
     <div className={styles.list}>
       <ul>
         {data.images.map(image => (
-          <li>
+          <li key={image.file.url}>
             <img key={image.file.url} src={image.file.url} />
           </li>
         ))}
