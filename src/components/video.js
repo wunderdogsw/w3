@@ -1,3 +1,5 @@
+/* eslint jsx-a11y/media-has-caption: 0 */
+
 import React, { useState } from "react"
 
 import styles from "./video.module.css"
