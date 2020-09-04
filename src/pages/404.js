@@ -9,8 +9,9 @@ const NotFoundPage = () => (
   <Layout footer={<PageFooter />}>
     <SEO title="404: Not found" />
     <header className={styles.wrapper}>
-      <h1 />
-      <div>404 content not found</div>
+      <div className={styles.shrug} />
+      <h1>404</h1>
+      <div>Content not found</div>
     </header>
   </Layout>
 )

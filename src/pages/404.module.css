@@ -6,7 +6,12 @@
   text-align: center;
 }
 
-.wrapper > h1::before {
+.shrug {
+  font-size: var(--font-size-medium);
+  font-weight: 500;
+}
+
+.shrug::before {
   animation: shrug 1s infinite linear;
   content: "¯\\_(ツ)_/¯";
 }
