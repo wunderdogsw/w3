@@ -38,6 +38,10 @@ const findComponentBlock = data => {
   return blocks.components[componentName]
 }
 
+const renderTextWithLineBreaks = text => {
+  return text.split("\n").flatMap((text, i) => [i > 0 && <br />, text])
+}
+
 const renderEmbeddedEntry = data => {
   const contentType = data.target.sys.contentType.sys.id
 
@@ -67,8 +71,7 @@ const findImage = (images, node) => {
 
 const RichText = ({ document, images }) => {
   const options = {
-    renderText: text =>
-      text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
+    renderText: text => renderTextWithLineBreaks(text),
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => {
         return renderEmbeddedEntry(node.data)
