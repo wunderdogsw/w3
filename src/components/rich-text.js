@@ -87,7 +87,7 @@ const RichText = ({ document, images }) => {
           )
         }
 
-        throw "Unknown embedded asset type"
+        throw new Error("Unknown embedded asset type")
       },
     },
   }
