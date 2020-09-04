@@ -31,7 +31,7 @@ const Menu = ({ active }) => {
         {config.pages.map(page => (
           <Link
             key={page.id}
-            to={`/${page.fields.route}`}
+            to={page.fields.route}
             activeClassName={styles.active}
           >
             {page.title}
