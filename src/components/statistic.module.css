@@ -1,11 +1,18 @@
 .wrapper {
+  box-sizing: border-box;
   margin-bottom: var(--spacing-medium);
-  margin-right: var(--spacing-medium);
   margin-top: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
   width: calc(50% - var(--spacing-medium));
 }
 
 .wrapper > div:first-child {
   font-size: var(--font-size-large);
   line-height: 1;
+}
+
+@media (max-width: 867px) {
+  .wrapper {
+    width: 50%;
+  }
 }

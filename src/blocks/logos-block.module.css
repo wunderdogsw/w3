@@ -43,8 +43,9 @@
 
 @media (max-width: 867px) {
   .list > ul {
-    grid-gap: 0;
+    grid-gap: var(--spacing-small) var(--spacing);
     grid-template-columns: 1fr 1fr;
+    min-width: auto;
     width: 100%;
   }
 }

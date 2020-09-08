@@ -42,6 +42,7 @@
 
   .wrapper > nav {
     justify-content: flex-start;
+    min-width: auto;
   }
 
   .wrapper > div {

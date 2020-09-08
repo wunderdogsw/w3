@@ -1,4 +1,5 @@
 .wrapper {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   margin-left: 30vw;
@@ -6,11 +7,12 @@
   min-width: 300px;
   padding-left: var(--spacing);
   padding-right: var(--spacing);
-  width: 40vw;
 }
 
 @media (max-width: 739px) {
   .wrapper {
     margin-left: 20px;
+    min-width: auto;
+    width: calc(100% - 20px);
   }
 }
