@@ -6,10 +6,13 @@
 
 [![Build Status](https://travis-ci.com/wunderdogsw/w3.svg?branch=master)](https://travis-ci.com/wunderdogsw/w3)
 
+`w3` is the front-end client of our (Wunderdog's) website. It's built using [Gatsby](https://www.gatsbyjs.com/). We manage the content of the site in [Contentful](https://www.contentful.com/).
+
 ## Getting Started
 
 ### Prerequisites
 
+- Contentful access (if you work at Wunderdog, ask Toto or Tsuikkis)
 - [Node.js](https://nodejs.org/en/) (see `.nvmrc` for correct version)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
