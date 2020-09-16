@@ -1,0 +1,23 @@
+.content > span {
+  font-size: 0.75rem;
+}
+
+.content > a {
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+.content > a:hover {
+  color: gray;
+}
+
+.wrapper {
+  background-color: black !important;
+}
+
+.button {
+  background-color: black !important;
+  font-size: 0.75rem;
+  color: white !important;
+  border: 1px solid white !important;
+}
