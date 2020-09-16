@@ -68,14 +68,6 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-      script={[
-        {
-          id: "hs-script-loader",
-          async: true,
-          defer: true,
-          src: process.env.GATSBY_HUBSPOT_SCRIPT,
-        },
-      ]}
     />
   )
 }
