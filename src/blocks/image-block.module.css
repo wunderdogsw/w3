@@ -64,6 +64,6 @@
 @media (max-width: 799px) {
   .left,
   .fullWidth {
-    height: 80vw;
+    max-height: 80vw;
   }
 }
