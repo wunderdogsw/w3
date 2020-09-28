@@ -29,7 +29,7 @@ const CookieConsentBar = () => {
   // Auto-activate GTM if user have approved consent before and comeback
   useEffect(() => {
     activateGTM()
-  }, [])
+  })
 
   const data = useStaticQuery(
     graphql`
