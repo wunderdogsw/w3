@@ -4,6 +4,25 @@ import { useStaticQuery, graphql } from "gatsby"
 import styles from "./cookie-consent-bar.module.css"
 
 const CookieConsentBar = () => {
+  // Cookie name to check if user have accepted to this before.
+  const WD_COOKIE_NAME = "wunderdog_cookie_user_consented"
+  const isCookieAccepted = Cookies.get(WD_COOKIE_NAME)
+
+  const loadCookie = () => {
+    const GTMLayer = window.dataLayer.find(
+      layer => layer.event && layer.event === "cookie_consent"
+    )
+
+    const GTMLoaded = Boolean(GTMLayer)
+
+    if (isCookieAccepted && !GTMLoaded) {
+      // Auto-activate GTM if user have accept this before
+      window.dataLayer.push({
+        event: "cookie_consent",
+      })
+    }
+  }
+
   const data = useStaticQuery(
     graphql`
       query {
@@ -26,14 +45,9 @@ const CookieConsentBar = () => {
   const consents = data.allContentfulCookieConsentBlock.edges.map(node => node)
   const content = consents.length && consents[0].node
 
-  // Cookie name to check if user have accepted to this before.
-  const WD_COOKIE_NAME = "wunderdog_cookie_user_consented"
-
-  const isCookieAccepted = Cookies.get(WD_COOKIE_NAME)
-
   // Only show cookie bar if content exist and user havent consent to cookie before
   const shouldShouldCookieBar = Boolean(content) && !isCookieAccepted
-
+  console.log(isCookieAccepted)
   return shouldShouldCookieBar ? (
     <CookieConsent
       containerClasses={styles.wrapper}
