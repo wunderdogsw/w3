@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import CookieConsent, { Cookies } from "react-cookie-consent"
 import { useStaticQuery, graphql } from "gatsby"
 import styles from "./cookie-consent-bar.module.css"
@@ -8,7 +8,10 @@ const CookieConsentBar = () => {
   const WD_COOKIE_NAME = "wunderdog_cookie_user_consented"
   const isCookieAccepted = Cookies.get(WD_COOKIE_NAME)
 
-  const loadCookie = () => {
+  /**
+   * Only activate GTM automatically when needed. (dataLayer doesnt contain cookie_consent)
+   */
+  const activateGTM = () => {
     const GTMLayer = window.dataLayer.find(
       layer => layer.event && layer.event === "cookie_consent"
     )
@@ -22,6 +25,11 @@ const CookieConsentBar = () => {
       })
     }
   }
+
+  // Auto-activate GTM if user have approved consent before and comeback
+  useEffect(() => {
+    activateGTM()
+  }, [])
 
   const data = useStaticQuery(
     graphql`
@@ -47,7 +55,7 @@ const CookieConsentBar = () => {
 
   // Only show cookie bar if content exist and user havent consent to cookie before
   const shouldShouldCookieBar = Boolean(content) && !isCookieAccepted
-  console.log(isCookieAccepted)
+
   return shouldShouldCookieBar ? (
     <CookieConsent
       containerClasses={styles.wrapper}
