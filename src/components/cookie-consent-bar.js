@@ -15,6 +15,7 @@ const CookieConsentBar = () => {
                 consentText
               }
               consentApprove
+              consentDecline
             }
           }
         }
@@ -29,9 +30,13 @@ const CookieConsentBar = () => {
     <CookieConsent
       containerClasses={styles.wrapper}
       contentClasses={styles.content}
-      buttonClasses={styles.button}
+      buttonWrapperClasses={styles.buttonWrapper}
       location="bottom"
+      acceptOnScroll
+      hideOnAccept
       buttonText={content.consentApprove}
+      enableDeclineButton
+      declineButtonText={content.consentDecline}
       onAccept={() => {
         window.dataLayer.push({
           event: "cookie_consent",
