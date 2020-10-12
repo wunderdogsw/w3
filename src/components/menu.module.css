@@ -56,7 +56,7 @@
   }
 
   .wrapper > nav {
-    font-size: 48px;
+    font-size: 38px;
   }
 }
 
@@ -66,18 +66,18 @@
   }
 
   .wrapper > nav {
-    font-size: 58px;
+    font-size: 48px;
   }
 }
 
 @media (max-height: 767px) {
   .wrapper > nav {
-    font-size: 48px;
+    font-size: 38px;
   }
 }
 
 @media (max-height: 659px) {
   .wrapper > nav {
-    font-size: 38px;
+    font-size: 28px;
   }
 }
