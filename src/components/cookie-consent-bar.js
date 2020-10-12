@@ -64,7 +64,6 @@ const CookieConsentBar = () => {
       cookieName={WD_COOKIE_NAME}
       cookieValue={true}
       location="bottom"
-      acceptOnScroll
       sameSite="Secure"
       hideOnAccept
       buttonText={content.consentApprove}
