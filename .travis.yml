@@ -9,13 +9,37 @@ before_install:
 script:
   - yarn build
 deploy:
-  provider: s3
-  region: $AWS_REGION
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: $AWS_BUCKET
-  acl: public_read
-  skip_cleanup: true
-  local_dir: public
-  on:
-    branch: master
+  # Production s3 deployment. This is parallel with master branch.
+  - provider: s3
+    region: $AWS_REGION
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_BUCKET_PRODUCTION
+    acl: public_read
+    skip_cleanup: true
+    local_dir: public
+    on:
+      branch: master
+  # Testing s3 deployment. This is parallel with develop branch.
+  - provider: s3
+    region: $AWS_REGION
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_BUCKET_TESTING
+    acl: public_read
+    skip_cleanup: true
+    local_dir: public
+    on:
+      branch: develop
+  # Feature s3 deployment. This is parallel with * branch except master and develop.  
+      - provider: s3
+    region: $AWS_REGION
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_BUCKET_PREVIEW
+    acl: public_read
+    skip_cleanup: true
+    local_dir: public
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH != master && $TRAVIS_BRANCH != develop

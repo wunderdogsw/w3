@@ -57,3 +57,9 @@ When introducing new blocks, you need to make changes at least in the following 
 `w3` is deployed to [AWS](https://aws.amazon.com/) using [Travis CI](https://travis-ci.com/github/wunderdogsw/w3) and its automatic S3 deployments. You can read more about it at [https://docs.travis-ci.com/user/deployment/s3/](https://docs.travis-ci.com/user/deployment/s3/).
 
 The project is also connected to Gatsby Cloud to enable Contentful's Gatsby Preview extension. The Gatsby Cloud version of the site is password protected. If you work at Wunderdog, you can find the password from Gatsby Cloud's settings or from our password manager under `w3-master (Gatsby Cloud)`.
+
+### Deployment staging mapping
+
+- `master` branch will be deployed to production staging environment, which is [production website](https://www.wunderdog.fi/).
+- `develop` branch will be deployed to [testing](https://testing.wunder.dog/)
+- All other branch (usually branch with latest pushed commit) will be deployed to [preview](https://preview.wunder.dog/). This is a WIP, better staging deployment will come later.
