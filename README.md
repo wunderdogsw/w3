@@ -54,7 +54,7 @@ When introducing new blocks, you need to make changes at least in the following 
 
 ## Deployment
 
-`w3` is automated and deployed to [AWS](https://aws.amazon.com/) using [Travis CI](https://travis-ci.com/github/wunderdogsw/w3) and its automatic S3 deployments. You can read more about it at [https://docs.travis-ci.com/user/deployment/s3/](https://docs.travis-ci.com/user/deployment/s3/).
+`w3` is deployed to [AWS](https://aws.amazon.com/) using [Travis CI](https://travis-ci.com/github/wunderdogsw/w3) and its automatic S3 deployments. You can read more about it at [https://docs.travis-ci.com/user/deployment/s3/](https://docs.travis-ci.com/user/deployment/s3/).
 
 The project is also connected to Gatsby Cloud to enable Contentful's Gatsby Preview extension. The Gatsby Cloud version of the site is password protected. If you work at Wunderdog, you can find the password from Gatsby Cloud's settings or from our password manager under `w3-master (Gatsby Cloud)`.
 
