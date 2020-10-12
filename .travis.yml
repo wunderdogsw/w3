@@ -9,6 +9,7 @@ before_install:
 script:
   - yarn build
 deploy:
+  # Production s3 deployment. This is parallel with master branch.
   - provider: s3
     region: $AWS_REGION
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -19,6 +20,7 @@ deploy:
     local_dir: public
     on:
       branch: master
+  # Testing s3 deployment. This is parallel with develop branch.
   - provider: s3
     region: $AWS_REGION
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -29,7 +31,8 @@ deploy:
     local_dir: public
     on:
       branch: develop
-  - provider: s3
+  # Feature s3 deployment. This is parallel with * branch except master and develop.  
+      - provider: s3
     region: $AWS_REGION
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
