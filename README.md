@@ -61,5 +61,4 @@ The project is also connected to Gatsby Cloud to enable Contentful's Gatsby Prev
 ### Deployment staging mapping
 
 - `master` branch will be deployed to production staging environment, which is [production website](https://www.wunderdog.fi/).
-- `develop` branch will be deployed to [testing](https://testing.wunder.dog/)
 - All other branch (usually branch with latest pushed commit) will be deployed to [preview](https://preview.wunder.dog/). This is a WIP, better staging deployment will come later.
