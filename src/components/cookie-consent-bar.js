@@ -63,8 +63,7 @@ const CookieConsentBar = () => {
       buttonWrapperClasses={styles.buttonWrapper}
       cookieName={WD_COOKIE_NAME}
       // Cookie will auto expire after 2 year as we promised to user.
-      // TODO: make it 730 days
-      expires={1}
+      expires={730}
       cookieValue={true}
       location="bottom"
       sameSite="Secure"
