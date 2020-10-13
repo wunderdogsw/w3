@@ -55,13 +55,16 @@ const CookieConsentBar = () => {
 
   // Only show cookie bar if content exist and user havent consent to cookie before
   const shouldShouldCookieBar = Boolean(content) && !isCookieAccepted
-
+  const autoExpireCookie = ''
   return shouldShouldCookieBar ? (
     <CookieConsent
       containerClasses={styles.wrapper}
       contentClasses={styles.content}
       buttonWrapperClasses={styles.buttonWrapper}
       cookieName={WD_COOKIE_NAME}
+      // Cookie will auto expire after 2 year as we promised to user.
+      // TODO: make it 730 days
+      expires={730}
       cookieValue={true}
       location="bottom"
       sameSite="Secure"
