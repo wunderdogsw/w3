@@ -64,7 +64,7 @@ const CookieConsentBar = () => {
       cookieName={WD_COOKIE_NAME}
       // Cookie will auto expire after 2 year as we promised to user.
       // TODO: make it 730 days
-      expires={730}
+      expires={1}
       cookieValue={true}
       location="bottom"
       sameSite="Secure"
