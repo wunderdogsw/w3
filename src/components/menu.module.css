@@ -13,7 +13,7 @@
   line-height: 1.6;
   opacity: 0;
   overflow: scroll;
-  padding: 140px var(--spacing) 60px;
+  padding: var(--height-navbar) var(--spacing) 60px;
   pointer-events: none;
   position: fixed;
   transition-duration: var(--animation-fast);
@@ -52,7 +52,7 @@
 
 @media (max-width: 799px) {
   .wrapper {
-    padding: 120px var(--spacing) 40px;
+    padding: var(--height-navbar) var(--spacing) 40px;
   }
 
   .wrapper > nav {
@@ -62,7 +62,7 @@
 
 @media (max-height: 999px) {
   .wrapper {
-    padding: 120px var(--spacing) 40px;
+    padding: var(--height-navbar) var(--spacing) 40px;
   }
 
   .wrapper > nav {
