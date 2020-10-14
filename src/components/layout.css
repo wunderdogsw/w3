@@ -19,6 +19,8 @@
   --animation-fast: 200ms;
   --animation-slow: 1s;
   --animation-ease: cubic-bezier(0.77, 0, 0.41, 0.99);
+
+  --height-navbar: 160px;
 }
 
 @media (max-width: 1199px) {
@@ -31,6 +33,12 @@
     --spacing: 80px;
     --spacing-large: 80px;
     --spacing-small: 50px;
+  }
+}
+
+@media (max-width: 799px) {
+  :root {
+    --height-navbar: 120px;
   }
 }
 
