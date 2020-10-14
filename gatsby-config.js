@@ -40,10 +40,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-        anonymize: true,
+        id: process.env.GOOGLE_TAG_MANAGER_ID,
+        includeInDevelopment: true,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -9,8 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import "./layout.css"
-import Analytics from "./analytics"
 import Navbar from "./navbar"
+import CookieConsentBar from "./cookie-consent-bar"
 
 if (process.env.GATSBY_ENABLE_FONTS === "true") {
   require("../../fonts/index.css")
@@ -19,10 +19,10 @@ if (process.env.GATSBY_ENABLE_FONTS === "true") {
 const Layout = ({ children, footer }) => {
   return (
     <>
-      <Analytics />
       <Navbar />
       <main>{children}</main>
       {footer}
+      <CookieConsentBar />
     </>
   )
 }
