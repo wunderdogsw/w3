@@ -6,7 +6,6 @@ COPY ./package*.json ./
 
 RUN npm install
 
-# Also exposing VSCode debug ports
 EXPOSE 8000
 
 CMD ["npm", "start"]
