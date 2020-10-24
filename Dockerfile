@@ -1,11 +1,7 @@
-FROM node:alpine as builder
-
-## Install build toolchain, install node deps and compile native add-ons
-RUN apk add --no-cache python make g++
+FROM node:12 as builder
 
 COPY package*.json ./
 
-RUN npm update
 RUN npm install
 
 COPY . .
@@ -16,4 +12,4 @@ RUN ["npm", "run", "build"]
 FROM nginx 
 EXPOSE 80
 
-COPY --from=builder /app/public /usr/share/nginx/html
+COPY --from=builder /public /usr/share/nginx/html
