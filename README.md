@@ -52,6 +52,32 @@ When introducing new blocks, you need to make changes at least in the following 
 2. **`src/blocks`:** Add corresponding React components to `src/blocks` (or `src/blocks/components`) and export them in `src/blocks/index.js` (or `src/blocks/components/index.js`).
 3. **GraphQL queries:** Make sure that the `after` and `before` fields of `ContentfulPage`, `ContentfulBlogPost`, `ContentfulCaseStory`, and other pages are able to handle your new blocks in their GraphQL queries. Most likely you will need to check `src/components/block-list.js` and the template files (`src/templates`) to achieve this.
 
+## Development within Docker container
+
+Make sure you have Docker installed.
+
+### Run local development inside Docker
+
+- Make sure `localhost:8000` is available.
+- If you want to change some environment config. Make sure to do it by creating `.env.development`.
+- Run docker-compose command.
+
+  ```
+  $ docker-compose up
+  ```
+
+- Visit `localhost:8000` from your browswer.
+
+### Run production build with Docker
+
+- Make sure `localhost:80` is available.
+- Create `.env.production` by extending `.env.example`. Without this, the build will fail.
+- Run docker-compose command
+  ```
+  $ docker-compose -f docker-compose.prod.yml up
+  ```
+- Visit `localhost` from your browser.
+
 ## Deployment
 
 `w3` is deployed to [AWS](https://aws.amazon.com/) using [Travis CI](https://travis-ci.com/github/wunderdogsw/w3) and its automatic S3 deployments. You can read more about it at [https://docs.travis-ci.com/user/deployment/s3/](https://docs.travis-ci.com/user/deployment/s3/).
