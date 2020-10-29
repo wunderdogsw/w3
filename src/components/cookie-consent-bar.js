@@ -55,7 +55,7 @@ const CookieConsentBar = () => {
 
   // Only show cookie bar if content exist and user havent consent to cookie before
   const shouldShouldCookieBar = Boolean(content) && !isCookieAccepted
-  const autoExpireCookie = ''
+
   return shouldShouldCookieBar ? (
     <CookieConsent
       containerClasses={styles.wrapper}
@@ -66,7 +66,7 @@ const CookieConsentBar = () => {
       expires={730}
       cookieValue={true}
       location="bottom"
-      sameSite="Secure"
+      sameSite="strict"
       hideOnAccept
       buttonText={content.consentApprove}
       enableDeclineButton
