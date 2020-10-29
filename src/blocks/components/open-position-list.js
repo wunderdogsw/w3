@@ -26,7 +26,7 @@ const OpenPositionList = ({ heading }) => {
   const positions = data.allContentfulOpenPosition.edges.map(({ node }) => node)
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="career_open_position">
       <h2 dangerouslySetInnerHTML={{ __html: heading }} />
       <div>
         {positions.map(position => (
