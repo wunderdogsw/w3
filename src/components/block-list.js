@@ -79,6 +79,13 @@ export const query = graphql`
     }
   }
 
+  fragment HyperlinkButtonBlock on ContentfulHyperlinkButtonBlock {
+    id
+    embeddedLink
+    textContent
+    align
+  }
+
   fragment OfficeBlock on ContentfulOfficeBlock {
     id
     image {
