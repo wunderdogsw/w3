@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > a {
+  background-color: var(--black);
+  padding: 10px 20px;
+  text-align: center;
+  color: var(--white);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.left > a {
+  align-self: flex-start;
+}
+
+.right > a {
+  align-self: flex-end;
+}
+
+.center > a {
+  align-self: center;
+}

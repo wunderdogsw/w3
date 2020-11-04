@@ -91,6 +91,9 @@ export const query = graphql`
           ... on ContentfulComponentBlock {
             ...ComponentBlock
           }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
+          }
         }
       }
       after {
@@ -125,6 +128,9 @@ export const query = graphql`
           }
           ... on ContentfulComponentBlock {
             ...ComponentBlock
+          }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
           }
         }
       }

@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -71,6 +72,9 @@ export const query = graphql`
           ... on ContentfulComponentBlock {
             ...ComponentBlock
           }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
+          }
         }
       }
       after {
@@ -105,6 +109,9 @@ export const query = graphql`
           }
           ... on ContentfulComponentBlock {
             ...ComponentBlock
+          }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
           }
         }
       }
