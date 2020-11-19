@@ -161,6 +161,14 @@ export const query = graphql`
       }
     }
   }
+
+  fragment TableBlock on ContentfulTableBlock {
+    id
+    table {
+      id
+      tableData
+    }
+  }
 `
 
 export default BlockList
