@@ -2,21 +2,36 @@ import React from "react"
 import styles from "./table-block.module.css"
 
 const TableBlock = ({ data }) => {
+  const renderColumnContent = content => {
+    const urlRegex = new RegExp(
+      /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?$/
+    )
+
+    // TODO: Replace this with proper embedded RichText embed Link functionality
+    if (urlRegex.test(content)) {
+      return <a href={content}>Visit link</a>
+    }
+
+    return content
+  }
+
   const renderHeadingRow = headingRow => {
     return (
-      <tr>
-        {headingRow.map(colContent => (
-          <th>{colContent}</th>
-        ))}
-      </tr>
+      <thead>
+        <tr>
+          {headingRow.map((colContent, index) => (
+            <th key={index}>{colContent}</th>
+          ))}
+        </tr>
+      </thead>
     )
   }
 
-  const renderRow = row => {
+  const renderRow = (row, rowIndex) => {
     return (
-      <tr valign="top">
-        {row.map(colContent => (
-          <td>{colContent}</td>
+      <tr key={rowIndex} valign="top">
+        {row.map((colContent, index) => (
+          <td key={index}>{renderColumnContent(colContent)}</td>
         ))}
       </tr>
     )
@@ -25,13 +40,14 @@ const TableBlock = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       <table className={styles.wrapper}>
-        {data.table.tableData.map((tableRow, index) => {
-          if (index === 0) {
-            return renderHeadingRow(tableRow)
-          }
-
-          return renderRow(tableRow)
-        })}
+        {renderHeadingRow(data.table.tableData[0])}
+        <tbody>
+          {data.table.tableData.map((tableRow, index) => {
+            if (index !== 0) {
+              return renderRow(tableRow, index)
+            }
+          })}
+        </tbody>
       </table>
     </div>
   )
