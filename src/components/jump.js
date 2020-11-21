@@ -30,7 +30,7 @@ const Jump = ({ children }) => {
     }
 
     return cleanup
-  }, [])
+  })
 
   return (
     <div className={`${styles.wrapper} ${visible ? styles.visible : ""}`}>
