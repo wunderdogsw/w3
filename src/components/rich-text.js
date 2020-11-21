@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "gatsby-image"
 import { BLOCKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
 import { capitalize } from "../common/utils"
 import { isImage, isVideo } from "../common/entry"
@@ -93,7 +93,7 @@ const RichText = ({ document, images }) => {
     },
   }
 
-  return <>{documentToReactComponents(document, options)}</>
+  return <>{renderRichText(document, options)}</>
 }
 
 export default RichText

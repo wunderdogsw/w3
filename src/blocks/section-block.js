@@ -9,7 +9,7 @@ const renderSection = data => (
   <Section image={data.image}>
     <div className={styles.content}>
       <h2 className={styles.heading}>{data.heading}</h2>
-      <RichText document={data.content.json} />
+      <RichText document={data.content} />
     </div>
   </Section>
 )

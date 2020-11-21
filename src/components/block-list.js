@@ -17,6 +17,7 @@ const renderBlock = block => {
     return renderComponentBlock(block.id, block.reactComponent, block.options)
   }
 
+  // eslint-disable-next-line import/namespace
   const BlockComponent = blocks[block.__typename]
 
   return <BlockComponent key={block.id} data={block} />
@@ -52,7 +53,7 @@ export const query = graphql`
     }
     heading
     content {
-      json
+      raw
     }
     animated
   }
@@ -122,7 +123,7 @@ export const query = graphql`
     id
     heading
     content {
-      json
+      raw
     }
     images {
       file {

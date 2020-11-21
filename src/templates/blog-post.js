@@ -52,7 +52,7 @@ const BlogPost = ({ data }) => {
       />
       {post.before && <BlockList data={post.before} />}
       <Article>
-        <RichText document={post.content.json} images={images} />
+        <RichText document={post.content} images={images} />
       </Article>
       {post.after && <BlockList data={post.after} />}
     </Layout>
@@ -80,7 +80,7 @@ export const query = graphql`
       }
       readingTime
       content {
-        json
+        raw
       }
       before {
         __typename

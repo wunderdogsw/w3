@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -85,7 +85,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -100,7 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -112,10 +112,12 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   const addPage = (node, template, context) => {
+    const jsonContent = node.content ? JSON.parse(node.content.raw) : node.content
+    
     const pageContext = {
       ...context,
       slug: node.slug,
-      images: findImageURLs(node.content && node.content.json.content),
+      images: findImageURLs(jsonContent && jsonContent.content),
     }
 
     createPage({

@@ -21,7 +21,7 @@ const Page = ({ data }) => {
       {page.before && <BlockList data={page.before} />}
       {page.content && (
         <Article>
-          <RichText document={page.content.json} images={images} />
+          <RichText document={page.content} images={images} />
         </Article>
       )}
       {page.after && <BlockList data={page.after} />}
@@ -37,7 +37,7 @@ export const query = graphql`
         metaDescription
       }
       content {
-        json
+        raw
       }
       before {
         __typename
