@@ -22,7 +22,7 @@ const Video = ({ src }) => {
       </video>
       {!unmuted && (
         <div className={styles.mute}>
-          <img src={volume} />
+          <img src={volume} alt="Video mute icon" />
         </div>
       )}
     </div>

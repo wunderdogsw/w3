@@ -53,6 +53,7 @@ const renderEmbeddedEntry = data => {
   }
 
   const block = `Contentful${capitalize(contentType)}`
+  // eslint-disable-next-line import/namespace
   const EmbeddedBlock = blocks[block]
   if (EmbeddedBlock) {
     const serializedData = serializeData(data.target)

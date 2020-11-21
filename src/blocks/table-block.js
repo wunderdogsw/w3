@@ -42,11 +42,9 @@ const TableBlock = ({ data }) => {
       <table className={styles.wrapper}>
         {renderHeadingRow(data.table.tableData[0])}
         <tbody>
-          {data.table.tableData.map((tableRow, index) => {
-            if (index !== 0) {
-              return renderRow(tableRow, index)
-            }
-          })}
+          {data.table.tableData
+            .filter((row, index) => index !== 0)
+            .map((row, index) => renderRow(row, index))}
         </tbody>
       </table>
     </div>
