@@ -1,19 +1,50 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import CookieConsent, { Cookies } from "react-cookie-consent"
 import { useStaticQuery, graphql } from "gatsby"
 import styles from "./cookie-consent-bar.module.css"
+import CookieMultipleCheckbox from "./cookie-multiple-checkbox"
 
 const CookieConsentBar = () => {
   // Cookie name to check if user have accepted to this before.
   const WD_COOKIE_NAME = "wunderdog_cookie_user_consented"
   const isCookieAccepted = Cookies.get(WD_COOKIE_NAME)
 
+  const [isShow, showCookieBar] = useState(!isCookieAccepted)
+  const [isCustomize, showCustomizeOptions] = useState(false)
+
+  const cookieOptions = [
+    {
+      label: "Necessary",
+      checked: true,
+      key: "checkboxNecessary",
+    },
+    {
+      label: "Statistics",
+      checked: true,
+      key: "checkboxStatistics",
+    },
+    {
+      label: "Marketing",
+      checked: true,
+      key: "checkboxMarketing",
+    },
+  ]
+
+  const activateCookieOptions = options => {
+    if (Array.isArray(options)) {
+      options.forEach(option =>
+        window.dataLayer.push({
+          event: `cookie_consent_${option}`,
+        })
+      )
+    }
+  }
   /**
    * Only activate GTM automatically when needed. (dataLayer doesnt contain cookie_consent)
    */
   const activateGTM = () => {
     const GTMLayer = window.dataLayer.find(
-      layer => layer.event && layer.event === "cookie_consent"
+      layer => layer.event && layer.event.includes("cookie_consent")
     )
 
     const GTMLoaded = Boolean(GTMLayer)
@@ -53,10 +84,7 @@ const CookieConsentBar = () => {
   const consents = data.allContentfulCookieConsentBlock.edges.map(node => node)
   const content = consents.length && consents[0].node
 
-  // Only show cookie bar if content exist and user havent consent to cookie before
-  const shouldShouldCookieBar = Boolean(content) && !isCookieAccepted
-
-  return shouldShouldCookieBar ? (
+  return isShow ? (
     <CookieConsent
       containerClasses={styles.wrapper}
       contentClasses={styles.content}
@@ -67,20 +95,35 @@ const CookieConsentBar = () => {
       cookieValue={true}
       location="bottom"
       sameSite="strict"
-      hideOnAccept
-      buttonText={content.consentApprove}
       enableDeclineButton
-      declineButtonText={content.consentDecline}
+      buttonText={content.consentApprove}
+      hideOnAccept={false}
+      hideOnDecline={false}
+      setDeclineCookie={false}
+      declineButtonText="Advanced settings"
+      onDecline={() => showCustomizeOptions(!isCustomize)}
+      debug
       onAccept={() => {
-        window.dataLayer.push({
-          event: "cookie_consent",
-        })
+        activateCookieOptions(cookieOptions)
       }}
     >
-      <span>{content.consentText.consentText}</span>
+      <span>{content.consentText.consentText}</span>{" "}
       <a href="/privacy">{content.privacyPolicy}</a>
+      {isCustomize && (
+        <CookieMultipleCheckbox
+          options={cookieOptions}
+          onSubmit={options => activateCookieOptions(options)}
+        />
+      )}
     </CookieConsent>
-  ) : null
+  ) : (
+    <button
+      className={styles.manageCookies}
+      onClick={() => showCookieBar(true)}
+    >
+      Manage cookies
+    </button>
+  )
 }
 
 export default CookieConsentBar
