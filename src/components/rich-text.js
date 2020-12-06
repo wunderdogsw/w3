@@ -38,9 +38,10 @@ const findComponentBlock = data => {
   return blocks.components[componentName]
 }
 
-const renderTextWithLineBreaks = text => {
-  return text.split("\n").flatMap((text, i) => [i > 0 && <br />, text])
-}
+const renderTextWithLineBreaks = text =>
+  text.split("\n").reduce((children, textSegment, index) => {
+    return [...children, index > 0 && <br key={index} />, textSegment]
+  }, [])
 
 const renderEmbeddedEntry = data => {
   const contentType = data.target.sys.contentType.sys.id
