@@ -4,9 +4,10 @@
   transition-duration: var(--animation-slow);
   transition-property: transform opacity;
   transition-timing-function: var(--animation-ease);
+  transform: translate3d(0, 10vh, 0);
 }
 
 .visible {
-  transform: translate3d(0, -10vh, 0);
+  transform: translate3d(0, 0, 0);
   opacity: 1;
 }
