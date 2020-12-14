@@ -48,6 +48,7 @@
 
 .active > span:nth-child(2) {
   background: transparent;
+  background-filter: unset;
 }
 
 .active > span:nth-child(3) {
