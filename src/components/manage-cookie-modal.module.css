@@ -1,0 +1,46 @@
+.wrapper {
+  inset: var(--spacing);
+  position: absolute;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper:focus {
+  outline: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.heading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
+}
+.body {
+  position: relative;
+  padding: var(--spacing-medium);
+  flex-grow: 1;
+}
+
+.closeModal {
+  padding: 0;
+  width: var(--spacing-small);
+  height: var(--spacing-small);
+  border: none;
+  background: transparent;
+  color: gray;
+  font-weight: bold;
+  transform: rotate(45deg);
+  font-size: var(--font-size-normal);
+}
+
+.closeModal:focus {
+  outline: none;
+}

@@ -1,0 +1,19 @@
+.form {
+  margin-top: var(--spacing-xsmall);
+}
+.checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkbox > label > span {
+  font-size: 0.75rem;
+}
+
+.saveSetting {
+  margin: var(--spacing-xsmall) 0;
+  background-color: var(--black);
+  color: var(--white);
+  border: 1px solid white !important;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+}
