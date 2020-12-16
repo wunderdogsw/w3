@@ -2,36 +2,18 @@ import React from "react"
 import Modal from "react-modal"
 import CookieMultipleCheckbox from "./cookie-multiple-checkbox"
 import styles from "./manage-cookie-modal.module.css"
+import RichText from "./rich-text"
 
-export const ManageCookieModal = ({ isOpen, setOpen }) => {
+Modal.setAppElement(`#___gatsby`)
+
+export const ManageCookieModal = ({
+  isOpen,
+  setOpen,
+  content,
+  options,
+  activate,
+}) => {
   const closeModal = () => setOpen(false)
-  const cookieOptions = [
-    {
-      label: "Necessary",
-      checked: true,
-      key: "checkboxNecessary",
-    },
-    {
-      label: "Statistics",
-      checked: true,
-      key: "checkboxStatistics",
-    },
-    {
-      label: "Marketing",
-      checked: true,
-      key: "checkboxMarketing",
-    },
-  ]
-
-  const activateCookieOptions = options => {
-    if (Array.isArray(options)) {
-      options.forEach(option =>
-        window.dataLayer.push({
-          event: `cookie_consent_${option}`,
-        })
-      )
-    }
-  }
 
   return (
     <Modal
@@ -46,9 +28,13 @@ export const ManageCookieModal = ({ isOpen, setOpen }) => {
         </button>
       </div>
       <div className={styles.body}>
+        <div className={styles.content}>
+          <RichText document={content.json} />
+        </div>
         <CookieMultipleCheckbox
-          options={cookieOptions}
-          onSubmit={activateCookieOptions}
+          options={options}
+          onSubmit={activate}
+          closeModalCallback={closeModal}
         />
       </div>
     </Modal>

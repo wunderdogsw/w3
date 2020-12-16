@@ -1,13 +1,17 @@
 import React, { useState } from "react"
 import styles from "./cookie-multiple-checkbox.module.css"
 
-const CookieMultipleCheckbox = ({ options, onSubmit }) => {
+const CookieMultipleCheckbox = ({ options, onSubmit, closeModalCallback }) => {
   const [checkedItems, setCheckedItems] = useState(options)
-
+  const handleFormSubmit = e => {
+    e.preventDefault()
+    onSubmit(checkedItems)
+    closeModalCallback()
+  }
   const handleChange = event => {
     setCheckedItems(
       checkedItems.map(item =>
-        item.label === event.target.name
+        item.value === event.target.name
           ? { ...item, checked: event.target.checked }
           : item
       )
@@ -15,17 +19,18 @@ const CookieMultipleCheckbox = ({ options, onSubmit }) => {
   }
 
   return (
-    <form className={styles.form} onSubmit={() => onSubmit(checkedItems)}>
+    <form className={styles.form} onSubmit={handleFormSubmit}>
       {checkedItems.map(item => (
-        <div className={styles.checkbox} key={item.key}>
+        <div className={styles.checkbox} key={`checkbox${item.value}`}>
           <label>
             <input
               type="checkbox"
-              name={item.label}
+              className={styles.switch}
+              name={item.value}
               checked={item.checked}
               onChange={handleChange}
             />
-            <span>{item.label}</span>
+            <span>{item.value}</span>
           </label>
         </div>
       ))}

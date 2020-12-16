@@ -4,6 +4,14 @@
   background: var(--white);
   display: flex;
   flex-direction: column;
+  font-size: var(--font-size-small);
+  overflow: auto;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    inset: 0;
+  }
 }
 
 .wrapper:focus {
@@ -29,13 +37,17 @@
   flex-grow: 1;
 }
 
+.content {
+  margin-bottom: var(--spacing-medium);
+}
+
 .closeModal {
   padding: 0;
   width: var(--spacing-small);
   height: var(--spacing-small);
   border: none;
   background: transparent;
-  color: gray;
+  color: var(--black);
   font-weight: bold;
   transform: rotate(45deg);
   font-size: var(--font-size-normal);
