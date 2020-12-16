@@ -163,7 +163,7 @@ const CookieConsentBar = () => {
             hideCookieBar(true)
           }}
         >
-          <span>{content.consentText.consentText}</span>
+          <span>{content.consentText.consentText}</span>{" "}
           <a href="/privacy">{content.privacyPolicy}</a>
         </CookieConsent>
       )}
