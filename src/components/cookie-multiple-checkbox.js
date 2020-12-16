@@ -36,6 +36,7 @@ const CookieMultipleCheckbox = ({ options, onSubmit, closeModalCallback }) => {
       ))}
       <button className={styles.saveSetting} type="submit">
         Apply settings
+        {/* TODO: Make me as part of Contentful config so i can be translated */}
       </button>
     </form>
   )

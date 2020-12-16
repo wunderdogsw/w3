@@ -34,6 +34,7 @@
   border: 1px solid black;
 }
 
+/* TODO: Color and sizing under this part should come as part of whole website variable */
 .switch {
   position: relative;
   -webkit-appearance: none;
