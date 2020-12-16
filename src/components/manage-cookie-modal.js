@@ -28,9 +28,8 @@ export const ManageCookieModal = ({
         </button>
       </div>
       <div className={styles.body}>
-        <div className={styles.content}>
-          <RichText document={content.json} />
-        </div>
+        <RichText document={content.json} />
+
         <CookieMultipleCheckbox
           options={options}
           onSubmit={activate}

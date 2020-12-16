@@ -24,7 +24,7 @@
   background-color: transparent;
   color: var(--black);
   border: 1px solid black;
-  font-size: 0.75rem;
+  font-size: var(--font-size-small);
   padding: 10px 20px;
 }
 
