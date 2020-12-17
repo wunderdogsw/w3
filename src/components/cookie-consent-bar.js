@@ -52,11 +52,11 @@ const CookieConsentBar = () => {
     if (Array.isArray(options)) {
       // Apply new layers
       options.forEach(option => {
-        window.dataLayer.push({
-          event: option.checked
-            ? `cookie_consent_${option.value}`
-            : `cookie_consent_${option.value}_blocked`,
-        })
+        if (option.checked) {
+          window.dataLayer.push({
+            event: `cookie_consent_${option.value}`,
+          })
+        }
       })
 
       // Update local state, in case user want to choose again
@@ -66,38 +66,38 @@ const CookieConsentBar = () => {
       Cookies.set(WD_COOKIE_NAME, JSON.stringify(options), 730)
     }
   }
-  /**
-   * Only activate GTM automatically when needed. (dataLayer doesnt contain cookie_consent)
-   */
-  const activateGTM = () => {
-    const GTMLayer = window.dataLayer.find(
-      layer => layer.event && layer.event.includes("cookie_consent_")
-    )
-
-    const GTMLoaded = Boolean(GTMLayer)
-
-    if (consentedCookie && !GTMLoaded) {
-      try {
-        // Get saved cookie options from cookie value
-        const restoredOptions = JSON.parse(cookieValue)
-        // Auto-activate GTM if user have accept this before, using data from saved cookie
-        // Previous implementation of cookie have value as boolean, revisit-user who agreed should get their cookie updated
-        if (typeof restoredOptions === "boolean") {
-          activateCookieOptions(
-            restoredOptions ? agreeAllCookieOptions : defaultCookieOptions
-          )
-        } else activateCookieOptions(restoredOptions)
-      } catch (e) {
-        Cookies.remove(WD_COOKIE_NAME)
-        console.warn("Invalid cookie, maybe old implemented cookie")
-      }
-    }
-  }
 
   // Auto-activate GTM if user have approved consent before and comeback
   useEffect(() => {
+    /**
+     * Only activate GTM automatically when needed. (dataLayer doesnt contain cookie_consent)
+     */
+    const activateGTM = () => {
+      const GTMLayer = window.dataLayer.find(
+        layer => layer.event && layer.event.includes("cookie_consent_")
+      )
+
+      const GTMLoaded = Boolean(GTMLayer)
+
+      if (consentedCookie && !GTMLoaded) {
+        try {
+          // Get saved cookie options from cookie value
+          const restoredOptions = JSON.parse(cookieValue)
+          // Auto-activate GTM if user have accept this before, using data from saved cookie
+          // Previous implementation of cookie have value as boolean, revisit-user who agreed should get their cookie updated
+          if (typeof restoredOptions === "boolean") {
+            activateCookieOptions(
+              restoredOptions ? agreeAllCookieOptions : defaultCookieOptions
+            )
+          } else activateCookieOptions(restoredOptions)
+        } catch (e) {
+          Cookies.remove(WD_COOKIE_NAME)
+          console.warn("Invalid cookie, maybe old implemented cookie")
+        }
+      }
+    }
     activateGTM()
-  })
+  }, [consentedCookie, cookieValue])
 
   const data = useStaticQuery(
     graphql`

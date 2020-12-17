@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import styles from "./cookie-multiple-checkbox.module.css"
 
-const CookieMultipleCheckbox = ({ options, onSubmit, closeModalCallback }) => {
+const CookieMultipleCheckbox = ({ options, onSubmit }) => {
   const [checkedItems, setCheckedItems] = useState(options)
   const handleFormSubmit = e => {
     e.preventDefault()
     onSubmit(checkedItems)
-    closeModalCallback()
+    window.location.reload()
   }
   const handleChange = event => {
     setCheckedItems(

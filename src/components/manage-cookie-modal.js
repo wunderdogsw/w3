@@ -30,11 +30,7 @@ export const ManageCookieModal = ({
       <div className={styles.body}>
         <RichText document={content.json} />
 
-        <CookieMultipleCheckbox
-          options={options}
-          onSubmit={activate}
-          closeModalCallback={closeModal}
-        />
+        <CookieMultipleCheckbox options={options} onSubmit={activate} />
       </div>
     </Modal>
   )
