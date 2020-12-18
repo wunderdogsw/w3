@@ -17,6 +17,7 @@ const renderBlock = block => {
     return renderComponentBlock(block.id, block.reactComponent, block.options)
   }
 
+  // eslint-disable-next-line import/namespace
   const BlockComponent = blocks[block.__typename]
 
   return <BlockComponent key={block.id} data={block} />
