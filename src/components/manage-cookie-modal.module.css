@@ -1,6 +1,10 @@
 .wrapper {
-  inset: var(--spacing);
   position: absolute;
+  top: var(--spacing);
+  bottom: var(--spacing);
+  right: var(--spacing);
+  left: var(--spacing);
+
   background: var(--white);
   display: flex;
   flex-direction: column;
@@ -10,7 +14,10 @@
 
 @media (max-width: 767px) {
   .wrapper {
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 }
 
@@ -20,7 +27,10 @@
 
 .overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.75);
 }
