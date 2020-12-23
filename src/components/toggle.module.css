@@ -1,37 +1,33 @@
 .wrapper {
+    --box-size: 50px;
+    --v-padding: 16px;
+    --h-padding: 12px;
+
+    padding: var(--v-padding) var(--h-padding);
+    width: var(--box-size);
+    height: var(--box-size);
+    box-sizing: border-box;
+    background: white;
+}
+
+.innerWrapper {
   background: transparent;
-  border: none;
   cursor: pointer;
-  display: block;
-  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
   margin-right: -15px;
-  outline: none;
-  padding: 0;
   position: relative;
   transition: 250ms;
-  width: 30px;
 }
 
-.wrapper > span {
-  background: transparent;
-  backdrop-filter: invert(1);
-  height: 1.5px;
-  left: 0;
-  position: absolute;
+.innerWrapper > span {
+  height: 2px;
   transition: all 250ms;
   width: 100%;
-}
-
-.wrapper > span:first-child {
-  top: 0px;
-}
-
-.wrapper > span:nth-child(2) {
-  top: 10px;
-}
-
-.wrapper > span:nth-child(3) {
-  top: 20px;
+  background-color: #000;
 }
 
 .active {
@@ -43,16 +39,15 @@
 }
 
 .active > span:first-child {
-  transform: rotate(45deg) translate(3px, 7px);
+  transform: rotate(45deg) translate(0px, 4px);
   width: 120%;
 }
 
 .active > span:nth-child(2) {
   background: transparent;
-  backdrop-filter: unset;
 }
 
 .active > span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -12px);
+  transform: rotate(-45deg) translate(7px, -12px);
   width: 120%;
 }
