@@ -1,3 +1,9 @@
+@media (min-width: 1199px) {
+    div.wrapper {
+        padding: var(--spacing) calc(15vw + var(--spacing));
+    }
+}
+
 .wrapper {
   margin-top: var(--spacing);
   padding: var(--spacing);
