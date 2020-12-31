@@ -151,6 +151,7 @@ export const query = graphql`
   fragment HubSpotFormBlock on ContentfulHubSpotFormBlock {
     id
     formId
+    gaLabel
   }
 
   fragment ComponentBlock on ContentfulComponentBlock {

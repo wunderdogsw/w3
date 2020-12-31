@@ -37,6 +37,8 @@ const agreeAllCookieOptions = [
 const CookieConsentBar = () => {
   // Cookie name to check if user have accepted to this before.
   const WD_COOKIE_NAME = "wunderdog_cookie_user_consented"
+  // Statistics cookie is singeled out so GTM can read it more easily
+  const STATISTICS_STATUS = "wunderdog_statistics_consent"
   const cookieValue = Cookies.get(WD_COOKIE_NAME)
   const consentedCookie = cookieValue && typeof cookieValue === "string"
 
@@ -57,13 +59,17 @@ const CookieConsentBar = () => {
             event: `cookie_consent_${option.value}`,
           })
         }
+
+        if (option.value === 'statistic') {
+            Cookies.set(STATISTICS_STATUS, option.checked, { expires: 730 })
+        }
       })
 
       // Update local state, in case user want to choose again
       setCookieOptions(options)
 
       // Save cookies, persist for 2 years
-      Cookies.set(WD_COOKIE_NAME, JSON.stringify(options), 730)
+      Cookies.set(WD_COOKIE_NAME, JSON.stringify(options), { expires: 730 })
     }
   }
 
