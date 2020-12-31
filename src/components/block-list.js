@@ -149,6 +149,7 @@ export const query = graphql`
   }
 
   fragment HubSpotFormBlock on ContentfulHubSpotFormBlock {
+    title
     id
     formId
   }
