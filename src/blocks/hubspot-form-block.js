@@ -18,7 +18,7 @@ const HubSpotFormBlock = ({ data }) => {
             if (shouldHandleEvent(event)) {
                 window.dataLayer.push({
                     event: "form-submission",
-                    analyticsLabel: data.title ? data.title : 'Missing label'
+                    analyticsLabel: data.gaLabel ? data.gaLabel : data.formId
                 });
             }
         };
