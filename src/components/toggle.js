@@ -3,14 +3,18 @@ import React from "react"
 import styles from "./toggle.module.css"
 
 const Toggle = ({ onClick, active }) => (
-  <button
-    onClick={onClick}
+    <div 
     className={`${styles.wrapper} ${active ? styles.active : ""}`}
-  >
-    <span />
-    <span />
-    <span />
-  </button>
+    >
+        <div
+        onClick={onClick}
+        className={`${styles.innerWrapper} ${active ? styles.active : ""}`}
+        >
+            <span />
+            <span />
+            <span />
+        </div>
+    </div>
 )
 
 export default Toggle
