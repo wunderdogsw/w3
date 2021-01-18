@@ -7,6 +7,7 @@ module.exports = {
     title: `Wunderdog`,
     description: `Future-proof design & development`,
     author: `@WunderdogOfcl`,
+    image: `${__dirname}/src/images/wunderdog_logo.png`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
