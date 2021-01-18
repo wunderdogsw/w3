@@ -7,7 +7,8 @@ module.exports = {
     title: `Wunderdog`,
     description: `Future-proof design & development`,
     author: `@WunderdogOfcl`,
-    image: `${__dirname}/src/images/wunderdog_logo.png`
+    // TODO: Add a static url to image we wan't to use.
+    //image: ``
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
