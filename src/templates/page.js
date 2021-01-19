@@ -11,12 +11,15 @@ import PageFooter from "../components/page-footer"
 const Page = ({ data }) => {
   const { page } = data
   const images = data.images.edges.map(({ node }) => node)
+  const metaImg = page.metaImage ? page.metaImage.fluid.src : null;
 
   return (
     <Layout footer={<PageFooter />}>
       <SEO
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
+        metaImage={metaImg}
+        metaTwitterCardType={page.twitterSharePreviewType}
       />
       {page.before && <BlockList data={page.before} />}
       {page.content && (
@@ -36,6 +39,12 @@ export const query = graphql`
       metaDescription {
         metaDescription
       }
+      metaImage {
+        fluid(maxHeight: 1080) {
+          src
+        }
+      }
+      twitterSharePreviewType,
       content {
         json
       }

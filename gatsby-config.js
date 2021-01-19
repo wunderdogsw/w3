@@ -8,7 +8,7 @@ module.exports = {
     description: `Future-proof design & development`,
     author: `@WunderdogOfcl`,
     // TODO: Add a static url to image we wan't to use.
-    //image: ``
+    image: '//images.newscientist.com/wp-content/uploads/2017/04/26173712/gettyimages-613093404.jpg'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
