@@ -4,11 +4,10 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Wunderdog`,
-    description: `Future-proof design & development`,
+    title: `Future-proof design & development`,
+    description: `We offer consultancy and agency services, delivering sustainable projects and results: from design and technology to strategy and execution. `,
     author: `@WunderdogOfcl`,
-    // TODO: Add a static url to image we wan't to use.
-    image: '//images.newscientist.com/wp-content/uploads/2017/04/26173712/gettyimages-613093404.jpg'
+    image: 'https://images.ctfassets.net/hkq76neqke2v/2X8XkHZCaXqYgPlWJYBLWN/bf9aceef6346ba76e14e96ee7c5615b1/Screenshot_2020-08-17_at_11.14.59.png?h=1080&w=1080&q=50'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
