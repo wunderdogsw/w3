@@ -12,6 +12,11 @@
   text-decoration: none;
 }
 
+.wrapper > a:hover {
+  background-color: var(--gray);
+  color: var(--black);
+}
+
 .left > a {
   align-self: flex-start;
 }
