@@ -87,6 +87,9 @@ export const query = graphql`
           ... on ContentfulTableBlock {
             ...TableBlock
           }
+          ... on ContentfulHubSpotMeetingBlock {
+            ...HubSpotMeetingBlock
+          }
         }
       }
       after {
@@ -127,6 +130,9 @@ export const query = graphql`
           }
           ... on ContentfulTableBlock {
             ...TableBlock
+          }
+          ... on ContentfulHubSpotMeetingBlock {
+            ...HubSpotMeetingBlock
           }
         }
       }
