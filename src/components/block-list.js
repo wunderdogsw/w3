@@ -171,6 +171,13 @@ export const query = graphql`
       tableData
     }
   }
+
+  fragment HubSpotMeetingBlock on ContentfulHubSpotMeetingBlock {
+    id
+    html {
+      html
+    }
+  }
 `
 
 export default BlockList
