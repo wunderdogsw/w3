@@ -91,7 +91,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   metaImage: PropTypes.string,
-  metaTwitterCardType: PropTypes.bool,
+  metaTwitterCardType: PropTypes.string,
   title: PropTypes.string.isRequired,
 }
 
