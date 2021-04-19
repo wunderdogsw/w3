@@ -31,7 +31,7 @@ const renderSubtitle = (post, author) => (
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const images = data.images.edges.map(({ node }) => node)
-  const metaImg = post.metaImage ? post.metaImage.fluid.src : null;
+  const metaImg = post.metaImage ? post.metaImage.fluid.src : null
   const { author } = post
 
   return (
