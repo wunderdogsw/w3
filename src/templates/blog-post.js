@@ -31,6 +31,7 @@ const renderSubtitle = (post, author) => (
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const images = data.images.edges.map(({ node }) => node)
+  const metaImg = post.metaImage ? post.metaImage.fluid.src : null;
   const { author } = post
 
   return (
@@ -44,7 +45,12 @@ const BlogPost = ({ data }) => {
         />
       }
     >
-      <SEO title={post.title} />
+      <SEO 
+        title={post.title}
+        description={post.metaDescription.metaDescription}         
+        metaImage={metaImg}
+        metaTwitterCardType={post.twitterSharePreviewType}
+      />
       <Header
         title={post.title}
         subtitle={renderSubtitle(post, author)}
@@ -69,6 +75,15 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
       }
+      metaDescription {
+        metaDescription
+      }
+      metaImage {
+        fluid(maxHeight: 1080) {
+          src
+        }
+      }
+      twitterSharePreviewType,
       video {
         file {
           url
