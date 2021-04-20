@@ -47,7 +47,7 @@ const BlogPost = ({ data }) => {
     >
       <SEO 
         title={post.title}
-        description={post.metaDescription && post.metaDescription.metaDescription}         
+        description={post.metaDescription ? post.metaDescription.metaDescription : null}         
         metaImage={metaImg}
         metaTwitterCardType={post.twitterSharePreviewType}
       />
