@@ -9,9 +9,24 @@ import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
 
+const getMetaImage = (story) => {
+  let metaImage = null;
+  
+  if (story.image) {
+    metaImage = story.image.fluid.src
+  }
+
+  if (story.metaImage) {
+    metaImage = story.metaImage.fluid.src
+  }
+  
+  return metaImage;
+}
+
 const CaseStory = ({ data }) => {
   const { story, next } = data
   const images = data.images.edges.map(({ node }) => node)
+  const metaImage = getMetaImage(story)
 
   return (
     <Layout
@@ -24,7 +39,12 @@ const CaseStory = ({ data }) => {
         />
       }
     >
-      <SEO title={story.title} />
+      <SEO 
+        title={story.metaTitle} 
+        description={story.metaDescription ? story.metaDescription.metaDescription : null}         
+        metaImage={metaImage}
+        metaTwitterCardType={story.twitterSharePreviewType}
+      />
       <Header
         title={story.title}
         subtitle={story.client}
@@ -50,6 +70,16 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
       }
+      metaTitle
+      metaDescription {
+        metaDescription
+      }
+      metaImage {
+        fluid(maxHeight: 1080) {
+          src
+        }
+      }
+      twitterSharePreviewType,
       video {
         file {
           url
