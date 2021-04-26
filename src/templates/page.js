@@ -8,10 +8,14 @@ import Article from "../components/article"
 import RichText from "../components/rich-text"
 import PageFooter from "../components/page-footer"
 
+const getMetaImage = (image) => {
+  return image ? image.fluid.src : null;
+}
+
 const Page = ({ data }) => {
   const { page } = data
   const images = data.images.edges.map(({ node }) => node)
-  const metaImg = page.metaImage ? page.metaImage.fluid.src : null;
+  const metaImg = getMetaImage(page.metaImage)
 
   return (
     <Layout footer={<PageFooter />}>

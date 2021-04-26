@@ -28,10 +28,24 @@ const renderSubtitle = (post, author) => (
   </>
 )
 
+const getMetaImage = (post) => {
+  let metaImage = null;
+  
+  if (post.image) {
+    metaImage = post.image.fluid.src
+  }
+
+  if (post.metaImage) {
+    metaImage = post.metaImage.fluid.src
+  }
+  
+  return metaImage;
+}
+
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const images = data.images.edges.map(({ node }) => node)
-  const metaImg = post.metaImage ? post.metaImage.fluid.src : null
+  const metaImage = getMetaImage(post, images)
   const { author } = post
 
   return (
@@ -46,9 +60,9 @@ const BlogPost = ({ data }) => {
       }
     >
       <SEO 
-        title={post.title}
+        title={post.metaTitle}
         description={post.metaDescription ? post.metaDescription.metaDescription : null}         
-        metaImage={metaImg}
+        metaImage={metaImage}
         metaTwitterCardType={post.twitterSharePreviewType}
       />
       <Header
@@ -75,6 +89,7 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
       }
+      metaTitle
       metaDescription {
         metaDescription
       }
