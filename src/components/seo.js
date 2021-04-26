@@ -35,7 +35,7 @@ function SEO({ description, lang, meta, title, metaImage, metaTwitterCardType })
         lang,
       }}
       title={metaTitle}
-      titleTemplate={`%s | ${metaTitle}`}
+      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
