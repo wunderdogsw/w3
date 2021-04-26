@@ -25,7 +25,6 @@ function SEO({ description, lang, meta, title, metaImage, metaTwitterCardType })
       }
     `
   )
-  const metaTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
   const metaImg = metaImage || site.siteMetadata.image;
 
@@ -34,7 +33,7 @@ function SEO({ description, lang, meta, title, metaImage, metaTwitterCardType })
       htmlAttributes={{
         lang,
       }}
-      title={metaTitle}
+      title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
@@ -43,7 +42,7 @@ function SEO({ description, lang, meta, title, metaImage, metaTwitterCardType })
         },
         {
           property: `og:title`,
-          content: metaTitle,
+          content: title,
         },
         {
           property: `og:description`,
@@ -67,7 +66,7 @@ function SEO({ description, lang, meta, title, metaImage, metaTwitterCardType })
         },
         {
           name: `twitter:title`,
-          content: metaTitle,
+          content: title,
         },
         {
           name: `twitter:description`,
