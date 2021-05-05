@@ -156,8 +156,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type ContentfulBlogPost implements Node {
       video: ContentfulAsset
-      after: [ContentfulContactBlock]
-      before: [ContentfulContactBlock]
     }
 
     type ContentfulCaseStory implements Node {
