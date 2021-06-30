@@ -126,8 +126,10 @@ export const query = graphql`
       json
     }
     images {
-      file {
-        url
+      id
+      title
+      fluid(maxWidth: 2560) {
+        ...GatsbyContentfulFluid_withWebp
       }
     }
   }

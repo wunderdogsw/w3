@@ -1,6 +1,5 @@
 .content {
   composes: wrapper from "../styles/text-content.module.css";
-
   padding-bottom: 0;
 }
 
@@ -29,10 +28,10 @@
   min-width: 100%;
 }
 
-.list > ul > li > img {
-  box-sizing: border-box;
-  max-height: 100%;
-  max-width: 100%;
+/* override gatsby-image default style */
+.img {
+  height: 100%;
+  width: 100%;
 }
 
 @media (max-width: 1199px) {
