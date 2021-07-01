@@ -18,7 +18,7 @@ const CaseStoryHighlights = ({ button, action }) => {
             title
             client
             image {
-              fluid(maxWidth: 2048) {
+              fluid(sizes: "(max-width: 1024px) 400px, 1600px") {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
