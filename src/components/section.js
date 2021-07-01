@@ -14,7 +14,7 @@ const Section = ({ children, image }) => {
           {hasVideo ? (
             <Video src={`https:${image.file.url}`} />
           ) : (
-            <Image fluid={image.fluid} />
+            <Image fluid={image.fluid} alt={image.title} />
           )}
         </div>
       )}

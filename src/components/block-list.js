@@ -31,10 +31,13 @@ export const query = graphql`
     title
     subtitle
     image {
+      title
       file {
         url
       }
-      fluid(maxWidth: 2560) {
+      fluid(
+        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2048px"
+      ) {
         ...GatsbyContentfulFluid_withWebp
       }
     }
@@ -44,10 +47,13 @@ export const query = graphql`
   fragment SectionBlock on ContentfulSectionBlock {
     id
     image {
+      title
       file {
         url
       }
-      fluid(maxWidth: 2560) {
+      fluid(
+        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2618px"
+      ) {
         ...GatsbyContentfulFluid_withWebp
       }
     }
@@ -71,10 +77,13 @@ export const query = graphql`
     align
     images {
       id
+      title
       file {
         url
       }
-      fluid(maxWidth: 2560) {
+      fluid(
+        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2618px"
+      ) {
         ...GatsbyContentfulFluid_withWebp
       }
     }
@@ -90,7 +99,10 @@ export const query = graphql`
   fragment OfficeBlock on ContentfulOfficeBlock {
     id
     image {
-      fluid(maxWidth: 2560) {
+      title
+      fluid(
+        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2400px"
+      ) {
         ...GatsbyContentfulFluid_withWebp
       }
     }
@@ -128,7 +140,7 @@ export const query = graphql`
     images {
       id
       title
-      fluid(sizes: "(max-width: 1024px) 400px, 1200px") {
+      fluid(sizes: "(max-width: 1024px) 400px, 1600px") {
         ...GatsbyContentfulFluid_withWebp
       }
     }
@@ -141,6 +153,7 @@ export const query = graphql`
       name
       position
       image {
+        title
         fluid(maxWidth: 400) {
           ...GatsbyContentfulFluid_withWebp
         }

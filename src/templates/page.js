@@ -8,8 +8,8 @@ import Article from "../components/article"
 import RichText from "../components/rich-text"
 import PageFooter from "../components/page-footer"
 
-const getMetaImage = (image) => {
-  return image ? image.fluid.src : null;
+const getMetaImage = image => {
+  return image ? image.fluid.src : null
 }
 
 const Page = ({ data }) => {
@@ -48,7 +48,7 @@ export const query = graphql`
           src
         }
       }
-      twitterSharePreviewType,
+      twitterSharePreviewType
       content {
         json
       }

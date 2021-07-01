@@ -11,7 +11,7 @@ const renderAsset = asset => {
     return <Video key={asset.id} src={`https:${asset.file.url}`} />
   }
 
-  return <Image key={asset.id} fluid={asset.fluid} />
+  return <Image key={asset.id} fluid={asset.fluid} alt={asset.title} />
 }
 
 const ImageBlock = ({ data }) => (

@@ -47,7 +47,12 @@ const CaseStoryHighlights = ({ button, action }) => {
             title={story.title}
             subtitle={story.client}
             link={action}
-            image={<Image fluid={story.image.fluid} />}
+            image={
+              <Image
+                fluid={story.image.fluid}
+                alt={story.image.title || story.title}
+              />
+            }
           />
         )}
       />
