@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import styles from "./item.module.css"
+import * as styles from "./item.module.css"
 
 const Item = ({ to, title, subtitle, link, image }) => (
   <Link to={to} className={styles.wrapper}>

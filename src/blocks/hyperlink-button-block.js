@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "../components/link"
-import styles from "./hyperlink-button-block.module.css"
+import * as styles from "./hyperlink-button-block.module.css"
 
 const HyperlinkButtonBlock = ({ data }) => {
   return (

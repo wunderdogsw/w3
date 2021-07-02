@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-import styles from "./navbar.module.css"
+import * as styles from "./navbar.module.css"
 import Logo from "./logo"
 import Toggle from "./toggle"
 import Menu from "./menu"

@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./statistic.module.css"
+import * as styles from "./statistic.module.css"
 
 const Statistic = ({ value, description }) => (
   <div className={styles.wrapper}>

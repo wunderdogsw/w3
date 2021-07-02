@@ -1,7 +1,7 @@
 import React from "react"
 import Modal from "react-modal"
 import CookieMultipleCheckbox from "./cookie-multiple-checkbox"
-import styles from "./manage-cookie-modal.module.css"
+import * as styles from "./manage-cookie-modal.module.css"
 import RichText from "./rich-text"
 
 Modal.setAppElement(`#___gatsby`)

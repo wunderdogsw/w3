@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import styles from "./page-footer.module.css"
+import * as styles from "./page-footer.module.css"
 import Legal from "./legal"
 import Logo from "./logo"
 

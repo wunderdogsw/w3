@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./electronic-invoicing.module.css"
+import * as styles from "./electronic-invoicing.module.css"
 
 const ElectronicInvoicing = ({ heading, body }) => (
   <div className={styles.wrapper}>

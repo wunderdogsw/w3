@@ -1,9 +1,9 @@
 import React from "react"
 
-import styles from "./toggle.module.css"
+import * as styles from "./toggle.module.css"
 
 const Toggle = ({ onClick, active }) => (
-    <div 
+    <div
     className={`${styles.wrapper} ${active ? styles.active : ""}`}
     >
         <div

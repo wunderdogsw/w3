@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./table-block.module.css"
+import * as styles from "./table-block.module.css"
 
 const TableBlock = ({ data }) => {
   const renderColumnContent = content => {

@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "gatsby-image"
 
-import styles from "./header.module.css"
+import * as styles from "./header.module.css"
 import Video from "./video"
 
 const renderSubtitle = subtitle => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import styles from "./cookie-multiple-checkbox.module.css"
+import * as styles from "./cookie-multiple-checkbox.module.css"
 
 const CookieMultipleCheckbox = ({ options, onSubmit }) => {
   const [checkedItems, setCheckedItems] = useState(options)

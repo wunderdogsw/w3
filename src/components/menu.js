@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
-import styles from "./menu.module.css"
+import * as styles from "./menu.module.css"
 
 const Menu = ({ active }) => {
   const data = useStaticQuery(graphql`

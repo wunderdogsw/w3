@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./hero.module.css"
+import * as styles from "./hero.module.css"
 
 const Hero = ({ title }) => (
   <header className={styles.wrapper}>

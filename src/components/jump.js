@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 
-import styles from "./jump.module.css"
+import * as styles from "./jump.module.css"
 
 const Jump = ({ children }) => {
   const [visible, setVisible] = useState(false)

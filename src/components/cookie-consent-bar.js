@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import CookieConsent, { Cookies } from "react-cookie-consent"
 import { useStaticQuery, graphql } from "gatsby"
-import styles from "./cookie-consent-bar.module.css"
+import * as styles from "./cookie-consent-bar.module.css"
 import { ManageCookieModal } from "./manage-cookie-modal"
 
 const defaultCookieOptions = [
@@ -60,8 +60,8 @@ const CookieConsentBar = () => {
           })
         }
 
-        if (option.value === 'statistic') {
-            Cookies.set(STATISTICS_STATUS, option.checked, { expires: 730 })
+        if (option.value === "statistic") {
+          Cookies.set(STATISTICS_STATUS, option.checked, { expires: 730 })
         }
       })
 
