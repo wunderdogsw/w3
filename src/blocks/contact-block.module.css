@@ -16,6 +16,10 @@
   width: 200px;
 }
 
+.title {
+  font-weight: bold;
+}
+
 @media (max-width: 739px) {
   .wrapper > div {
     align-items: flex-start;
@@ -25,7 +29,7 @@
   .wrapper > div > div:first-child {
     height: 145px;
     margin-bottom: 20px;
-    margin-right: 0px;
+    margin-right: 0;
     width: 145px;
   }
 }
