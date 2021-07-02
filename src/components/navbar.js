@@ -28,7 +28,7 @@ const Navbar = () => {
       <header className={styles.wrapper}>
         <Link
           to="/"
-          aria-label="Wunderdog logo"
+          aria-label="Wunderdog home"
           className={`${styles.logo} ${
             logoHidden && !menuOpen ? styles.hidden : ""
           }`}
