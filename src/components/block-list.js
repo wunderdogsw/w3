@@ -36,7 +36,7 @@ export const query = graphql`
         url
       }
       fluid(
-        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2048px"
+        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2048px"
       ) {
         ...GatsbyContentfulFluid_withWebp
       }
@@ -52,7 +52,7 @@ export const query = graphql`
         url
       }
       fluid(
-        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2618px"
+        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2400px"
       ) {
         ...GatsbyContentfulFluid_withWebp
       }
@@ -82,7 +82,7 @@ export const query = graphql`
         url
       }
       fluid(
-        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2618px"
+        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2618px"
       ) {
         ...GatsbyContentfulFluid_withWebp
       }
@@ -101,7 +101,7 @@ export const query = graphql`
     image {
       title
       fluid(
-        sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2400px"
+        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2400px"
       ) {
         ...GatsbyContentfulFluid_withWebp
       }
@@ -140,7 +140,7 @@ export const query = graphql`
     images {
       id
       title
-      fluid(sizes: "(max-width: 1024px) 400px, 1600px") {
+      fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
         ...GatsbyContentfulFluid_withWebp
       }
     }

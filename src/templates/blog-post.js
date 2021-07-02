@@ -89,7 +89,7 @@ export const query = graphql`
       image {
         title
         fluid(
-          sizes: "(max-width: 480px) 640px, (max-width: 1024px) 1280px, 2048px"
+          sizes: "(max-width: 480px) 640px, (max-width: 1200px) 1280px, 2048px"
         ) {
           ...GatsbyContentfulFluid_withWebp
         }
