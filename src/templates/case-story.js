@@ -34,7 +34,7 @@ const CaseStory = ({ data }) => {
         <ContentFooter
           title={next.title}
           subtitle="Go to next case"
-          image={next.image.fluid.src}
+          image={next.image}
           to={next.fields.route}
         />
       }
