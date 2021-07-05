@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ContentIndex from "../../components/content-index"
 import ContentList from "../../components/content-list"
@@ -50,8 +50,8 @@ const BlogPostList = ({ action }) => {
             link={action}
             image={
               post.image && (
-                <Image
-                  fluid={post.image.fluid}
+                <GatsbyImage
+                  image={post.childImageSharp.gatsbyImageData}
                   alt={post.image.title || post.title}
                 />
               )

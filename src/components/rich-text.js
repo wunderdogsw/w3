@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
@@ -80,7 +80,7 @@ const RichText = ({ document, images }) => {
       },
       [BLOCKS.EMBEDDED_ASSET]: node => {
         if (isImage(node)) {
-          return <Image fluid={findImage(images, node).fluid} />
+          return <GatsbyImage image={findImage(images, node).gatsbyImageData} />
         }
 
         if (isVideo(node)) {

@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import * as styles from "./logos-block.module.css"
 import RichText from "../components/rich-text"
@@ -14,11 +14,12 @@ const LogosBlock = ({ data }) => (
       <ul>
         {data.images.map(image => (
           <li key={image.id}>
-            <Image
+            <GatsbyImage
+              image={image.gatsbyImageData}
               alt={image.title}
               className={styles.img}
-              imgStyle={{ objectFit: "contain" }} // override gatsby-image default "cover"
-              fluid={image.fluid}
+              // override gatsby-image default "cover"
+              imgStyle={{ objectFit: "contain" }}
             />
           </li>
         ))}

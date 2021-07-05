@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import * as styles from "./header.module.css"
 import Video from "./video"
@@ -33,7 +33,7 @@ const Header = ({ title, subtitle, image }) => {
           {hasVideo ? (
             <Video src={`https:${image.file.url}`} />
           ) : (
-            <Image fluid={image.fluid} alt={image.title} />
+            <GatsbyImage image={image.gatsbyImageData} alt={image.title} />
           )}
         </div>
       )}

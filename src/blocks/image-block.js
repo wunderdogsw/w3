@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import * as styles from "./image-block.module.css"
 import Video from "../components/video"
@@ -11,7 +11,13 @@ const renderAsset = asset => {
     return <Video key={asset.id} src={`https:${asset.file.url}`} />
   }
 
-  return <Image key={asset.id} fluid={asset.fluid} alt={asset.title} />
+  return (
+    <GatsbyImage
+      image={asset.gatsbyImageData}
+      key={asset.id}
+      alt={asset.title}
+    />
+  )
 }
 
 const ImageBlock = ({ data }) => (

@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import { CASE_STORY_INDEX } from "../../common/routes"
 import ContentList from "../../components/content-list"
@@ -48,8 +48,8 @@ const CaseStoryHighlights = ({ button, action }) => {
             subtitle={story.client}
             link={action}
             image={
-              <Image
-                fluid={story.image.fluid}
+              <GatsbyImage
+                image={story.childImageSharp.gatsbyImageData}
                 alt={story.image.title || story.title}
               />
             }

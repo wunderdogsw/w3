@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import * as styles from "./contact-block.module.css"
 
@@ -7,7 +7,10 @@ const ContactBlock = ({ data }) => (
   <div className={styles.wrapper}>
     <h2 dangerouslySetInnerHTML={{ __html: data.heading }} />
     <div>
-      <Image fluid={data.contact.image.fluid} alt={data.contact.image.title} />
+      <GatsbyImage
+        image={data.contact.childImageSharp.gatsbyImageData}
+        alt={data.contact.image.title}
+      />
       <div>
         <h3 className={styles.title}>{data.contact.name}</h3>
         <p>

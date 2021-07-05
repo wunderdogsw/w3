@@ -42,7 +42,13 @@ const findImageURLs = references => {
   if (!references) {
     return []
   }
-  const filtered = references.filter(ref => ref.sys && ref.sys.type === "Asset" && ref.file && ref.file.contentType.match(/^image\/.+$/i))
+  const filtered = references.filter(
+    ref =>
+      ref.sys &&
+      ref.sys.type === "Asset" &&
+      ref.file &&
+      ref.file.contentType.match(/^image\/.+$/i)
+  )
   return filtered.map(ref => ref.file.url)
 }
 
