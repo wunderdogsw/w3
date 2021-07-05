@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "gatsby-image"
 
-import styles from "./contact-block.module.css"
+import * as styles from "./contact-block.module.css"
 
 const ContactBlock = ({ data }) => (
   <div className={styles.wrapper}>

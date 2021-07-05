@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import styles from "./open-position-list.module.css"
+import * as styles from "./open-position-list.module.css"
 import OpenPosition from "../../components/open-position"
 
 const OpenPositionList = ({ heading }) => {

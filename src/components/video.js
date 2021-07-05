@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 
-import styles from "./video.module.css"
+import * as styles from "./video.module.css"
 import volume from "../images/volume.svg"
 
 const Video = ({ src }) => {

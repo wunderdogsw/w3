@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import styles from "./legal.module.css"
+import * as styles from "./legal.module.css"
 
 const Legal = () => {
   const data = useStaticQuery(graphql`
