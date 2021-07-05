@@ -8,19 +8,13 @@ import Footer from "./footer"
 const ALL = "All"
 
 const findCategories = data => {
-  const categories = data.reduce(
-    (result, item) => [
-      ...result,
-      ...item.categories.map(category => category.title),
-    ],
-    []
-  )
+  const categoriesSet = new Set()
+  data.forEach(item => {
+    item.categories.forEach(category => categoriesSet.add(category.title))
+  })
+  const categories = [...categoriesSet].sort()
 
-  const uniqueCategories = categories.filter(
-    (category, index, array) => array.indexOf(category) === index
-  )
-
-  return [ALL, ...uniqueCategories.sort()]
+  return [ALL, ...categories]
 }
 
 const filterContent = (content, activeCategory) => {
