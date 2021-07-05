@@ -7,7 +7,7 @@ import Footer from "./footer"
 
 const ALL = "All"
 
-const findCategories = data => {
+const getCategories = data => {
   const categoriesSet = new Set()
   data.forEach(item => {
     item.categories.forEach(category => categoriesSet.add(category.title))
@@ -18,23 +18,24 @@ const findCategories = data => {
 }
 
 const filterContent = (content, activeCategory) => {
-  return content.filter(item => {
-    if (activeCategory === ALL) return true
+  if (activeCategory === ALL) {
+    return content
+  }
 
-    return item.categories
-      .map(category => category.title)
-      .includes(activeCategory)
-  })
+  return content.filter(item =>
+    item.categories.some(category => category.title === activeCategory)
+  )
 }
 
 const ContentList = ({ children, data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
+  const categories = getCategories(data)
 
   return (
     <div className={styles.wrapper}>
       {filter && (
         <Filter
-          categories={findCategories(data)}
+          categories={categories}
           active={activeCategory}
           onSelect={category => setActiveCategory(category)}
         />
