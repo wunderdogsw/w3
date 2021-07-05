@@ -4,7 +4,12 @@ module.exports = {
     es6: true,
   },
   plugins: ["prettier"],
-  extends: ["react-app", "plugin:import/errors", "plugin:import/warnings", "plugin:prettier/recommended"],
+  extends: [
+    "react-app",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
+  ],
   globals: {
     graphql: false,
   },

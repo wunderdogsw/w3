@@ -48,11 +48,13 @@ const BlogPostList = ({ action }) => {
             title={post.title}
             subtitle={`By ${post.author.name}`}
             link={action}
-            image={post.image &&
-              <Image
-                fluid={post.image.fluid}
-                alt={post.image.title || post.title}
-              />
+            image={
+              post.image && (
+                <Image
+                  fluid={post.image.fluid}
+                  alt={post.image.title || post.title}
+                />
+              )
             }
           />
         )}

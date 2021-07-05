@@ -37,7 +37,7 @@ const Page = ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!, $images: [String!]!) {
+  query ($slug: String!, $images: [String!]!) {
     page: contentfulPage(slug: { eq: $slug }) {
       metaTitle
       metaDescription {
