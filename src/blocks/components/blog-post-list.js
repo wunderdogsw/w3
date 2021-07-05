@@ -17,7 +17,8 @@ const BlogPostList = ({ action }) => {
               name
             }
             image {
-              fluid(maxWidth: 2048) {
+              title
+              fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -47,7 +48,12 @@ const BlogPostList = ({ action }) => {
             title={post.title}
             subtitle={`By ${post.author.name}`}
             link={action}
-            image={post.image && <Image fluid={post.image.fluid} />}
+            image={post.image &&
+              <Image
+                fluid={post.image.fluid}
+                alt={post.image.title || post.title}
+              />
+            }
           />
         )}
       />

@@ -1,10 +1,11 @@
 import React from "react"
+import Image from "gatsby-image"
 
 import styles from "./logos-block.module.css"
 import RichText from "../components/rich-text"
 
 const LogosBlock = ({ data }) => (
-  <section className={styles.wrapper}>
+  <section>
     <div className={styles.content}>
       <h2>{data.heading}</h2>
       {data.content && <RichText document={data.content.json} />}
@@ -12,8 +13,13 @@ const LogosBlock = ({ data }) => (
     <div className={styles.list}>
       <ul>
         {data.images.map(image => (
-          <li key={image.file.url}>
-            <img key={image.file.url} src={image.file.url} alt="Logo" />
+          <li key={image.id}>
+            <Image
+              alt={image.title}
+              className={styles.img}
+              imgStyle={{ objectFit: "contain" }} // override gatsby-image default "cover"
+              fluid={image.fluid}
+            />
           </li>
         ))}
       </ul>

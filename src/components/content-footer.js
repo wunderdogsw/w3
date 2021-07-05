@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Image from "gatsby-image"
 
 import styles from "./content-footer.module.css"
 import Legal from "./legal"
@@ -7,10 +8,13 @@ import Legal from "./legal"
 const ContentFooter = ({ title, subtitle, image, to }) => (
   <div className={styles.wrapperOuter}>
     <div className={styles.wrapperInner}>
-      <div
-        className={styles.backdrop}
-        style={{ backgroundImage: `url(https:${image})` }}
-      />
+      <div className={styles.backdrop}>
+        <Image
+          className={styles.img}
+          fluid={image.fluid}
+          alt={image.title || title}
+        />
+      </div>
       <div className={styles.content}>
         <Link to={to} className={styles.link}>
           <div>{subtitle}</div>

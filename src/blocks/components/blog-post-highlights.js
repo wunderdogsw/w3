@@ -20,7 +20,8 @@ const BlogPostHighlights = ({ button, action }) => {
               name
             }
             image {
-              fluid(maxWidth: 2048) {
+              title
+              fluid(sizes: "(max-width: 1200px) 512px, 1600px") {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -49,7 +50,12 @@ const BlogPostHighlights = ({ button, action }) => {
             title={post.title}
             subtitle={`By ${post.author.name}`}
             link={action}
-            image={<Image fluid={post.image.fluid} />}
+            image={
+              <Image
+                fluid={post.image.fluid}
+                alt={post.image.title || post.title}
+              />
+            }
           />
         )}
       />

@@ -5,7 +5,9 @@
     url("./apercu-mono-regular-pro.woff2") format("woff2"),
     url("./apercu-mono-regular-pro.woff") format("woff"),
     url("./apercu-mono-regular-pro.ttf") format("truetype");
-  font-weight: italic;
+  /* show text while fonts are loading https://web.dev/font-display/ */
+  font-display: swap;
+  font-weight: normal;
   font-style: italic;
 }
 
@@ -16,6 +18,7 @@
     url("./apercu-regular-pro.woff2") format("woff2"),
     url("./apercu-regular-pro.woff") format("woff"),
     url("./apercu-regular-pro.ttf") format("truetype");
+  font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
@@ -27,6 +30,7 @@
     url("./apercu-bold-pro.woff2") format("woff2"),
     url("./apercu-bold-pro.woff") format("woff"),
     url("./apercu-bold-pro.ttf") format("truetype");
+  font-display: swap;
   font-weight: bold;
-  font-style: bold;
+  font-style: normal;
 }

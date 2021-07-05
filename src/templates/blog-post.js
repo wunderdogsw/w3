@@ -28,9 +28,9 @@ const renderSubtitle = (post, author) => (
   </>
 )
 
-const getMetaImage = (post) => {
-  let metaImage = null;
-  
+const getMetaImage = post => {
+  let metaImage = null
+
   if (post.image) {
     metaImage = post.image.fluid.src
   }
@@ -38,8 +38,8 @@ const getMetaImage = (post) => {
   if (post.metaImage) {
     metaImage = post.metaImage.fluid.src
   }
-  
-  return metaImage;
+
+  return metaImage
 }
 
 const BlogPost = ({ data }) => {
@@ -54,14 +54,16 @@ const BlogPost = ({ data }) => {
         <ContentFooter
           title={next.title}
           subtitle="Go to next post"
-          image={next.image.fluid.src}
+          image={next.image}
           to={next.fields.route}
         />
       }
     >
-      <SEO 
+      <SEO
         title={post.metaTitle}
-        description={post.metaDescription ? post.metaDescription.metaDescription : null}         
+        description={
+          post.metaDescription ? post.metaDescription.metaDescription : null
+        }
         metaImage={metaImage}
         metaTwitterCardType={post.twitterSharePreviewType}
       />
@@ -85,7 +87,10 @@ export const query = graphql`
       title
       publishedAt(formatString: "MMM D, YYYY")
       image {
-        fluid(maxWidth: 2560) {
+        title
+        fluid(
+          sizes: "(max-width: 480px) 640px, (max-width: 1200px) 1280px, 2048px"
+        ) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -98,7 +103,7 @@ export const query = graphql`
           src
         }
       }
-      twitterSharePreviewType,
+      twitterSharePreviewType
       video {
         file {
           url
@@ -204,7 +209,9 @@ export const query = graphql`
     next: contentfulBlogPost(slug: { eq: $next }) {
       title
       image {
-        fluid(maxWidth: 2560) {
+        fluid(
+          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
+        ) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -215,7 +222,9 @@ export const query = graphql`
     images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
       edges {
         node {
-          fluid(maxWidth: 2560) {
+          fluid(
+            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
+          ) {
             ...GatsbyContentfulFluid_withWebp
           }
         }

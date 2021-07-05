@@ -9,9 +9,9 @@ import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
 
-const getMetaImage = (story) => {
-  let metaImage = null;
-  
+const getMetaImage = story => {
+  let metaImage = null
+
   if (story.image) {
     metaImage = story.image.fluid.src
   }
@@ -19,8 +19,8 @@ const getMetaImage = (story) => {
   if (story.metaImage) {
     metaImage = story.metaImage.fluid.src
   }
-  
-  return metaImage;
+
+  return metaImage
 }
 
 const CaseStory = ({ data }) => {
@@ -34,14 +34,16 @@ const CaseStory = ({ data }) => {
         <ContentFooter
           title={next.title}
           subtitle="Go to next case"
-          image={next.image.fluid.src}
+          image={next.image}
           to={next.fields.route}
         />
       }
     >
-      <SEO 
-        title={story.metaTitle} 
-        description={story.metaDescription ? story.metaDescription.metaDescription : null}         
+      <SEO
+        title={story.metaTitle}
+        description={
+          story.metaDescription ? story.metaDescription.metaDescription : null
+        }
         metaImage={metaImage}
         metaTwitterCardType={story.twitterSharePreviewType}
       />
@@ -66,7 +68,8 @@ export const query = graphql`
     story: contentfulCaseStory(slug: { eq: $slug }) {
       title
       image {
-        fluid(maxWidth: 2560) {
+        title
+        fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -79,7 +82,7 @@ export const query = graphql`
           src
         }
       }
-      twitterSharePreviewType,
+      twitterSharePreviewType
       video {
         file {
           url
@@ -181,7 +184,9 @@ export const query = graphql`
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
       image {
-        fluid(maxWidth: 2560) {
+        fluid(
+          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
+        ) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -192,7 +197,9 @@ export const query = graphql`
     images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
       edges {
         node {
-          fluid(maxWidth: 2560) {
+          fluid(
+            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
+          ) {
             ...GatsbyContentfulFluid_withWebp
           }
         }

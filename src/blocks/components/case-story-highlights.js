@@ -18,7 +18,7 @@ const CaseStoryHighlights = ({ button, action }) => {
             title
             client
             image {
-              fluid(maxWidth: 2048) {
+              fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
                 ...GatsbyContentfulFluid_withWebp
               }
             }
@@ -47,7 +47,12 @@ const CaseStoryHighlights = ({ button, action }) => {
             title={story.title}
             subtitle={story.client}
             link={action}
-            image={<Image fluid={story.image.fluid} />}
+            image={
+              <Image
+                fluid={story.image.fluid}
+                alt={story.image.title || story.title}
+              />
+            }
           />
         )}
       />

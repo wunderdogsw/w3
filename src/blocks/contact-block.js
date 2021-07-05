@@ -7,9 +7,9 @@ const ContactBlock = ({ data }) => (
   <div className={styles.wrapper}>
     <h2 dangerouslySetInnerHTML={{ __html: data.heading }} />
     <div>
-      <Image fluid={data.contact.image.fluid} />
+      <Image fluid={data.contact.image.fluid} alt={data.contact.image.title} />
       <div>
-        <h5>{data.contact.name}</h5>
+        <h3 className={styles.title}>{data.contact.name}</h3>
         <p>
           {data.contact.position}
           <br />

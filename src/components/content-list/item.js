@@ -9,7 +9,7 @@ const Item = ({ to, title, subtitle, link, image }) => (
       <div className={styles.front}>{link}</div>
       {image}
     </div>
-    <h4 className={styles.title}>{title}</h4>
+    <h3 className={styles.title}>{title}</h3>
     <div className={styles.subtitle}>{subtitle}</div>
   </Link>
 )
