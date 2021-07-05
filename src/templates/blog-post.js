@@ -74,7 +74,7 @@ const BlogPost = ({ data }) => {
       />
       {post.before && <BlockList data={post.before} />}
       <Article>
-        <RichText document={post.content.raw} images={images} />
+        <RichText document={JSON.parse(post.content.raw)} images={images} />
       </Article>
       {post.after && <BlockList data={post.after} />}
     </Layout>

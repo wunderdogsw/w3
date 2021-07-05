@@ -55,7 +55,7 @@ const CaseStory = ({ data }) => {
       {story.before && <BlockList data={story.before} />}
       {story.content && (
         <Article>
-          <RichText document={story.content.raw} images={images} />
+          <RichText document={JSON.parse(story.content.raw)} images={images} />
         </Article>
       )}
       {story.after && <BlockList data={story.after} />}

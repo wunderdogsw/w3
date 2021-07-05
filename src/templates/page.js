@@ -28,7 +28,7 @@ const Page = ({ data }) => {
       {page.before && <BlockList data={page.before} />}
       {page.content && (
         <Article>
-          <RichText document={page.content.raw} images={images} />
+          <RichText document={JSON.parse(page.content.raw)} images={images} />
         </Article>
       )}
       {page.after && <BlockList data={page.after} />}
