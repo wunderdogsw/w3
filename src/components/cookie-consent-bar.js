@@ -119,7 +119,7 @@ const CookieConsentBar = () => {
               consentDecline
               manageCookieText
               modalContent {
-                json
+                raw
               }
             }
           }

@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -85,7 +85,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -100,7 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route

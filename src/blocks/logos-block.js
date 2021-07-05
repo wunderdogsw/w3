@@ -8,7 +8,7 @@ const LogosBlock = ({ data }) => (
   <section>
     <div className={styles.content}>
       <h2>{data.heading}</h2>
-      {data.content && <RichText document={data.content.json} />}
+      {data.content && <RichText document={data.content.raw} />}
     </div>
     <div className={styles.list}>
       <ul>
