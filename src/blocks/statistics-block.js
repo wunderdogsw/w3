@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./statistics-block.module.css"
+import * as styles from "./statistics-block.module.css"
 import Statistic from "../components/statistic"
 
 const StatisticsBlock = ({ data }) => (

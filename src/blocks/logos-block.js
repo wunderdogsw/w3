@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "gatsby-image"
 
-import styles from "./logos-block.module.css"
+import * as styles from "./logos-block.module.css"
 import RichText from "../components/rich-text"
 
 const LogosBlock = ({ data }) => (

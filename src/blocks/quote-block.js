@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./quote-block.module.css"
+import * as styles from "./quote-block.module.css"
 
 const QuoteBlock = ({ data }) => (
   <blockquote className={styles.wrapper}>

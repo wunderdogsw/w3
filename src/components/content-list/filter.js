@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./filter.module.css"
+import * as styles from "./filter.module.css"
 
 const Filter = ({ categories, active, onSelect }) => (
   <ul className={styles.wrapper}>

@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./open-position.module.css"
+import * as styles from "./open-position.module.css"
 import SecondaryText from "./secondary-text"
 
 const OpenPosition = ({ title, office, link }) => (

@@ -64,7 +64,7 @@ const CaseStory = ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!, $images: [String!]!) {
     story: contentfulCaseStory(slug: { eq: $slug }) {
       title
       image {

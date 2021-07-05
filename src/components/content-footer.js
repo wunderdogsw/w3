@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 
-import styles from "./content-footer.module.css"
+import * as styles from "./content-footer.module.css"
 import Legal from "./legal"
 
 const ContentFooter = ({ title, subtitle, image, to }) => (

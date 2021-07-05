@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import styles from "./index.module.css"
+import * as styles from "./index.module.css"
 import Filter from "./filter"
 import Item from "./item"
 import Footer from "./footer"

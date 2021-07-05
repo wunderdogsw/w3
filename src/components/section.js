@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "gatsby-image"
 
-import styles from "./section.module.css"
+import * as styles from "./section.module.css"
 import Video from "./video"
 
 const Section = ({ children, image }) => {

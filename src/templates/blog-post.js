@@ -82,7 +82,7 @@ const BlogPost = ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!, $images: [String!]!) {
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishedAt(formatString: "MMM D, YYYY")

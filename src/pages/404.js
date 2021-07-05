@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./404.module.css"
+import * as styles from "./404.module.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PageFooter from "../components/page-footer"

@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./office-block.module.css"
+import * as styles from "./office-block.module.css"
 import Section from "../components/section"
 import Contact from "../components/contact"
 
