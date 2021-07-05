@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import * as styles from "./index.module.css"
 import Filter from "./filter"
@@ -7,29 +7,35 @@ import Footer from "./footer"
 
 const ALL = "All"
 
-const getCategories = data => {
-  const categoriesSet = new Set()
+const createDataByCategory = data => {
+  const dataByCategory = {}
+
   data.forEach(item => {
-    item.categories.forEach(category => categoriesSet.add(category.title))
+    item.categories.forEach(category => {
+      if (!(category.title in dataByCategory)) {
+        dataByCategory[category.title] = []
+      }
+
+      dataByCategory[category.title].push(item)
+    })
   })
-  const categories = [...categoriesSet].sort()
 
-  return [ALL, ...categories]
-}
-
-const filterContent = (content, activeCategory) => {
-  if (activeCategory === ALL) {
-    return content
-  }
-
-  return content.filter(item =>
-    item.categories.some(category => category.title === activeCategory)
-  )
+  return dataByCategory
 }
 
 const ContentList = ({ children, data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
-  const categories = getCategories(data)
+  const [filteredData, setFilteredData] = useState(data)
+  const dataByCategory = createDataByCategory(data)
+  const categories = [ALL, ...Object.keys(dataByCategory).sort()]
+
+  useEffect(() => {
+    if (activeCategory === ALL) {
+      setFilteredData(data)
+    } else {
+      setFilteredData(dataByCategory[activeCategory])
+    }
+  }, [activeCategory, data, dataByCategory])
 
   return (
     <div className={styles.wrapper}>
@@ -41,7 +47,7 @@ const ContentList = ({ children, data, filter, render }) => {
         />
       )}
       <div className={styles.list}>
-        {filterContent(data, activeCategory).map(item => (
+        {filteredData.map(item => (
           <div key={item.id}>{render(item)}</div>
         ))}
         {children}
