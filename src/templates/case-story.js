@@ -184,7 +184,9 @@ export const query = graphql`
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
       image {
-        fluid(maxWidth: 2560) {
+        fluid(
+          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
+        ) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -195,7 +197,9 @@ export const query = graphql`
     images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
       edges {
         node {
-          fluid(maxWidth: 2560) {
+          fluid(
+            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
+          ) {
             ...GatsbyContentfulFluid_withWebp
           }
         }
