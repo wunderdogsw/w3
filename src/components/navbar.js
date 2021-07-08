@@ -25,18 +25,20 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={styles.wrapper}>
-        <Link
-          to="/"
-          aria-label="Wunderdog home"
-          className={`${styles.logo} ${
-            logoHidden && !menuOpen ? styles.hidden : ""
-          }`}
-        >
-          <Logo inverse={menuOpen} />
-        </Link>
-        <Toggle onClick={() => setMenuOpen(!menuOpen)} active={menuOpen} />
-      </header>
+      <Link
+        to="/"
+        aria-label="Wunderdog home"
+        className={`${styles.logo} ${
+          logoHidden && !menuOpen ? styles.hidden : ""
+        }`}
+      >
+        <Logo inverse={menuOpen} />
+      </Link>
+      <Toggle
+        className={styles.toggle}
+        onClick={() => setMenuOpen(!menuOpen)}
+        active={menuOpen}
+      />
       <Menu active={menuOpen} />
     </>
   )

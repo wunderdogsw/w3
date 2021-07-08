@@ -1,28 +1,31 @@
-.wrapper {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  height: var(--height-navbar);
-  justify-content: space-between;
-  left: 0;
-  margin: 0;
-  padding: 0 var(--spacing);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 20;
-}
-
 .logo {
+  --logo-height: 52px;
   display: block;
+  height: var(--logo-height);
+  position: fixed;
+  left: var(--spacing);
   opacity: 1;
-  position: relative;
-  transition-duration: 0.2s;
-  transition-property: opacity;
-  transition-timing-function: var(--animation-ease);
+  top: calc((var(--height-navbar) - var(--logo-height)) / 2);
+  /*
+   * css trick so that the logo becomes hidden once it's transparent
+   * https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+   */
+  transition: visibility 0s var(--animation-ease) 0s, opacity 200ms var(--animation-ease);
+  visibility: visible;
   width: 55px;
+  z-index: 20;
 }
 
 .logo.hidden {
   opacity: 0;
+  transition: visibility 0s var(--animation-ease) 200ms, opacity 200ms var(--animation-ease);
+  visibility: hidden;
+}
+
+.toggle {
+  --toggle-height: 50px;
+  top: calc((var(--height-navbar) - var(--toggle-height)) / 2);
+  position: fixed;
+  right: var(--spacing);
+  z-index: 20;
 }
