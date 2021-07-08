@@ -1,11 +1,8 @@
 .logo {
-  --logo-height: 52px;
   display: block;
-  height: var(--logo-height);
   position: fixed;
   left: var(--spacing);
   opacity: 1;
-  top: calc((var(--height-navbar) - var(--logo-height)) / 2);
   /*
    * css trick so that the logo becomes hidden once it's transparent
    * https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
@@ -23,9 +20,14 @@
 }
 
 .toggle {
-  --toggle-height: 50px;
-  top: calc((var(--height-navbar) - var(--toggle-height)) / 2);
   position: fixed;
   right: var(--spacing);
   z-index: 20;
+}
+
+.logo,
+.toggle {
+  /* position elements as though they are centered in a navbar */
+  top: calc(var(--height-navbar) / 2);
+  transform: translate(0, -50%);
 }
