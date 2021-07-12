@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import SecondaryText from "../components/secondary-text"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Article from "../components/article"
@@ -9,6 +8,7 @@ import Header from "../components/header"
 import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import ContentFooter from "../components/content-footer"
+import SecondaryText from "../components/secondary-text"
 
 const renderAuthor = author => (
   <>
