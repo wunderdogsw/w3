@@ -49,6 +49,14 @@ export const query = graphql`
       twitterSharePreviewType
       content {
         raw
+        references {
+          # __typename and contentful_id are required to resolve the references
+          __typename
+          contentful_id
+          table {
+            tableData
+          }
+        }
       }
       before {
         __typename
