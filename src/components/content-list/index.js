@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 
-import * as styles from "./index.module.css"
 import Filter from "./filter"
 import Item from "./item"
 import Footer from "./footer"
+import * as styles from "./index.module.css"
 
 const ALL = "All"
 

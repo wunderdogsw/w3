@@ -8,9 +8,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import "./layout.css"
 import Navbar from "./navbar"
 import CookieConsentBar from "./cookie-consent-bar"
+import "./layout.css"
 
 if (process.env.GATSBY_ENABLE_FONTS === "true") {
   require("../../fonts/index.css")

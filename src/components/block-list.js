@@ -35,11 +35,7 @@ export const query = graphql`
       file {
         url
       }
-      fluid(
-        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2048px"
-      ) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      gatsbyImageData
     }
     hero
   }
@@ -51,15 +47,22 @@ export const query = graphql`
       file {
         url
       }
-      fluid(
-        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2400px"
-      ) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      gatsbyImageData
     }
     heading
     content {
-      json
+      raw
+      references {
+        ... on ContentfulHubSpotFormBlock {
+          ...HubSpotFormBlock
+        }
+        ... on ContentfulHyperlinkButtonBlock {
+          ...HyperlinkButtonBlock
+        }
+        ... on ContentfulTableBlock {
+          ...TableBlock
+        }
+      }
     }
     animated
   }
@@ -81,15 +84,14 @@ export const query = graphql`
       file {
         url
       }
-      fluid(
-        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2618px"
-      ) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      gatsbyImageData
     }
   }
 
   fragment HyperlinkButtonBlock on ContentfulHyperlinkButtonBlock {
+    # __typename and contentful_id are required to resolve the references
+    __typename
+    contentful_id
     id
     embeddedLink
     textContent
@@ -100,11 +102,7 @@ export const query = graphql`
     id
     image {
       title
-      fluid(
-        sizes: "(max-width: 480px) 800px, (max-width: 1200px) 1200px, 2400px"
-      ) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      gatsbyImageData
     }
     name
     streetAddress
@@ -135,14 +133,12 @@ export const query = graphql`
     id
     heading
     content {
-      json
+      raw
     }
     images {
       id
       title
-      fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      gatsbyImageData
     }
   }
 
@@ -154,9 +150,7 @@ export const query = graphql`
       position
       image {
         title
-        fluid(maxWidth: 400) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData
       }
       phone
       email
@@ -164,6 +158,9 @@ export const query = graphql`
   }
 
   fragment HubSpotFormBlock on ContentfulHubSpotFormBlock {
+    # __typename and contentful_id are required to resolve the references
+    __typename
+    contentful_id
     id
     formId
     gaLabel
@@ -180,6 +177,9 @@ export const query = graphql`
   }
 
   fragment TableBlock on ContentfulTableBlock {
+    # __typename and contentful_id are required to resolve the references
+    __typename
+    contentful_id
     id
     table {
       id

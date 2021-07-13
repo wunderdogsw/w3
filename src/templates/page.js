@@ -4,19 +4,17 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import BlockList from "../components/block-list"
-import Article from "../components/article"
 import RichText from "../components/rich-text"
+import Article from "../components/article"
 import PageFooter from "../components/page-footer"
 
 const getMetaImage = image => {
-  return image ? image.fluid.src : null
+  return image ? image.file.url : null
 }
 
 const Page = ({ data }) => {
   const { page } = data
-  const images = data.images.edges.map(({ node }) => node)
   const metaImg = getMetaImage(page.metaImage)
-
   return (
     <Layout footer={<PageFooter />}>
       <SEO
@@ -28,7 +26,7 @@ const Page = ({ data }) => {
       {page.before && <BlockList data={page.before} />}
       {page.content && (
         <Article>
-          <RichText document={page.content.json} images={images} />
+          <RichText content={page.content} />
         </Article>
       )}
       {page.after && <BlockList data={page.after} />}
@@ -44,13 +42,11 @@ export const query = graphql`
         metaDescription
       }
       metaImage {
-        fluid(maxHeight: 1080) {
-          src
-        }
+        gatsbyImageData
       }
       twitterSharePreviewType
       content {
-        json
+        raw
       }
       before {
         __typename
@@ -144,9 +140,7 @@ export const query = graphql`
     images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
       edges {
         node {
-          fluid(maxWidth: 2560) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData
         }
       }
     }

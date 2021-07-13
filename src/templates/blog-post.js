@@ -1,14 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import SecondaryText from "../components/secondary-text"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Article from "../components/article"
 import Header from "../components/header"
 import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
+import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
+import SecondaryText from "../components/secondary-text"
 
 const renderAuthor = author => (
   <>
@@ -32,11 +32,11 @@ const getMetaImage = post => {
   let metaImage = null
 
   if (post.image) {
-    metaImage = post.image.fluid.src
+    metaImage = post.image.file.url
   }
 
   if (post.metaImage) {
-    metaImage = post.metaImage.fluid.src
+    metaImage = post.metaImage.file.url
   }
 
   return metaImage
@@ -45,6 +45,7 @@ const getMetaImage = post => {
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const images = data.images.edges.map(({ node }) => node)
+  const metaTitle = post.metaTitle ?? post.title
   const metaImage = getMetaImage(post, images)
   const { author } = post
 
@@ -60,7 +61,7 @@ const BlogPost = ({ data }) => {
       }
     >
       <SEO
-        title={post.metaTitle}
+        title={metaTitle}
         description={
           post.metaDescription ? post.metaDescription.metaDescription : null
         }
@@ -74,7 +75,7 @@ const BlogPost = ({ data }) => {
       />
       {post.before && <BlockList data={post.before} />}
       <Article>
-        <RichText document={post.content.json} images={images} />
+        <RichText content={post.content} />
       </Article>
       {post.after && <BlockList data={post.after} />}
     </Layout>
@@ -88,10 +89,9 @@ export const query = graphql`
       publishedAt(formatString: "MMM D, YYYY")
       image {
         title
-        fluid(
-          sizes: "(max-width: 480px) 640px, (max-width: 1200px) 1280px, 2048px"
-        ) {
-          ...GatsbyContentfulFluid_withWebp
+        gatsbyImageData
+        file {
+          url
         }
       }
       metaTitle
@@ -99,8 +99,9 @@ export const query = graphql`
         metaDescription
       }
       metaImage {
-        fluid(maxHeight: 1080) {
-          src
+        gatsbyImageData
+        file {
+          url
         }
       }
       twitterSharePreviewType
@@ -115,7 +116,25 @@ export const query = graphql`
       }
       readingTime
       content {
-        json
+        raw
+        references {
+          ... on ContentfulAsset {
+            # __typename and contentful_id are required to resolve the references
+            __typename
+            contentful_id
+            title
+            gatsbyImageData
+            file {
+              contentType
+            }
+          }
+          ... on ContentfulHubSpotFormBlock {
+            ...HubSpotFormBlock
+          }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
+          }
+        }
       }
       before {
         __typename
@@ -209,11 +228,7 @@ export const query = graphql`
     next: contentfulBlogPost(slug: { eq: $next }) {
       title
       image {
-        fluid(
-          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
-        ) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData
       }
       fields {
         route
@@ -222,11 +237,7 @@ export const query = graphql`
     images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
       edges {
         node {
-          fluid(
-            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
-          ) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData
         }
       }
     }

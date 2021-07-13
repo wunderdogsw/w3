@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-import * as styles from "./navbar.module.css"
 import Logo from "./logo"
 import Toggle from "./toggle"
 import Menu from "./menu"
+import * as styles from "./navbar.module.css"
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
