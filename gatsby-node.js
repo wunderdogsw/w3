@@ -38,20 +38,6 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 }
 
-const findImageURLs = references => {
-  if (!references) {
-    return []
-  }
-  const filtered = references.filter(
-    ref =>
-      ref.sys &&
-      ref.sys.type === "Asset" &&
-      ref.file &&
-      ref.file.contentType.match(/^image\/.+$/i)
-  )
-  return filtered.map(ref => ref.file.url)
-}
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const content = await graphql(`
@@ -151,7 +137,6 @@ exports.createPages = async ({ graphql, actions }) => {
     const pageContext = {
       ...context,
       slug: node.slug,
-      images: findImageURLs(node.content && node.content.references),
     }
 
     createPage({
