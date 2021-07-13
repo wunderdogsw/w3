@@ -18,7 +18,7 @@ const BlogPostList = ({ action }) => {
             }
             image {
               title
-              gatsbyImageData
+              gatsbyImageData(breakpoints: [280, 480, 768, 1024, 1200])
             }
             categories {
               title

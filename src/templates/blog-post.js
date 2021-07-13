@@ -88,7 +88,10 @@ export const query = graphql`
       publishedAt(formatString: "MMM D, YYYY")
       image {
         title
-        gatsbyImageData
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          breakpoints: [320, 480, 768, 1024, 1200]
+        )
         file {
           url
         }
@@ -121,7 +124,10 @@ export const query = graphql`
             __typename
             contentful_id
             title
-            gatsbyImageData
+            gatsbyImageData(
+              layout: FULL_WIDTH
+              breakpoints: [320, 480, 768, 1024, 1200]
+            )
             file {
               contentType
             }
@@ -226,7 +232,10 @@ export const query = graphql`
     next: contentfulBlogPost(slug: { eq: $next }) {
       title
       image {
-        gatsbyImageData
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          breakpoints: [320, 480, 768, 1024, 1200]
+        )
       }
       fields {
         route

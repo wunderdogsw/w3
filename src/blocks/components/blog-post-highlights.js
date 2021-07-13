@@ -21,7 +21,7 @@ const BlogPostHighlights = ({ button, action }) => {
             }
             image {
               title
-              gatsbyImageData
+              gatsbyImageData(breakpoints: [280, 400, 480, 600, 800, 1200])
             }
             categories {
               title

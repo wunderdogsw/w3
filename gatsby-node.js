@@ -75,7 +75,10 @@ exports.createPages = async ({ graphql, actions }) => {
                   contentful_id
                   id
                   title
-                  gatsbyImageData
+                  gatsbyImageData(
+                    layout: FULL_WIDTH
+                    breakpoints: [320, 400, 480, 600, 800, 1200]
+                  )
                   file {
                     contentType
                     url
