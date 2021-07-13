@@ -18,8 +18,8 @@ const LogosBlock = ({ data }) => (
               image={image.gatsbyImageData}
               alt={image.title}
               className={styles.img}
-              // override gatsby-image default "cover"
-              imgStyle={{ objectFit: "contain" }}
+              // override gatsby-image default "cover" to make logos look good
+              objectFit="contain"
             />
           </li>
         ))}

@@ -28,7 +28,7 @@
   min-width: 100%;
 }
 
-/* override gatsby-image default style */
+/* override gatsby-image default style to make logos look good */
 .img {
   height: 100%;
   width: 100%;
