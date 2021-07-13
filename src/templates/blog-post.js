@@ -44,9 +44,8 @@ const getMetaImage = post => {
 
 const BlogPost = ({ data }) => {
   const { post, next } = data
-  const images = data.images.edges.map(({ node }) => node)
   const metaTitle = post.metaTitle ?? post.title
-  const metaImage = getMetaImage(post, images)
+  const metaImage = getMetaImage(post)
   const { author } = post
 
   return (
@@ -83,7 +82,7 @@ const BlogPost = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!) {
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishedAt(formatString: "MMM D, YYYY")
@@ -232,13 +231,6 @@ export const query = graphql`
       }
       fields {
         route
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          gatsbyImageData
-        }
       }
     }
   }
