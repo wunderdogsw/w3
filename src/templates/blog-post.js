@@ -98,7 +98,6 @@ export const query = graphql`
         metaDescription
       }
       metaImage {
-        gatsbyImageData
         file {
           url
         }
