@@ -35,7 +35,7 @@ const Page = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $images: [String!]!) {
+  query ($slug: String!) {
     page: contentfulPage(slug: { eq: $slug }) {
       metaTitle
       metaDescription {
@@ -134,13 +134,6 @@ export const query = graphql`
           ... on ContentfulHubSpotMeetingBlock {
             ...HubSpotMeetingBlock
           }
-        }
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          gatsbyImageData
         }
       }
     }

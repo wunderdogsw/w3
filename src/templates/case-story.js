@@ -64,7 +64,7 @@ const CaseStory = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!) {
     story: contentfulCaseStory(slug: { eq: $slug }) {
       title
       image {
@@ -189,13 +189,6 @@ export const query = graphql`
       }
       fields {
         route
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          gatsbyImageData
-        }
       }
     }
   }
