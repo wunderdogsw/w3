@@ -44,7 +44,7 @@ const ContentList = ({ children, data, filter, render }) => {
       {filter && (
         <Filter
           categories={categories}
-          active={activeCategory}
+          activeCategory={activeCategory}
           onSelect={category => setActiveCategory(category)}
         />
       )}
