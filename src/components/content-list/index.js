@@ -26,16 +26,18 @@ const createDataByCategory = data => {
 const ContentList = ({ children, data, filter, render }) => {
   const [activeCategory, setActiveCategory] = useState(ALL)
   const [filteredData, setFilteredData] = useState(data)
-  const dataByCategory = createDataByCategory(data)
+  const [dataByCategory, setDataByCategory] = useState({})
   const categories = [ALL, ...Object.keys(dataByCategory).sort()]
 
   useEffect(() => {
-    if (activeCategory === ALL) {
-      setFilteredData(data)
-    } else {
-      setFilteredData(dataByCategory[activeCategory])
-    }
-  }, [activeCategory, data, dataByCategory])
+    setDataByCategory(createDataByCategory(data))
+  }, [data])
+
+  useEffect(() => {
+    const newFilteredData =
+      activeCategory === ALL ? data : dataByCategory[activeCategory]
+    setFilteredData(newFilteredData)
+  }, [data, dataByCategory, activeCategory])
 
   return (
     <div className={styles.wrapper}>
