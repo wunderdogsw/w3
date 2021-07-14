@@ -16,7 +16,6 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    // "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
   ],
   globals: {
