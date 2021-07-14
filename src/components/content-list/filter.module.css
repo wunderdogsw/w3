@@ -16,7 +16,6 @@
   margin-right: 40px;
 }
 
-/* https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md#case-i-understand-the-previous-cases-but-still-need-an-element-resembling-a-link-that-is-purely-clickable */
 .btn {
   color: var(--gray);
 }
