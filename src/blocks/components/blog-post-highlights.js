@@ -21,7 +21,11 @@ const BlogPostHighlights = ({ button, action }) => {
             }
             image {
               title
-              gatsbyImageData(breakpoints: [280, 400, 480, 600, 800, 1200])
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                breakpoints: [320, 480, 740, 1024, 1200, 1600, 2400]
+                sizes: "(max-width: 739px) 100vw, 50vw"
+              )
             }
             categories {
               title

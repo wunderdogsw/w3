@@ -90,7 +90,7 @@ export const query = graphql`
         title
         gatsbyImageData(
           layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
+          breakpoints: [320, 480, 768, 1024, 1200, 1600, 2400]
         )
         file {
           url
@@ -126,7 +126,7 @@ export const query = graphql`
             title
             gatsbyImageData(
               layout: FULL_WIDTH
-              breakpoints: [320, 480, 768, 1024, 1200]
+              breakpoints: [320, 480, 768, 1024, 1200, 1600, 2400]
             )
             file {
               contentType
@@ -234,7 +234,7 @@ export const query = graphql`
       image {
         gatsbyImageData(
           layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
+          breakpoints: [320, 480, 768, 1024, 1200, 1600, 2400]
         )
       }
       fields {
