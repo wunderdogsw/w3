@@ -69,10 +69,7 @@ export const query = graphql`
       title
       image {
         title
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200, 1600, 2400]
-        )
+        gatsbyImageData(layout: FULL_WIDTH)
         file {
           url
         }
@@ -188,10 +185,7 @@ export const query = graphql`
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
       image {
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200, 1600, 2400]
-        )
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       fields {
         route

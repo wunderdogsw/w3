@@ -23,7 +23,6 @@ const BlogPostHighlights = ({ button, action }) => {
               title
               gatsbyImageData(
                 layout: FULL_WIDTH
-                breakpoints: [320, 480, 740, 1024, 1200, 1600, 2400]
                 sizes: "(max-width: 739px) 100vw, 50vw"
               )
             }
