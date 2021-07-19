@@ -155,11 +155,11 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type ContentfulBlogPost implements Node {
-      video: ContentfulAsset
+      video: ContentfulAsset @link(by: "id", from: "video___NODE")
     }
 
     type ContentfulCaseStory implements Node {
-      video: ContentfulAsset
+      video: ContentfulAsset @link(by: "id", from: "video___NODE")
     }
 
     type ContentfulCaseStoryContentRichTextNode {
