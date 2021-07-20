@@ -12,12 +12,13 @@ import { getMetaImageSrc } from "../common/utils"
 const Page = ({ data }) => {
   const { page } = data
   const metaImage = getMetaImageSrc(page)
+  const metaTitle = page.metaTitle ?? ""
 
   return (
     <Layout footer={<PageFooter />}>
       <SEO
-        title={page.metaTitle}
-        description={page.metaDescription.metaDescription}
+        title={metaTitle}
+        description={page.metaDescription?.metaDescription}
         metaImage={metaImage}
         metaTwitterCardType={page.twitterSharePreviewType}
       />
