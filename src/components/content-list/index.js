@@ -11,6 +11,10 @@ const createDataByCategory = data => {
   const dataByCategory = {}
 
   data.forEach(item => {
+    if (!item.categories) {
+      return
+    }
+
     item.categories.forEach(category => {
       if (!(category.title in dataByCategory)) {
         dataByCategory[category.title] = []
