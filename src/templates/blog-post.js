@@ -3,12 +3,13 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Article from "../components/article"
 import Header from "../components/header"
 import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
+import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
 import SecondaryText from "../components/secondary-text"
+import { getMetaImageSrc } from "../common/utils"
 
 const renderAuthor = author => (
   <>
@@ -28,24 +29,10 @@ const renderSubtitle = (post, author) => (
   </>
 )
 
-const getMetaImage = post => {
-  let metaImage = null
-
-  if (post.image) {
-    metaImage = post.image.fluid.src
-  }
-
-  if (post.metaImage) {
-    metaImage = post.metaImage.fluid.src
-  }
-
-  return metaImage
-}
-
 const BlogPost = ({ data }) => {
   const { post, next } = data
-  const images = data.images.edges.map(({ node }) => node)
-  const metaImage = getMetaImage(post, images)
+  const metaTitle = post.metaTitle ?? post.title
+  const metaImage = getMetaImageSrc(post)
   const { author } = post
 
   return (
@@ -60,7 +47,7 @@ const BlogPost = ({ data }) => {
       }
     >
       <SEO
-        title={post.metaTitle}
+        title={metaTitle}
         description={
           post.metaDescription ? post.metaDescription.metaDescription : null
         }
@@ -74,7 +61,7 @@ const BlogPost = ({ data }) => {
       />
       {post.before && <BlockList data={post.before} />}
       <Article>
-        <RichText document={post.content.json} images={images} />
+        <RichText content={post.content} />
       </Article>
       {post.after && <BlockList data={post.after} />}
     </Layout>
@@ -82,26 +69,20 @@ const BlogPost = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!) {
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishedAt(formatString: "MMM D, YYYY")
       image {
         title
-        fluid(
-          sizes: "(max-width: 480px) 640px, (max-width: 1200px) 1280px, 2048px"
-        ) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        fluid(maxHeight: 1080) {
-          src
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {
@@ -115,7 +96,25 @@ export const query = graphql`
       }
       readingTime
       content {
-        json
+        raw
+        references {
+          ... on ContentfulAsset {
+            # __typename and contentful_id are required to resolve the references
+            __typename
+            contentful_id
+            title
+            gatsbyImageData(layout: FULL_WIDTH)
+            file {
+              contentType
+            }
+          }
+          ... on ContentfulHubSpotFormBlock {
+            ...HubSpotFormBlock
+          }
+          ... on ContentfulHyperlinkButtonBlock {
+            ...HyperlinkButtonBlock
+          }
+        }
       }
       before {
         __typename
@@ -209,25 +208,10 @@ export const query = graphql`
     next: contentfulBlogPost(slug: { eq: $next }) {
       title
       image {
-        fluid(
-          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
-        ) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       fields {
         route
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          fluid(
-            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
-          ) {
-            ...GatsbyContentfulFluid_withWebp
-          }
-        }
       }
     }
   }

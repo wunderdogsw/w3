@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import { CASE_STORY_INDEX } from "../../common/routes"
 import ContentList from "../../components/content-list"
@@ -18,9 +18,10 @@ const CaseStoryHighlights = ({ button, action }) => {
             title
             client
             image {
-              fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                sizes: "(max-width: 739px) 100vw, 50vw"
+              )
             }
             categories {
               title
@@ -48,8 +49,8 @@ const CaseStoryHighlights = ({ button, action }) => {
             subtitle={story.client}
             link={action}
             image={
-              <Image
-                fluid={story.image.fluid}
+              <GatsbyImage
+                image={story.image.gatsbyImageData}
                 alt={story.image.title || story.title}
               />
             }

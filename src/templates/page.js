@@ -4,31 +4,27 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import BlockList from "../components/block-list"
-import Article from "../components/article"
 import RichText from "../components/rich-text"
+import Article from "../components/article"
 import PageFooter from "../components/page-footer"
-
-const getMetaImage = image => {
-  return image ? image.fluid.src : null
-}
+import { getMetaImageSrc } from "../common/utils"
 
 const Page = ({ data }) => {
   const { page } = data
-  const images = data.images.edges.map(({ node }) => node)
-  const metaImg = getMetaImage(page.metaImage)
+  const metaImage = getMetaImageSrc(page)
 
   return (
     <Layout footer={<PageFooter />}>
       <SEO
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
-        metaImage={metaImg}
+        metaImage={metaImage}
         metaTwitterCardType={page.twitterSharePreviewType}
       />
       {page.before && <BlockList data={page.before} />}
       {page.content && (
         <Article>
-          <RichText document={page.content.json} images={images} />
+          <RichText content={page.content} />
         </Article>
       )}
       {page.after && <BlockList data={page.after} />}
@@ -37,20 +33,26 @@ const Page = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $images: [String!]!) {
+  query ($slug: String!) {
     page: contentfulPage(slug: { eq: $slug }) {
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        fluid(maxHeight: 1080) {
-          src
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       content {
-        json
+        raw
+        references {
+          # __typename and contentful_id are required to resolve the references
+          __typename
+          contentful_id
+          table {
+            tableData
+          }
+        }
       }
       before {
         __typename
@@ -137,15 +139,6 @@ export const query = graphql`
           }
           ... on ContentfulHubSpotMeetingBlock {
             ...HubSpotMeetingBlock
-          }
-        }
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          fluid(maxWidth: 2560) {
-            ...GatsbyContentfulFluid_withWebp
           }
         }
       }

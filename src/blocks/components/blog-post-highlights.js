@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import { BLOG_POST_INDEX } from "../../common/routes"
 import ContentList from "../../components/content-list"
@@ -21,9 +21,10 @@ const BlogPostHighlights = ({ button, action }) => {
             }
             image {
               title
-              fluid(sizes: "(max-width: 1200px) 512px, 1600px") {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                sizes: "(max-width: 739px) 100vw, 50vw"
+              )
             }
             categories {
               title
@@ -51,8 +52,8 @@ const BlogPostHighlights = ({ button, action }) => {
             subtitle={`By ${post.author.name}`}
             link={action}
             image={
-              <Image
-                fluid={post.image.fluid}
+              <GatsbyImage
+                image={post.image.gatsbyImageData}
                 alt={post.image.title || post.title}
               />
             }

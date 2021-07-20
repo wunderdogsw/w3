@@ -4,29 +4,16 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Header from "../components/header"
-import Article from "../components/article"
 import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
+import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
-
-const getMetaImage = story => {
-  let metaImage = null
-
-  if (story.image) {
-    metaImage = story.image.fluid.src
-  }
-
-  if (story.metaImage) {
-    metaImage = story.metaImage.fluid.src
-  }
-
-  return metaImage
-}
+import { getMetaImageSrc } from "../common/utils"
 
 const CaseStory = ({ data }) => {
   const { story, next } = data
-  const images = data.images.edges.map(({ node }) => node)
-  const metaImage = getMetaImage(story)
+  const metaImage = getMetaImageSrc(story)
+  const metaTitle = story.metaTitle ?? story.title
 
   return (
     <Layout
@@ -40,7 +27,7 @@ const CaseStory = ({ data }) => {
       }
     >
       <SEO
-        title={story.metaTitle}
+        title={metaTitle}
         description={
           story.metaDescription ? story.metaDescription.metaDescription : null
         }
@@ -55,7 +42,7 @@ const CaseStory = ({ data }) => {
       {story.before && <BlockList data={story.before} />}
       {story.content && (
         <Article>
-          <RichText document={story.content.json} images={images} />
+          <RichText content={story.content} />
         </Article>
       )}
       {story.after && <BlockList data={story.after} />}
@@ -64,23 +51,19 @@ const CaseStory = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($slug: String!, $next: String!, $images: [String!]!) {
+  query ($slug: String!, $next: String!) {
     story: contentfulCaseStory(slug: { eq: $slug }) {
       title
       image {
         title
-        fluid(sizes: "(max-width: 1200px) 400px, 1600px") {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        fluid(maxHeight: 1080) {
-          src
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {
@@ -90,7 +73,7 @@ export const query = graphql`
       }
       client
       content {
-        json
+        raw
       }
       before {
         __typename
@@ -184,25 +167,10 @@ export const query = graphql`
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
       image {
-        fluid(
-          sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 1600px"
-        ) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       fields {
         route
-      }
-    }
-    images: allContentfulAsset(filter: { file: { url: { in: $images } } }) {
-      edges {
-        node {
-          fluid(
-            sizes: "(max-width: 786px) 800px, (max-width: 1200px) 1200px, 2400px"
-          ) {
-            ...GatsbyContentfulFluid_withWebp
-          }
-        }
       }
     }
   }
