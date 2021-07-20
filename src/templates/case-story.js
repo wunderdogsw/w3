@@ -8,24 +8,11 @@ import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
-
-const getMetaImage = story => {
-  let metaImage = null
-
-  if (story.image) {
-    metaImage = story.image.file.url
-  }
-
-  if (story.metaImage) {
-    metaImage = story.metaImage.file.url
-  }
-
-  return metaImage
-}
+import { getMetaImageSrc } from "../common/utils"
 
 const CaseStory = ({ data }) => {
   const { story, next } = data
-  const metaImage = getMetaImage(story)
+  const metaImage = getMetaImageSrc(story)
   const metaTitle = story.metaTitle ?? story.title
 
   return (
@@ -70,18 +57,13 @@ export const query = graphql`
       image {
         title
         gatsbyImageData(layout: FULL_WIDTH)
-        file {
-          url
-        }
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        file {
-          url
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {

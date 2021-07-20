@@ -9,6 +9,7 @@ import RichText from "../components/rich-text"
 import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
 import SecondaryText from "../components/secondary-text"
+import { getMetaImageSrc } from "../common/utils"
 
 const renderAuthor = author => (
   <>
@@ -28,24 +29,10 @@ const renderSubtitle = (post, author) => (
   </>
 )
 
-const getMetaImage = post => {
-  let metaImage = null
-
-  if (post.image) {
-    metaImage = post.image.file.url
-  }
-
-  if (post.metaImage) {
-    metaImage = post.metaImage.file.url
-  }
-
-  return metaImage
-}
-
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const metaTitle = post.metaTitle ?? post.title
-  const metaImage = getMetaImage(post)
+  const metaImage = getMetaImageSrc(post)
   const { author } = post
 
   return (
@@ -89,18 +76,13 @@ export const query = graphql`
       image {
         title
         gatsbyImageData(layout: FULL_WIDTH)
-        file {
-          url
-        }
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        file {
-          url
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {
