@@ -7,20 +7,18 @@ import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import Article from "../components/article"
 import PageFooter from "../components/page-footer"
-
-const getMetaImage = image => {
-  return image ? image.file.url : null
-}
+import { getMetaImageSrc } from "../common/utils"
 
 const Page = ({ data }) => {
   const { page } = data
-  const metaImg = getMetaImage(page.metaImage)
+  const metaImage = getMetaImageSrc(page)
+
   return (
     <Layout footer={<PageFooter />}>
       <SEO
         title={page.metaTitle}
         description={page.metaDescription.metaDescription}
-        metaImage={metaImg}
+        metaImage={metaImage}
         metaTwitterCardType={page.twitterSharePreviewType}
       />
       {page.before && <BlockList data={page.before} />}
@@ -42,9 +40,7 @@ export const query = graphql`
         metaDescription
       }
       metaImage {
-        file {
-          url
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       content {

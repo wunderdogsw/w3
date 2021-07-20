@@ -18,7 +18,10 @@ const BlogPostList = ({ action }) => {
             }
             image {
               title
-              gatsbyImageData(breakpoints: [280, 480, 768, 1024, 1200])
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                sizes: "(max-width: 739px) 100vw, 50vw"
+              )
             }
             categories {
               title

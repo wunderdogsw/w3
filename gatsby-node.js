@@ -75,10 +75,7 @@ exports.createPages = async ({ graphql, actions }) => {
                   contentful_id
                   id
                   title
-                  gatsbyImageData(
-                    layout: FULL_WIDTH
-                    breakpoints: [320, 400, 480, 600, 800, 1200]
-                  )
+                  gatsbyImageData(layout: FULL_WIDTH)
                   file {
                     contentType
                     url
@@ -179,11 +176,11 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type ContentfulBlogPost implements Node {
-      video: ContentfulAsset
+      video: ContentfulAsset @link(by: "id", from: "video___NODE")
     }
 
     type ContentfulCaseStory implements Node {
-      video: ContentfulAsset
+      video: ContentfulAsset @link(by: "id", from: "video___NODE")
     }
 
     type ContentfulCaseStoryContentRichTextNode {

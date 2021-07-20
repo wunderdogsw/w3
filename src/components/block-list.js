@@ -35,10 +35,7 @@ export const query = graphql`
       file {
         url
       }
-      gatsbyImageData(
-        layout: FULL_WIDTH
-        breakpoints: [320, 480, 768, 1024, 1200]
-      )
+      gatsbyImageData(layout: FULL_WIDTH)
     }
     hero
   }
@@ -50,10 +47,7 @@ export const query = graphql`
       file {
         url
       }
-      gatsbyImageData(
-        layout: FULL_WIDTH
-        breakpoints: [320, 480, 768, 1024, 1200]
-      )
+      gatsbyImageData(layout: FULL_WIDTH)
     }
     heading
     content {
@@ -90,10 +84,7 @@ export const query = graphql`
       file {
         url
       }
-      gatsbyImageData(
-        layout: FULL_WIDTH
-        breakpoints: [320, 480, 768, 1024, 1200]
-      )
+      gatsbyImageData(layout: FULL_WIDTH)
     }
   }
 
@@ -111,10 +102,7 @@ export const query = graphql`
     id
     image {
       title
-      gatsbyImageData(
-        layout: FULL_WIDTH
-        breakpoints: [320, 480, 768, 1024, 1200]
-      )
+      gatsbyImageData(layout: FULL_WIDTH)
     }
     name
     streetAddress
@@ -151,7 +139,8 @@ export const query = graphql`
       id
       title
       gatsbyImageData(
-        breakpoints: [104, 150, 170, 200, 400, 600]
+        breakpoints: [110, 150, 170, 340, 510]
+        sizes: "(max-width: 768px) 50vw, 13w"
         placeholder: TRACED_SVG
       )
     }
@@ -165,7 +154,10 @@ export const query = graphql`
       position
       image {
         title
-        gatsbyImageData(breakpoints: [145, 200, 400, 600, 800])
+        gatsbyImageData(
+          breakpoints: [145, 200, 400, 600]
+          sizes: "(max-width: 480px) 145px, (max-width: 768px) 200px, 600px"
+        )
       }
       phone
       email

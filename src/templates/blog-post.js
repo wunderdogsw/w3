@@ -9,6 +9,7 @@ import RichText from "../components/rich-text"
 import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
 import SecondaryText from "../components/secondary-text"
+import { getMetaImageSrc } from "../common/utils"
 
 const renderAuthor = author => (
   <>
@@ -28,24 +29,10 @@ const renderSubtitle = (post, author) => (
   </>
 )
 
-const getMetaImage = post => {
-  let metaImage = null
-
-  if (post.image) {
-    metaImage = post.image.file.url
-  }
-
-  if (post.metaImage) {
-    metaImage = post.metaImage.file.url
-  }
-
-  return metaImage
-}
-
 const BlogPost = ({ data }) => {
   const { post, next } = data
   const metaTitle = post.metaTitle ?? post.title
-  const metaImage = getMetaImage(post)
+  const metaImage = getMetaImageSrc(post)
   const { author } = post
 
   return (
@@ -88,22 +75,14 @@ export const query = graphql`
       publishedAt(formatString: "MMM D, YYYY")
       image {
         title
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
-        )
-        file {
-          url
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        file {
-          url
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {
@@ -124,10 +103,7 @@ export const query = graphql`
             __typename
             contentful_id
             title
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              breakpoints: [320, 480, 768, 1024, 1200]
-            )
+            gatsbyImageData(layout: FULL_WIDTH)
             file {
               contentType
             }
@@ -232,10 +208,7 @@ export const query = graphql`
     next: contentfulBlogPost(slug: { eq: $next }) {
       title
       image {
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
-        )
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       fields {
         route

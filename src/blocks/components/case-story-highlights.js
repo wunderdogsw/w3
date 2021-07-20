@@ -18,7 +18,10 @@ const CaseStoryHighlights = ({ button, action }) => {
             title
             client
             image {
-              gatsbyImageData
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                sizes: "(max-width: 739px) 100vw, 50vw"
+              )
             }
             categories {
               title

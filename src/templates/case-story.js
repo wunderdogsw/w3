@@ -8,24 +8,11 @@ import BlockList from "../components/block-list"
 import RichText from "../components/rich-text"
 import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
-
-const getMetaImage = story => {
-  let metaImage = null
-
-  if (story.image) {
-    metaImage = story.image.file.url
-  }
-
-  if (story.metaImage) {
-    metaImage = story.metaImage.file.url
-  }
-
-  return metaImage
-}
+import { getMetaImageSrc } from "../common/utils"
 
 const CaseStory = ({ data }) => {
   const { story, next } = data
-  const metaImage = getMetaImage(story)
+  const metaImage = getMetaImageSrc(story)
   const metaTitle = story.metaTitle ?? story.title
 
   return (
@@ -69,22 +56,14 @@ export const query = graphql`
       title
       image {
         title
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
-        )
-        file {
-          url
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       metaTitle
       metaDescription {
         metaDescription
       }
       metaImage {
-        file {
-          url
-        }
+        gatsbyImageData(layout: FIXED, width: 1920)
       }
       twitterSharePreviewType
       video {
@@ -188,10 +167,7 @@ export const query = graphql`
     next: contentfulCaseStory(slug: { eq: $next }) {
       title
       image {
-        gatsbyImageData(
-          layout: FULL_WIDTH
-          breakpoints: [320, 480, 768, 1024, 1200]
-        )
+        gatsbyImageData(layout: FULL_WIDTH)
       }
       fields {
         route
