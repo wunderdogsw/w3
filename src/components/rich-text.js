@@ -1,36 +1,12 @@
 import React from "react"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { BLOCKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import { capitalize } from "../common/utils"
-import { isImage, isVideo } from "../common/entry"
-import * as blocks from "../blocks"
 import Video from "../components/video"
+import * as blocks from "../blocks"
 
 const COMPONENT_BLOCK = "componentBlock"
-
-const isSerialized = value => !(Array.isArray(value) && value[0].fields)
-
-const serializeData = target => {
-  const { fields } = target
-
-  return Object.keys(fields).reduce(
-    (result, key) => {
-      const value = fields[key]["en-US"]
-
-      let serializedValue
-      if (!isSerialized(value)) {
-        serializedValue = value.map(item => serializeData(item))
-      } else {
-        serializedValue = value
-      }
-
-      return { ...result, [key]: serializedValue }
-    },
-    { id: target.sys.id }
-  )
-}
 
 const findComponentBlock = data => {
   const componentName = data.target.fields.reactComponent["en-US"]
@@ -38,63 +14,56 @@ const findComponentBlock = data => {
   return blocks.components[componentName]
 }
 
+// please see: https://www.npmjs.com/package/@contentful/rich-text-react-renderer
 const renderTextWithLineBreaks = text =>
   text.split("\n").reduce((children, textSegment, index) => {
     return [...children, index > 0 && <br key={index} />, textSegment]
   }, [])
 
-const renderEmbeddedEntry = data => {
-  const contentType = data.target.sys.contentType.sys.id
+const renderBlocksAndComponents = node => {
+  const { data } = node
+  const contentType = data.target.__typename
 
   if (contentType === COMPONENT_BLOCK) {
     const EmbeddedComponentBlock = findComponentBlock(data)
-    const props = data.target.fields.options["en-US"]
+    const props = data.target.options["en-US"]
 
     return <EmbeddedComponentBlock {...props} />
   }
 
-  const block = `Contentful${capitalize(contentType)}`
   // eslint-disable-next-line import/namespace
-  const EmbeddedBlock = blocks[block]
+  const EmbeddedBlock = blocks[contentType]
   if (EmbeddedBlock) {
-    const serializedData = serializeData(data.target)
-
-    return <EmbeddedBlock data={serializedData} />
+    return <EmbeddedBlock data={data.target} />
   }
 
-  console.error("Unknown block", block)
+  console.error("Unknown block", contentType)
 }
 
-const findImage = (images, node) => {
-  const { url } = node.data.target.fields.file["en-US"]
+const renderImagesAndVideos = node => {
+  const { title, file, gatsbyImageData } = node.data.target
+  if (gatsbyImageData) {
+    return <GatsbyImage image={gatsbyImageData} alt={title} />
+  }
 
-  return images.find(image => image.fluid.src.split("?")[0] === url)
+  const isVideo = file.contentType.indexOf("video/") === 0
+  if (isVideo) {
+    return <Video src={`https:${file.url}`} />
+  }
+
+  throw new Error("Unknown embedded asset type")
 }
 
-const RichText = ({ document, images }) => {
+const RichText = ({ content }) => {
   const options = {
-    renderText: text => renderTextWithLineBreaks(text),
+    renderText: renderTextWithLineBreaks,
     renderNode: {
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        return renderEmbeddedEntry(node.data)
-      },
-      [BLOCKS.EMBEDDED_ASSET]: node => {
-        if (isImage(node)) {
-          return <Image fluid={findImage(images, node).fluid} />
-        }
-
-        if (isVideo(node)) {
-          return (
-            <Video src={`https:${node.data.target.fields.file["en-US"].url}`} />
-          )
-        }
-
-        throw new Error("Unknown embedded asset type")
-      },
+      [BLOCKS.EMBEDDED_ENTRY]: renderBlocksAndComponents,
+      [BLOCKS.EMBEDDED_ASSET]: renderImagesAndVideos,
     },
   }
 
-  return <>{documentToReactComponents(document, options)}</>
+  return renderRichText(content, options)
 }
 
 export default RichText

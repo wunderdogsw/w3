@@ -25,7 +25,7 @@ const CookieMultipleCheckbox = ({ options, onSubmit }) => {
           <label>
             <input
               type="checkbox"
-              className={styles.switch}
+              className={styles.switcher}
               name={item.value}
               checked={item.checked}
               onChange={handleChange}

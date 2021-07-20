@@ -7,7 +7,6 @@
 const path = require("path")
 
 const routes = require("./src/common/routes")
-const { isImage } = require("./src/common/entry")
 
 const INDEX = "index"
 
@@ -39,30 +38,6 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 }
 
-const findImageURLs = content => {
-  if (!content) {
-    return []
-  }
-
-  return content.reduce((result, entry) => {
-    if (
-      !entry.data ||
-      !entry.data.target ||
-      !entry.data.target.fields ||
-      !entry.data.target.fields.file
-    ) {
-      return result
-    }
-
-    const { url } = entry.data.target.fields.file["en-US"]
-    if (isImage(entry) && url) {
-      return [...result, url]
-    }
-
-    return result
-  }, [])
-}
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const content = await graphql(`
@@ -72,7 +47,14 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
+              references {
+                id
+                contentful_id
+                sys {
+                  type
+                }
+              }
             }
             fields {
               route
@@ -85,7 +67,47 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
+              references {
+                ... on ContentfulAsset {
+                  # __typename and contentful_id are required to resolve the references
+                  __typename
+                  contentful_id
+                  id
+                  title
+                  gatsbyImageData(layout: FULL_WIDTH)
+                  file {
+                    contentType
+                    url
+                  }
+                  sys {
+                    type
+                  }
+                }
+                ... on ContentfulHubSpotFormBlock {
+                  # __typename and contentful_id are required to resolve the references
+                  __typename
+                  contentful_id
+                  id
+                  gaLabel
+                  formId
+                  sys {
+                    type
+                  }
+                }
+                ... on ContentfulHyperlinkButtonBlock {
+                  # __typename and contentful_id are required to resolve the references
+                  __typename
+                  contentful_id
+                  id
+                  align
+                  embeddedLink
+                  textContent
+                  sys {
+                    type
+                  }
+                }
+              }
             }
             fields {
               route
@@ -100,7 +122,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             content {
-              json
+              raw
             }
             fields {
               route
@@ -115,7 +137,6 @@ exports.createPages = async ({ graphql, actions }) => {
     const pageContext = {
       ...context,
       slug: node.slug,
-      images: findImageURLs(node.content && node.content.json.content),
     }
 
     createPage({
@@ -163,7 +184,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type ContentfulCaseStoryContentRichTextNode {
-      json: JSON
+      raw: String
     }
 
     type ContentfulCaseStory implements Node {
