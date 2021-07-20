@@ -52,10 +52,12 @@ const BlogPostHighlights = ({ button, action }) => {
             subtitle={post.author && `By ${post.author.name}`}
             link={action}
             image={
-              <GatsbyImage
-                image={post.image.gatsbyImageData}
-                alt={post.image.title || post.title}
-              />
+              post.image && (
+                <GatsbyImage
+                  image={post.image.gatsbyImageData}
+                  alt={post.image.title || post.title}
+                />
+              )
             }
           />
         )}

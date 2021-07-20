@@ -41,7 +41,7 @@ const renderSubtitle = (post, author) => (
 
 const BlogPost = ({ data }) => {
   const { post, next } = data
-  const metaTitle = post.metaTitle ?? post.title ?? ""
+  const metaTitle = post.metaTitle ?? post.title
   const metaImage = getMetaImageSrc(post)
   const { author } = post
 
