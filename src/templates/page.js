@@ -17,7 +17,7 @@ const Page = ({ data }) => {
     <Layout footer={<PageFooter />}>
       <SEO
         title={page.metaTitle}
-        description={page.metaDescription.metaDescription}
+        description={page.metaDescription?.metaDescription}
         metaImage={metaImage}
         metaTwitterCardType={page.twitterSharePreviewType}
       />
