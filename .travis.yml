@@ -18,6 +18,7 @@ deploy:
     acl: public_read
     skip_cleanup: true
     local_dir: public
+    after_deploy: after-deploy.sh
     on:
       branch: master
   # Feature s3 deployment. This is parallel with * branch except master.
@@ -29,6 +30,7 @@ deploy:
     acl: public_read
     skip_cleanup: true
     local_dir: public
+    after_deploy: after-deploy.sh
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH != master
