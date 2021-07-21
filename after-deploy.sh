@@ -1,3 +1,4 @@
+# please see Gatsby caching guidelines: https://www.gatsbyjs.com/docs/caching/
 aws s3 cp s3://wunderdog-w3 s3://wunderdog-w3 --metadata-directive REPLACE  --acl public-read \
 --cache-control public,max-age=0,must-revalidate --exclude "*" --include "*.html" --recursive
 
