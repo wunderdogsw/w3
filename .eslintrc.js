@@ -1,5 +1,4 @@
 module.exports = {
-  // https://www.gatsbyjs.com/plugins/gatsby-plugin-eslint/
   parser: "babel-eslint",
   settings: {
     react: {

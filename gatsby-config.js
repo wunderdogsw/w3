@@ -53,7 +53,6 @@ module.exports = {
       resolve: "gatsby-plugin-eslint",
       options: {
         stages: ["develop"],
-        // Any eslint-webpack-plugin options below
         extensions: ["js", "jsx"],
         exclude: ["node_modules", ".cache", "public"],
       },
