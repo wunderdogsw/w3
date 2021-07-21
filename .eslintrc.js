@@ -9,13 +9,14 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ["prettier"],
+  plugins: ["jsx-a11y", "prettier"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
   ],
   globals: {

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState } from "react"
 
 import volume from "../images/volume.svg"

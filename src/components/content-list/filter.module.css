@@ -11,19 +11,21 @@
   display: none;
 }
 
-.wrapper > li {
-  color: var(--gray);
-  cursor: pointer;
+.item {
   display: inline-block;
   margin-right: 40px;
-  padding-bottom: 3px;
 }
 
-.wrapper > li:hover,
-.wrapper > li.active {
-  color: var(--black);
+.btn {
+  color: var(--gray);
 }
 
-.wrapper > li.active {
+.btn.active {
   border-bottom: 1px solid var(--black);
+  padding: 0 0 3px;
+}
+
+.btn.active,
+.btn:hover {
+  color: var(--black);
 }
