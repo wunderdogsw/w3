@@ -24,6 +24,10 @@ const Menu = ({ active, onLinkClick }) => {
   `)
 
   const config = data.contentfulConfig
+  const handleClick = async to => {
+    onLinkClick()
+    await navigate(to)
+  }
 
   return (
     <div className={`${styles.wrapper} ${active ? styles.active : ""}`}>
@@ -33,10 +37,7 @@ const Menu = ({ active, onLinkClick }) => {
             key={page.id}
             to={page.fields.route}
             activeClassName={styles.active}
-            onClick={async () => {
-              onLinkClick()
-              await navigate(page.fields.route)
-            }}
+            onClick={() => handleClick(page.fields.route)}
           >
             {page.title}
           </Link>
