@@ -9,11 +9,13 @@ const ContentFooter = ({ title, subtitle, image, to }) => (
   <div className={styles.wrapperOuter}>
     <div className={styles.wrapperInner}>
       <div className={styles.backdrop}>
-        <GatsbyImage
-          image={image.gatsbyImageData}
-          className={styles.img}
-          alt={image.title || title}
-        />
+        {image && (
+          <GatsbyImage
+            image={image.gatsbyImageData}
+            className={styles.img}
+            alt={image.title || title}
+          />
+        )}
       </div>
       <div className={styles.content}>
         <Link to={to} className={styles.link}>

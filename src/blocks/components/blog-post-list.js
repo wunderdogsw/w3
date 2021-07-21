@@ -47,7 +47,7 @@ const BlogPostList = ({ action }) => {
             key={post.id}
             to={post.fields.route}
             title={post.title}
-            subtitle={`By ${post.author.name}`}
+            subtitle={post.author && `By ${post.author.name}`}
             link={action}
             image={
               post.image && (
