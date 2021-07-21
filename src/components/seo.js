@@ -98,7 +98,7 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   metaImage: PropTypes.string,
   metaTwitterCardType: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default SEO

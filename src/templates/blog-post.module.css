@@ -1,0 +1,7 @@
+.subtitleItem:after {
+    content: ' • '
+}
+
+.subtitleItem:last-of-type:after {
+    content: ''
+}

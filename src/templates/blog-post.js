@@ -10,6 +10,7 @@ import Article from "../components/article"
 import ContentFooter from "../components/content-footer"
 import SecondaryText from "../components/secondary-text"
 import { getMetaImageSrc } from "../common/utils"
+import * as styles from "./blog-post.module.css"
 
 const renderAuthor = author => (
   <>
@@ -24,8 +25,17 @@ const renderAuthor = author => (
 
 const renderSubtitle = (post, author) => (
   <>
-    {renderAuthor(author)} • {post.publishedAt} • Read time {post.readingTime}{" "}
-    min
+    {author && (
+      <span className={styles.subtitleItem}>{renderAuthor(author)}</span>
+    )}
+    {post.publishedAt && (
+      <span className={styles.subtitleItem}>{post.publishedAt}</span>
+    )}
+    {post.readingTime && (
+      <span className={styles.subtitleItem}>
+        Read time {post.readingTime} min
+      </span>
+    )}
   </>
 )
 
@@ -60,9 +70,7 @@ const BlogPost = ({ data }) => {
         image={post.video || post.image}
       />
       {post.before && <BlockList data={post.before} />}
-      <Article>
-        <RichText content={post.content} />
-      </Article>
+      <Article>{post.content && <RichText content={post.content} />}</Article>
       {post.after && <BlockList data={post.after} />}
     </Layout>
   )

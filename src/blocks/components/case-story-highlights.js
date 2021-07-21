@@ -49,10 +49,12 @@ const CaseStoryHighlights = ({ button, action }) => {
             subtitle={story.client}
             link={action}
             image={
-              <GatsbyImage
-                image={story.image.gatsbyImageData}
-                alt={story.image.title || story.title}
-              />
+              story.image && (
+                <GatsbyImage
+                  image={story.image.gatsbyImageData}
+                  alt={story.image.title || story.title}
+                />
+              )
             }
           />
         )}
