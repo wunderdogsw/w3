@@ -20,7 +20,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_BUCKET_PRODUCTION
     acl: public_read
-    cleanup: false
+    skip_cleanup: true
     local_dir: public
     on:
       branch: master
@@ -31,7 +31,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_BUCKET_PREVIEW
     acl: public_read
-    cleanup: false
+    skip_cleanup: true
     local_dir: public
     on:
       all_branches: true
