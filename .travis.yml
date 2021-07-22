@@ -10,6 +10,8 @@ before_install:
   - tar xvf fonts/fonts.tar --directory fonts
 script:
   - yarn build
+after_deploy:
+  - ./after-deploy.sh
 deploy:
   # Production s3 deployment. This is parallel with master branch.
   - provider: s3
@@ -18,9 +20,8 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_BUCKET_PRODUCTION
     acl: public_read
-    skip_cleanup: true
+    cleanup: false
     local_dir: public
-    cache_control: "public,max-age=31536000,immutable: *.jpg, *.gif, *.png, *.ico, *.webp, *.woff, *.woff2, *.eot, *.ttf, *.css, *.js"
     on:
       branch: master
   # Feature s3 deployment. This is parallel with * branch except master.
@@ -30,9 +31,8 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $AWS_BUCKET_PREVIEW
     acl: public_read
-    skip_cleanup: true
+    cleanup: false
     local_dir: public
-    cache_control: "public,max-age=31536000,immutable: *.jpg, *.gif, *.png, *.webp, *.woff, *.woff2, *.eot, *.ttf, *.css, *.js, *.ico"
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH != master
