@@ -1,9 +1,9 @@
 import React from "react"
-import { useStaticQuery, Link, graphql, navigate } from "gatsby"
+import { useStaticQuery, Link, graphql } from "gatsby"
 
 import * as styles from "./menu.module.css"
 
-const Menu = ({ active, onLinkClick }) => {
+const Menu = ({ active, toggleMenu }) => {
   const data = useStaticQuery(graphql`
     query {
       contentfulConfig(title: { eq: "W3" }) {
@@ -24,9 +24,13 @@ const Menu = ({ active, onLinkClick }) => {
   `)
 
   const config = data.contentfulConfig
-  const handleClick = async to => {
-    onLinkClick()
-    await navigate(to)
+
+  const handleClick = to => {
+    const regexp = new RegExp(`${to}/?$`)
+    const hasClickedCurrentPage = window.location.href.match(regexp)
+    if (hasClickedCurrentPage) {
+      toggleMenu()
+    }
   }
 
   return (
