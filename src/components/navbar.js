@@ -39,7 +39,7 @@ const Navbar = () => {
         onClick={() => setMenuOpen(!menuOpen)}
         active={menuOpen}
       />
-      <Menu active={menuOpen} />
+      <Menu active={menuOpen} toggleMenu={() => setMenuOpen(!menuOpen)} />
     </>
   )
 }

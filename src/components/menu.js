@@ -3,7 +3,7 @@ import { useStaticQuery, Link, graphql } from "gatsby"
 
 import * as styles from "./menu.module.css"
 
-const Menu = ({ active }) => {
+const Menu = ({ active, toggleMenu }) => {
   const data = useStaticQuery(graphql`
     query {
       contentfulConfig(title: { eq: "W3" }) {
@@ -25,6 +25,14 @@ const Menu = ({ active }) => {
 
   const config = data.contentfulConfig
 
+  const handleClick = to => {
+    const regexp = new RegExp(`${to}/?$`)
+    const hasClickedCurrentPage = window.location.href.match(regexp)
+    if (hasClickedCurrentPage) {
+      toggleMenu()
+    }
+  }
+
   return (
     <div className={`${styles.wrapper} ${active ? styles.active : ""}`}>
       <nav>
@@ -33,6 +41,7 @@ const Menu = ({ active }) => {
             key={page.id}
             to={page.fields.route}
             activeClassName={styles.active}
+            onClick={() => handleClick(page.fields.route)}
           >
             {page.title}
           </Link>
